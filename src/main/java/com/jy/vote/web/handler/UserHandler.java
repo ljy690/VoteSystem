@@ -46,11 +46,11 @@ public class UserHandler {
 		return "register";
 	}
 	
-	//注册新用户
+	//注册新用户,加一句废话总行了吧
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(@Valid @ModelAttribute("voteUser")VoteUser user,BindingResult bindingResult, ModelMap map,HttpServletRequest request){
 		System.out.println("当前注册的用户：===》"+user);
-		
+		System.out.println("当前注册的用户2：===》"+user);
 		if(bindingResult.hasFieldErrors()){
 			map.put("regErrorMsg", "注册失败!!!");
 			return "register";
