@@ -48,7 +48,7 @@ public class UserHandler {
 		return "register";
 	}
 	
-	//注册新用户,格式问题啊
+	//注册新用户
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(@Valid @ModelAttribute("voteUser")VoteUser user,BindingResult bindingResult, ModelMap map,HttpServletRequest request){
 		System.out.println("当前注册的用户：===》"+user);
