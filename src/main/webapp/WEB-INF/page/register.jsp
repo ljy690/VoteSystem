@@ -1,0 +1,62 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<jsp:useBean id="voteUser" class="com.jy.vote.entity.VoteUser" scope="request"/>
+<!DOCTYPE html>
+<html>
+<head>
+<base href="/VoteSystem/">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>注   册</title>
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="header" class="wrap">
+	<img src="images/logo.gif" />
+</div>
+<!-- <div id="navbar" class="wrap">
+	<div class="search">
+	 
+		<form method="get" action="index.html">
+			<input type="text" name="keywords" class="input-text" /><input type="submit" name="submit" class="input-button" value="" />
+		</form>
+		
+	</div>
+</div> -->
+<div id="register" class="box">
+	<h2>新用户注册</h2>
+	<div class="content">
+	   <f:form method="post" action="user/register" modelAttribute="voteUser">
+			<dl>
+				<dt>用户名：</dt>
+				<dd>
+					<f:input path="vuUsername" class="input-text" required="required" placeholder="请输入您的用户名"/>
+					<f:errors path="vuUsername" class="cssErrors"></f:errors>	
+				</dd>
+				<dt>密码：</dt>
+				<dd>
+					<f:input path="vuPassword"  type="password" class="input-text" required="required" placeholder="请输入您的密码"/>
+					<f:errors path="vuPassword" class="cssErrors"></f:errors>	
+				</dd>
+				<dt>确认密码：</dt>
+				<dd>
+					<f:input type="password" class="input-text" path="confirmPassword" required="required" placeholder="请确认您的密码"/>
+					<f:errors path="confirmPassword" class="cssErrors"></f:errors>
+				</dd>
+				<dt>电子邮箱：</dt>
+				<dd>
+					<f:input type="email" class="input-text" path="vuEmail" required="required" placeholder="请输入您的电子邮箱"/>
+					<f:errors path="vuEmail" class="cssErrors"></f:errors>
+				</dd>
+				<dt></dt>
+				<dd><input type="submit" class="input-button" name="submit" value=" "/></dd>
+			</dl>
+		</f:form>
+		<!-- <div class="error"><s:fielderror/></div>
+		<div class="error"><s:actionerror/></div> -->
+		<div class="error">${regErrorMsg }</div>
+	</div>
+</div>
+<jsp:include page="footer.jsp" />
+</body>
+</html>

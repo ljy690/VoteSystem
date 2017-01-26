@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 使用映射接口的方式， 命名空间的值必须与映射接口的全限定名一致 -->
+<mapper namespace="com.jy.vote.mapper.SubjectMapping">
+	<sql id="selectSubject">
+		select s.*,(select count(1) from VoteItem where vsId=s.vsId) voteCount,
+		(select count(1) from VoteOption where vsId=s.vsId) optionCount from VoteSubject s
+	</sql>
+	<select id="getSubjectAll" parameterType="VoteSubject" resultType="VoteSubject"> 
+		<include refid="selectSubject"/>
+	</select>
+	
+	<select id="getSubjectAllById" parameterType="int" resultType="VoteSubject">
+		<include refid="selectSubject"/> where vsId=#{vsId}
+	</select>
+</mapper>
