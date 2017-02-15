@@ -8,14 +8,16 @@ create table VoteUser
 (
   vuId   NUMBER(10) primary key,           --用户id
   vuUsername VARCHAR2(20) not null,           --用户名
+  vuDate date not null,                       --出生日期
   vuPassword  VARCHAR2(40) not null,           --用户密码
   vuStatus    NUMBER(6) not null,              --用户状态  1是未激活，2是已激活
   vuVersion   NUMBER(10) not null              --角色  0是普通角色，1是超级管理员
 );
 
-insert into VoteUser(vuId,vuUsername, vuPassword, vuStatus, vuVersion) 
-values(seq_user.nextval,'admin','6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2',2,1);
+insert into VoteUser(vuId,vuUsername,vuDate, vuPassword, vuStatus, vuVersion) 
+values(seq_user.nextval,'admin',sysdate,'6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2',2,1);
 create sequence seq_user start with   1000010;
+drop sequence seq_user;
 select * from VoteUser;
 
 --投票主题

@@ -26,23 +26,31 @@
 <div id="register" class="box">
 	<h2>新用户注册</h2>
 	<div class="content">
-	   <f:form method="post" action="user/register" modelAttribute="voteUser">
-			<dl>
+	   <f:form method="post" action="user/register" modelAttribute="voteUser" style="margin:0 auto;">
+			<dl >
 				<dt>用户名：</dt>
 				<dd>
 					<f:input path="vuUsername" class="input-text" required="required" placeholder="请输入您的用户名"/>
 					<f:errors path="vuUsername" class="cssErrors"></f:errors>	
+				</dd>
+				<dd id="nameinfo">用户名支持英文字母以及"_",限制6-8个字符</dd>
+				<dt>出生日期：</dt>
+				<dd>
+					<f:input path="vuDate" type="date" class="input-text" required="required" placeholder="请选择您的出生年月"/>
+					<f:errors path="vuDate" class="cssErrors"></f:errors>
 				</dd>
 				<dt>密码：</dt>
 				<dd>
 					<f:input path="vuPassword"  type="password" class="input-text" required="required" placeholder="请输入您的密码"/>
 					<f:errors path="vuPassword" class="cssErrors"></f:errors>	
 				</dd>
+				<dd id="pwinfo">密码支持英文字母,限制6-18个字符</dd>
 				<dt>确认密码：</dt>
 				<dd>
 					<f:input type="password" class="input-text" path="confirmPassword" required="required" placeholder="请确认您的密码"/>
 					<f:errors path="confirmPassword" class="cssErrors"></f:errors>
 				</dd>
+				<dd id="repwinfo">密码支持英文字母,限制6-18个字符</dd>
 				<dt>电子邮箱：</dt>
 				<dd>
 					<f:input type="email" class="input-text" path="vuEmail" required="required" placeholder="请输入您的电子邮箱"/>
@@ -52,11 +60,10 @@
 				<dd><input type="submit" class="input-button" name="submit" value=" "/></dd>
 			</dl>
 		</f:form>
-		<!-- <div class="error"><s:fielderror/></div>
-		<div class="error"><s:actionerror/></div> -->
 		<div class="error">${regErrorMsg }</div>
 	</div>
 </div>
 <jsp:include page="footer.jsp" />
+<script type="text/javascript"  src="js/register.js"></script>
 </body>
 </html>

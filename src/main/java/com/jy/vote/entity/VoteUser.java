@@ -4,8 +4,9 @@ import org.hibernate.validator.constraints.Length;
 
 public class VoteUser {
 	private int vuId;
-	@Length(max=10,message="长度最大为10...")
+	@Length(max=8,message="长度最大为8...")
 	private String vuUsername;
+	private String vuDate;
 	private String vuPassword;
 	private int vuStatus;
 	private int vuVersion;
@@ -70,14 +71,20 @@ public class VoteUser {
 	public void setOptionCount(Integer optionCount) {
 		this.optionCount = optionCount;
 	}
-
-
-	public VoteUser(int vuId, String vuUsername, String vuPassword,
-			int vuStatus, int vuVersion, String confirmPassword,
-			String vuEmail, Integer voteCount, Integer optionCount) {
+	public String getVuDate() {
+		return vuDate;
+	}
+	public void setVuDate(String vuDate) {
+		this.vuDate = vuDate;
+	}
+	public VoteUser(int vuId, String vuUsername, String vuDate,
+			String vuPassword, int vuStatus, int vuVersion,
+			String confirmPassword, String vuEmail, Integer voteCount,
+			Integer optionCount) {
 		super();
 		this.vuId = vuId;
 		this.vuUsername = vuUsername;
+		this.vuDate = vuDate;
 		this.vuPassword = vuPassword;
 		this.vuStatus = vuStatus;
 		this.vuVersion = vuVersion;
@@ -86,17 +93,17 @@ public class VoteUser {
 		this.voteCount = voteCount;
 		this.optionCount = optionCount;
 	}
-
 	public VoteUser() {
 		super();
 	}
-
 	@Override
 	public String toString() {
 		return "VoteUser [vuId=" + vuId + ", vuUsername=" + vuUsername
-				+ ", vuPassword=" + vuPassword + ", vuStatus=" + vuStatus
-				+ ", vuVersion=" + vuVersion + ", confirmPassword="
-				+ confirmPassword + ", vuEmail=" + vuEmail + ", voteCount="
-				+ voteCount + ", optionCount=" + optionCount + "]";
+				+ ", vuDate=" + vuDate + ", vuPassword=" + vuPassword
+				+ ", vuStatus=" + vuStatus + ", vuVersion=" + vuVersion
+				+ ", confirmPassword=" + confirmPassword + ", vuEmail="
+				+ vuEmail + ", voteCount=" + voteCount + ", optionCount="
+				+ optionCount + "]";
 	}
+
 }
