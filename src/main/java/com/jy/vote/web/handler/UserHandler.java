@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jy.vote.entity.VoteUser;
 import com.jy.vote.service.UserService;
@@ -53,11 +54,6 @@ public class UserHandler {
 
 		if(bindingResult.hasFieldErrors()){
 			map.put("regErrorMsg", "注册失败!!!");
-			return "register";
-		}
-		//核对用户名是否存在
-		if(userService.checkName(user.getVuUsername().trim())){
-			map.put("regErrorMsg", "注册失败,用户名已经存在,请重新注册!!!");
 			return "register";
 		}
 		//将用户信息插入数据库
@@ -129,5 +125,13 @@ public class UserHandler {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/checkUname")
+	public boolean checkUname(VoteUser voteUser){
+		//System.out.println("检测用户"+voteUser.getVuUsername().trim()+"是否被用...");
+		boolean result=userService.checkName(voteUser.getVuUsername().trim()); 
+		return result;
 	}
 }

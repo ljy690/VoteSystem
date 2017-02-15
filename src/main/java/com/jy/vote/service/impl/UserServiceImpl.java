@@ -44,5 +44,4 @@ public class UserServiceImpl implements UserService {
 	public int changeStatus(String username) {
 		return userMapping.changeStatus(username);
 	}
-
 }

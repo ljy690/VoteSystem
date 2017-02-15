@@ -29,12 +29,12 @@
 						<dt>用户名：</dt>
 						<dd>
 							<input type="text" class="input-text" name="vuUsername"
-								placeholder="请输入您的用户名..." onblur="checkUsename(this)" />
+								placeholder="请输入您的用户名..."/>
 						</dd>
 						<dt>密 码：</dt>
 						<dd>
 							<input type="password" class="input-text" name="vuPassword"
-								placeholder="请输入您的密码..." onblur="checkPassword()" />
+								placeholder="请输入您的密码..."/>
 						</dd>
 						<dt></dt>
 						<!-- Register.action -->

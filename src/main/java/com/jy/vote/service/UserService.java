@@ -7,6 +7,7 @@ public interface UserService {
 	
 	VoteUser login(VoteUser user);
 
+	//检测账号是否存在
 	boolean checkName(String username);
 
 	//激活账号

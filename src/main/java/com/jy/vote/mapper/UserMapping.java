@@ -10,4 +10,5 @@ public interface UserMapping {
 	VoteUser checkName(String vuUsername);
 
 	int changeStatus(String vuUsername);
+	
 }

@@ -3,10 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<base href="/VoteSystem/" />
 <meta charset="UTF-8">
 <title>error404</title>
 </head>
 <body>
-	<img alt="错误提示" src="../../images/404.jpg">
+	<img alt="错误提示" src="images/404.jpg">
 </body>
 </html>
