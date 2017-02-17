@@ -1,11 +1,12 @@
 package com.jy.vote.entity;
 
-import org.hibernate.validator.constraints.Length;
+//import org.hibernate.validator.constraints.Length;
 
 public class VoteUser {
 	private int vuId;
-	@Length(max=8,message="长度最大为8...")
+	//@Length(max=8,message="长度最大为8...")
 	private String vuUsername;
+	private String vuSex;
 	private String vuDate;
 	private String vuPassword;
 	private int vuStatus;
@@ -77,13 +78,20 @@ public class VoteUser {
 	public void setVuDate(String vuDate) {
 		this.vuDate = vuDate;
 	}
-	public VoteUser(int vuId, String vuUsername, String vuDate,
+	public String getVuSex() {
+		return vuSex;
+	}
+	public void setVuSex(String vuSex) {
+		this.vuSex = vuSex;
+	}
+	public VoteUser(int vuId, String vuUsername, String vuSex, String vuDate,
 			String vuPassword, int vuStatus, int vuVersion,
 			String confirmPassword, String vuEmail, Integer voteCount,
 			Integer optionCount) {
 		super();
 		this.vuId = vuId;
 		this.vuUsername = vuUsername;
+		this.vuSex = vuSex;
 		this.vuDate = vuDate;
 		this.vuPassword = vuPassword;
 		this.vuStatus = vuStatus;
@@ -99,11 +107,10 @@ public class VoteUser {
 	@Override
 	public String toString() {
 		return "VoteUser [vuId=" + vuId + ", vuUsername=" + vuUsername
-				+ ", vuDate=" + vuDate + ", vuPassword=" + vuPassword
-				+ ", vuStatus=" + vuStatus + ", vuVersion=" + vuVersion
-				+ ", confirmPassword=" + confirmPassword + ", vuEmail="
-				+ vuEmail + ", voteCount=" + voteCount + ", optionCount="
-				+ optionCount + "]";
+				+ ", vuSex=" + vuSex + ", vuDate=" + vuDate + ", vuPassword="
+				+ vuPassword + ", vuStatus=" + vuStatus + ", vuVersion="
+				+ vuVersion + ", confirmPassword=" + confirmPassword
+				+ ", vuEmail=" + vuEmail + ", voteCount=" + voteCount
+				+ ", optionCount=" + optionCount + "]";
 	}
-
 }

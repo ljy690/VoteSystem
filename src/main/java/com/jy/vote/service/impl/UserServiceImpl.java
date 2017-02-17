@@ -44,4 +44,13 @@ public class UserServiceImpl implements UserService {
 	public int changeStatus(String username) {
 		return userMapping.changeStatus(username);
 	}
+
+	@Override
+	public boolean checkEmail(String email) {
+		VoteUser user = userMapping.checkEmail(email);
+		 if(null == user){
+			 return false;
+		 }
+		 return true;
+	}
 }

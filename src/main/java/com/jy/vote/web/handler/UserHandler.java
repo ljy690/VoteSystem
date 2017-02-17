@@ -93,6 +93,22 @@ public class UserHandler {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/checkUname")
+	public boolean checkUname(VoteUser voteUser){
+		//System.out.println("检测用户"+voteUser.getVuUsername().trim()+"是否被用...");
+		boolean result=userService.checkName(voteUser.getVuUsername().trim()); 
+		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/checkEmail")
+	public boolean checkEmail(VoteUser voteUser){
+		//System.out.println("检测邮箱"+voteUser.getVuEmail().trim()+"是否被用...");
+		boolean result=userService.checkEmail(voteUser.getVuEmail().trim()); 
+		return result;
+	}
+	
 /*	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(){
 		System.out.println("点击返回的登陆界面...");
@@ -105,7 +121,7 @@ public class UserHandler {
 	 */
 	private String getContentSend(HttpServletRequest request,String username) {
 		// activeURL===>http://localhost:8080/VoteSystem/user/active/
-		String activeURL = request.getScheme()+"://"+request.getServerName()+":"
+		String activeURL = request.getScheme()+"://"+request.getServerName()+","
 				+request.getServerPort()+request.getContextPath()+"/user/register_success?username="+username;
 		activeURL = String.format("<a href='%s'>%s</a><br/><br/>如果此链接无效，请您将此链接拷贝到地址栏激活...%s",activeURL, "激活用户",activeURL);
 		return activeURL;
@@ -127,11 +143,4 @@ public class UserHandler {
 		}
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/checkUname")
-	public boolean checkUname(VoteUser voteUser){
-		//System.out.println("检测用户"+voteUser.getVuUsername().trim()+"是否被用...");
-		boolean result=userService.checkName(voteUser.getVuUsername().trim()); 
-		return result;
-	}
 }

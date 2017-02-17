@@ -11,4 +11,6 @@ public interface UserMapping {
 
 	int changeStatus(String vuUsername);
 	
+	//检测邮箱是否被占用
+	VoteUser checkEmail(String email);
 }

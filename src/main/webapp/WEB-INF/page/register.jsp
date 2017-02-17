@@ -31,11 +31,11 @@
 		<h2>新用户注册</h2>
 		<div class="content">
 			<f:form method="post" action="user/register"
-				modelAttribute="voteUser" style="margin:0 auto;">
+				modelAttribute="voteUser" style="margin:0 auto;" id="formInfo"> 
 				<dl>
 					<dt>用户名：</dt>
 					<dd>
-						<f:input path="vuUsername" class="input-text" required="required"
+						<f:input path="vuUsername" id="voteUserID" class="input-text" required="required"
 							placeholder="请输入您的用户名" onblur="checkUsename(this)"/>
 						<f:errors path="vuUsername" class="cssErrors"></f:errors>
 					</dd>
@@ -43,33 +43,43 @@
 					<dt>出生日期：</dt>
 					<dd>
 						<f:input type="text" id="demo-1" path="vuDate" class="input-text"
-							value=" " required="required" placeholder="请选择您的出生年月" onblur="checkBri(this)"/>
+							value=" " required="required" placeholder="请选择您的出生年月" onchange="checkBri(this)"/>
 						<f:errors path="vuDate" class="cssErrors"></f:errors>
+					</dd>
+  					<dt>性别：</dt>
+					<dd>
+						<f:radiobutton  path="vuSex" name="sex" value="male" checked="true"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  						<f:radiobutton  path="vuSex" name="sex" value="female" /> 女
+  						<f:errors path="vuSex" class="cssErrors"></f:errors>
+  						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  						<span id="briInfo"></span>
 					</dd>
 					<dt>密码：</dt>
 					<dd>
-						<f:input path="vuPassword" type="password" class="input-text"
-							required="required" placeholder="请输入您的密码" />
+						<f:input path="vuPassword" id="voteUserPassID" type="password" class="input-text"
+							required="required" placeholder="请输入您的密码" onblur="checkPwd(this)"/>
 						<f:errors path="vuPassword" class="cssErrors"></f:errors>
 					</dd>
-					<dd id="pwinfo">密码支持英文字母，限制6-18个字符</dd>
+					<dd id="pwinfo">密码支持字母和数字，限制6-18个字符</dd>
 					<dt>确认密码：</dt>
 					<dd>
-						<f:input type="password" class="input-text" path="confirmPassword"
-							required="required" placeholder="请确认您的密码" />
+						<f:input type="password" id="voteUserRpassID" class="input-text" path="confirmPassword"
+							required="required" placeholder="请确认您的密码" onblur="checkRpwd(this)"/>
 						<f:errors path="confirmPassword" class="cssErrors"></f:errors>
 					</dd>
-					<dd id="repwinfo">密码支持英文字母，限制6-18个字符</dd>
+					<dd id="repwinfo">密码支持字母和数字，限制6-18个字符</dd>
 					<dt>电子邮箱：</dt>
 					<dd>
-						<f:input type="email" class="input-text" path="vuEmail"
-							required="required" placeholder="请输入您的电子邮箱" />
+						<f:input type="email" id="voteUserEmailID" class="input-text" path="vuEmail"
+							required="required" placeholder="请输入您的电子邮箱" onblur="checkEmail(this)"/>
 						<f:errors path="vuEmail" class="cssErrors"></f:errors>
 					</dd>
+					<dd id="emailInfo">邮箱不能以 - _ .以及其它特殊字符开头和结束</dd>
 					<dt></dt>
 					<dd>
-						<input type="submit" class="input-button" name="submit" value=" " />
+						<input type="button" class="input-button" value=" " onclick="checkRegister()" onblur="cleanErrorInfo()"/>
 					</dd>
+					<dd  id="registerErroInfo"></dd>
 				</dl>
 			</f:form>
 			<div class="error">${regErrorMsg }</div>

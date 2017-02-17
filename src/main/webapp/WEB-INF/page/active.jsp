@@ -17,7 +17,7 @@
 <div id="message" class="box">
 	<h2>提示信息</h2>
 	<div class="content">
-		<p>恭喜：注册成功！请进入您的邮箱进行激活操作。<a href="user/jumpLogin">点此返回登录界面</a></p>
+		<p>恭喜：注册成功！请进入您的邮箱进行激活操作。<a href="user/jumpLogin">>>点此返回登录界面</a></p>
 	</div>
 </div>
 <jsp:include page="footer.jsp" />

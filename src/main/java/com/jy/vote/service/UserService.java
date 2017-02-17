@@ -12,4 +12,7 @@ public interface UserService {
 
 	//激活账号
 	int changeStatus(String username);
+
+	//检测邮箱是否被占用
+	boolean checkEmail(String email);
 }

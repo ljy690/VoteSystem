@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 使用映射接口的方式， 命名空间的值必须与映射接口的全限定名一致 -->
 <mapper namespace="com.jy.vote.mapper.UserMapping">
 	<insert id="insertUser" parameterType="VoteUser">
-		insert into VoteUser values(seq_user.nextval,#{vuUsername},#{vuPassword},1,0)
+		insert into VoteUser values(seq_user.nextval,#{vuUsername},#{vuSex},to_date(#{vuDate},'dd-mm-yyyy'),#{vuPassword},#{vuEmail},1,0)
 	</insert>
 	
 	<select id="findUserByNP" parameterType="VoteUser" resultType="VoteUser"> 
@@ -19,4 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="changeStatus">
 		update VoteUser set vuStatus=2 where vuusername = #{vuUsername}
 	</update>
+	
+	<select id="checkEmail" parameterType="String" resultType="VoteUser">
+		select * from VoteUser where vuEmail = #{vuEmail}
+	</select>
 </mapper>
