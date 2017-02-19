@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -73,8 +74,9 @@ public class UserHandler {
 	}
 	
 	@RequestMapping(value="/login")
-	public String login(VoteUser voteUser,ModelMap map){
-		System.out.println("user login..."+voteUser);
+	public String login(VoteUser voteUser,ModelMap map,HttpSession session){
+		LogManager.getLogger().debug("user login..."+voteUser);
+		session.setAttribute( SessionAttributeInfo.CurrUser, voteUser.getVuUsername());
 		//密码加密
 		voteUser = userService.login(voteUser);
 		//登陆结果页面跳转

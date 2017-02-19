@@ -9,8 +9,8 @@
 		您好， ${currUser }
 		<span class="return"><a href="Subject!list.action">返回列表</a></span>
 		<span class="addnew"><a href="Subject!read.action">添加新投票</a></span>
-		<span class="modify"><a href="Subject!modify.action">维护</a></span>
-		<span class="leavemsg"><a href="Subject!modify.action">留言</a></span>
+		<span class="modify"><a href="Subject!modify.action">我发起の投票</a></span>
+		<span class="leavemsg"><a href="Subject!modify.action">我参与の投票</a></span>
 	</div>
 	<div class="search">
 		<form method="post" action="Subject!search.action">

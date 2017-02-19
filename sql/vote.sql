@@ -87,12 +87,24 @@ select * from VoteOption;
 select * from VoteItem;
 
 -- 每个主题的有多少投票 ，每个主题有多少选项
-select s.*,(select count(1) from VoteItem where vsId=s.vsId) voteCount,
-(select count(1) from VoteOption where vsId=s.vsId) optionCount from VoteSubject s;
+select s.*,
+(select count(1) from VoteItem where vsId=s.vsId) voteCount,
+(select count(1) from VoteOption where vsId=s.vsId) optionCount 
+from VoteSubject s;
 
 --查询某个主题的信息，以及选项得票情况
-select o.*,(select count(1) from VoteItem where voId=o.voId ) voteCount from VOTEOPTION o where vsid = 1
+select o.*,
+(select count(1) from VoteItem where voId=o.voId ) voteUserCount
+from VOTEOPTION o 
+where vsid = 1;
 
+--感觉身体被掏空
+select o.*,
+(select count(1) from VoteItem where voId=o.voId ) voteUserCount,
+(select count(1) from VoteItem where vsId=o.vsId) voteAllCount ,
+(select vsTitle from VoteSubject where vsId=o.vsId) vsTitle 
+from VOTEOPTION o 
+where vsid = 1 order by voOrder
 
 
 --添加投票主题

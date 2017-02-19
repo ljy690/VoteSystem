@@ -2,7 +2,7 @@ body { font-size:12px; background:#fff; color:#333; line-height:25px; margin:0; 
 h2,h4,p,ul,li,dl,dt,dd,form,input { margin:0; padding:0; }
 img { border:0; }
 em { font-style:normal; }
-.wrap { width:800px; margin:0px auto; }
+.wrap { width:880px; margin:0px auto; }
 .red, a.red { color:#f00; }
 .input-text { padding:2px 4px; border:1px solid #79a4cf; }
 .input-button { border:none; }

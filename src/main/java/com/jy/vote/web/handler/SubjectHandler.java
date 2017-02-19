@@ -2,7 +2,9 @@ package com.jy.vote.web.handler;
 
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,16 +24,11 @@ public class SubjectHandler {
 	@RequestMapping(value="/listAll")
 	public void listAll(PrintWriter out){
 		List<VoteSubject> subjects = subjectService.getSubjectAll();
+		LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
 		Gson gson = new Gson();
 		out.print(gson.toJson(subjects));
 		out.flush();
 		out.close();
 	}
 	
-	@RequestMapping(value="/view")
-	public String view(int vsId,ModelMap map){
-		VoteSubject subject = subjectService.getSubjectAllById(vsId);
-		map.put("subject", subject);
-		return "view";
-	}
 }
