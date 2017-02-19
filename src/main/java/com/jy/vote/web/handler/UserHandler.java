@@ -33,13 +33,18 @@ public class UserHandler {
 	@RequestMapping(value="/register_success", method=RequestMethod.GET)
 	public String registerSuccess(@RequestParam("username") String username,HttpSession session){
 		System.out.println("当前的激活成功用户是：===>"+username);
-		//将用户状态设置为激活
-		if(userService.changeStatus(username)>0){
-			session.setAttribute( SessionAttributeInfo.CurrUser, username);
-			return "reg_success";
-		};
-		//否则跳到注册页面 ，不人性化 ，没有失败原因提醒
-		return "register";
+		session.setAttribute( SessionAttributeInfo.CurrUser, username);
+		//先判断当前用户是否已经激活,true没有激活
+		if(userService.checkStatus(username)){
+			//将用户状态设置为激活
+			System.out.println("账号没有激活。");
+			if(userService.changeStatus(username)>0){
+				System.out.println("激活账号。");
+				return "reg_success";
+			};
+		}
+		//否则跳到激活失败页面，重新注册？
+		return "reg_error";
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
@@ -47,7 +52,6 @@ public class UserHandler {
 		return "register";
 	}
 	
-	//注册新用户,加一句废话总行了吧
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String register(@Valid @ModelAttribute("voteUser")VoteUser user,BindingResult bindingResult, ModelMap map,HttpServletRequest request){
 		System.out.println("当前注册的用户：===》"+user);
@@ -82,7 +86,7 @@ public class UserHandler {
 			map.put("errorMsg", "用户未激活，请去邮箱激活后再进行操作...");
 			return "login";
 		}
-		return "manage";
+		return "list";
 	}
 	
 	//等待激活时，跳到登陆界面
@@ -121,7 +125,7 @@ public class UserHandler {
 	 */
 	private String getContentSend(HttpServletRequest request,String username) {
 		// activeURL===>http://localhost:8080/VoteSystem/user/active/
-		String activeURL = request.getScheme()+"://"+request.getServerName()+","
+		String activeURL = request.getScheme()+"://"+request.getServerName()+":"
 				+request.getServerPort()+request.getContextPath()+"/user/register_success?username="+username;
 		activeURL = String.format("<a href='%s'>%s</a><br/><br/>如果此链接无效，请您将此链接拷贝到地址栏激活...%s",activeURL, "激活用户",activeURL);
 		return activeURL;

@@ -53,4 +53,13 @@ public class UserServiceImpl implements UserService {
 		 }
 		 return true;
 	}
+
+	@Override
+	public boolean checkStatus(String username) {
+		VoteUser user = userMapping.checkStatus(username);
+		if(null==user){//代表已经激活
+			return false;
+		}
+		return true;
+	}
 }

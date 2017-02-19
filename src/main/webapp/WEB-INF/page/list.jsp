@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<base href="/Vote/">
+<base href="/VoteSystem/">
 <meta charset="utf-8" />
 <title>投票列表</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-<div id="header" class="wrap">
+<%-- <div id="header" class="wrap">
 	<img src="images/logo.gif" />
 </div>
 <div id="navbar" class="wrap">
@@ -32,7 +32,8 @@
 			<input type="text" name="keywords" class="input-text" value=""/><input type="submit" name="submit" class="input-button" value="" />
 		</form>
 	</div>
-</div>
+</div> --%>
+<jsp:include page="top.jsp" />
 
 <div id="vote" class="wrap">
 	<h2>投票列表</h2>

@@ -5,7 +5,7 @@
 <head>
 <base href="/VoteSystem/">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>激活成功</title>
+<title>激活失败</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -22,7 +22,7 @@
 <div id="message" class="box">
 	<h2>提示信息</h2>
 	<div class="content">
-		<p>恭喜用户： ${currUser }，激活成功！<a href="user/jumpLogin">返回登陆界面&gt;&gt;</a></p>
+		<p>当前用户： ${currUser }，该账号已经激活过，不需要重复激活！<a href="user/jumpLogin">返回登陆界面&gt;&gt;</a></p>
 	</div>
 </div>
 <jsp:include page="footer.jsp" />

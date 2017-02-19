@@ -13,4 +13,7 @@ public interface UserMapping {
 	
 	//检测邮箱是否被占用
 	VoteUser checkEmail(String email);
+	
+	//检测是否激活邮箱
+	VoteUser checkStatus(String username);
 }

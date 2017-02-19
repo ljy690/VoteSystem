@@ -15,4 +15,7 @@ public interface UserService {
 
 	//检测邮箱是否被占用
 	boolean checkEmail(String email);
+
+	//检测邮箱是否已经激活
+	boolean checkStatus(String username);
 }

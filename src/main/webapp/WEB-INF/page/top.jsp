@@ -6,7 +6,7 @@
 </div>
 <div id="navbar" class="wrap">
 	<div class="profile">
-		您好，aaaaaaaaaaaaaa<s:property value="(#session['loginUser']).userName"/>
+		您好， ${currUser }
 		<span class="return"><a href="Subject!list.action">返回列表</a></span>
 		<span class="addnew"><a href="Subject!read.action">添加新投票</a></span>
 		<span class="modify"><a href="Subject!modify.action">维护</a></span>
