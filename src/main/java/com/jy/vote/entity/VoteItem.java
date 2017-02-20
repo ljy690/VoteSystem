@@ -5,6 +5,7 @@ public class VoteItem {
 	private int voId;
 	private int vsId;
 	private int vuId;
+	private String vuUsername;
 	
 	public int getViId() {
 		return viId;
@@ -30,22 +31,26 @@ public class VoteItem {
 	public void setVuId(int vuId) {
 		this.vuId = vuId;
 	}
-	
-	public VoteItem(int viId, int voId, int vsId, int vuId) {
+	public String getVuUsername() {
+		return vuUsername;
+	}
+	public void setVuUsername(String vuUsername) {
+		this.vuUsername = vuUsername;
+	}
+	public VoteItem(int viId, int voId, int vsId, int vuId, String vuUsername) {
 		super();
 		this.viId = viId;
 		this.voId = voId;
 		this.vsId = vsId;
 		this.vuId = vuId;
+		this.vuUsername = vuUsername;
 	}
-	
 	public VoteItem() {
 		super();
 	}
-	
 	@Override
 	public String toString() {
 		return "VoteItem [viId=" + viId + ", voId=" + voId + ", vsId=" + vsId
-				+ ", vuId=" + vuId + "]";
+				+ ", vuId=" + vuId + ", vuUsername=" + vuUsername + "]";
 	}
 }

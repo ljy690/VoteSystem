@@ -5,11 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 使用映射接口的方式， 命名空间的值必须与映射接口的全限定名一致 -->
 <mapper namespace="com.jy.vote.mapper.OptionMapping">
 	<select id="getSbOpsById" parameterType="int" resultType="VoteOption"> 
-		select o.*,
-		(select count(1) from VoteItem where voId=o.voId ) voteUserCount,
-		(select count(1) from VoteItem where vsId=o.vsId) voteAllCount ,
-		(select vsTitle from VoteSubject where vsId=o.vsId) vsTitle 
-		from VOTEOPTION o 
-		where vsid =#{vsId} order by voOrder
+		select vo.*,vs.*,
+		(select count(1) from VoteItem where voId=vo.voId ) voteUserCount,
+		(select count(1) from VoteItem where vsId=vo.vsId) voteAllCount 
+		from VOTEOPTION vo , VoteSubject vs
+		where vo.vsid =#{vsId} and vo.vsId=vs.vsId order by voOrder
 	</select>
 </mapper>

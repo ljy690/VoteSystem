@@ -8,6 +8,7 @@ public class VoteOption {
 	private int voOrder;
 	private int voteUserCount;//每个选项的投票数
 	private int voteAllCount;//总共多少人投票
+	private int vsType;//对应的主题的类型
 	
 	public int getVoId() {
 		return voId;
@@ -51,8 +52,14 @@ public class VoteOption {
 	public void setVsTitle(String vsTitle) {
 		this.vsTitle = vsTitle;
 	}
+	public int getVsType() {
+		return vsType;
+	}
+	public void setVsType(int vsType) {
+		this.vsType = vsType;
+	}
 	public VoteOption(int voId, String voOption, String vsTitle, int vsId,
-			int voOrder, int voteUserCount, int voteAllCount) {
+			int voOrder, int voteUserCount, int voteAllCount, int vsType) {
 		super();
 		this.voId = voId;
 		this.voOption = voOption;
@@ -61,6 +68,7 @@ public class VoteOption {
 		this.voOrder = voOrder;
 		this.voteUserCount = voteUserCount;
 		this.voteAllCount = voteAllCount;
+		this.vsType = vsType;
 	}
 	public VoteOption() {
 		super();
@@ -70,6 +78,6 @@ public class VoteOption {
 		return "VoteOption [voId=" + voId + ", voOption=" + voOption
 				+ ", vsTitle=" + vsTitle + ", vsId=" + vsId + ", voOrder="
 				+ voOrder + ", voteUserCount=" + voteUserCount
-				+ ", voteAllCount=" + voteAllCount + "]";
+				+ ", voteAllCount=" + voteAllCount + ", vsType=" + vsType + "]";
 	}
 }

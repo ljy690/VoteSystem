@@ -46,9 +46,6 @@ create table VoteSubject
   vsTitle VARCHAR2(200) not null,         --投票主题
   vsType  NUMBER(6) not null              --投票类型:   单选  1    多选   2
 );
---操作主题表
-select * from VoteSubject;
-delete VoteSubject;
 
 
 --投票内容对应的选项表
@@ -60,13 +57,6 @@ create table VoteOption
   	constraint FK_vovsId references VoteSubject(vsId),
   voOrder  NUMBER(10) not null  --显示顺序
 );
-
-
-
-
-
-
-
 
 --用户投票取值表
 create table VoteItem
@@ -93,18 +83,25 @@ select s.*,
 from VoteSubject s;
 
 --查询某个主题的信息，以及选项得票情况
-select o.*,
-(select count(1) from VoteItem where voId=o.voId ) voteUserCount
-from VOTEOPTION o 
-where vsid = 1;
+select vo.*,
+(select count(1) from VoteItem where voId=vo.voId ) voteUserCount
+from VOTEOPTION vo
+where vo.vsid = 1;
+
+--投票信息
+select vo.*,vs.*
+from VOTEOPTION vo, VoteSubject vs
+where vo.vsid = 1 and vo.vsId=vs.vsId;
 
 --感觉身体被掏空
-select o.*,
-(select count(1) from VoteItem where voId=o.voId ) voteUserCount,
-(select count(1) from VoteItem where vsId=o.vsId) voteAllCount ,
-(select vsTitle from VoteSubject where vsId=o.vsId) vsTitle 
-from VOTEOPTION o 
-where vsid = 1 order by voOrder
+select vo.*,vs.*,
+(select count(1) from VoteItem where voId=vo.voId ) voteUserCount,
+(select count(1) from VoteItem where vsId=vo.vsId) voteAllCount 
+from VOTEOPTION vo , VoteSubject vs
+where vo.vsid = 1 and vo.vsId=vs.vsId order by voOrder
+
+--查询用户对应的主题信息
+select viId,voId,vsId from VoteItem vi,VoteUser vu where vu.vuId=vi.vuId and vuUsername='aaaaaa' and vsid=1;
 
 
 --添加投票主题

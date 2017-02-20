@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fs"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,17 +15,21 @@
 	<h2>参与投票</h2>
 	<ul class="list">
 		<li>
-			<h4><s:property value="subject.title"/></h4>
-			<!-- <p class="info">共有 <s:property value="subject.options.size"/> 个选项，已有 <s:property value="votes"/> 个网友参与了投票。</p> -->
-			<p class="info">共有  null 个选项，已有  null 个网友参与了投票。</p>
-			<form method="post" action="Vote!save.action">
-			    <input type="hidden" name="entityId" value="<s:property value='subject.id'/>"/> 
+		<h4>${options[0].vsTitle }[${options[0].vsType eq 1 ? '单选':'多选'}]</h4>
+			<p class="info">共有 ${fs:length(options) }个选项，已有${options[0].voteAllCount }个网友参与了投票。</p>
+			<label style="color:red">${saveMsg}</label>
+			<c:remove var="saveMsg" scope="session"/>
+			<form method="post" action="voteitem/vote">
+			    <input type="hidden" name="vsId" value=" ${options[0].vsId}"/> 
+			    <input type="hidden" name="vuUsername" value=" ${currUser }"/> 
 				<ol>
-				  <s:iterator value="subject.options" status="status"> 
-					<li><input <s:if test="subject.type==2">type="checkbox"</s:if><s:else>type="radio"</s:else> name="options"  value="<s:property value='id'/>"/><s:property value="name"/></li>
-				  </s:iterator>	 
+				   <c:forEach items="${options}" var="option" >
+				   		<li><input type="${option.vsType eq 1 ? 'radio':'checkbox'}" name="voId"  value="${option.voId}"/>${option.voOption}</li>
+				   </c:forEach>
+				  	
 				</ol>
-				<p class="voteView"><input type="image" src="images/button_vote.gif" /><a href="Vote!view.action?entityId=<s:property value='subject.id'/>"><img src="images/button_view.gif" /></a></p>
+				<p class="voteView"><input type="image" src="images/button_vote.gif" /></p>
+<%-- 				<a href="vote_view.action?vsId=${options[0].vsId}"><img src="images/button_view.gif" /></a> --%>
 			</form>
 		</li>
 	</ul>

@@ -18,15 +18,6 @@
 	<div id="header" class="wrap">
 		<img src="images/logo.gif" />
 	</div>
-	<!-- <div id="navbar" class="wrap">
-	<div class="search">
-	 
-		<form method="get" action="index.html">
-			<input type="text" name="keywords" class="input-text" /><input type="submit" name="submit" class="input-button" value="" />
-		</form>
-		
-	</div>
-</div> -->
 	<div id="register" class="box">
 		<h2>新用户注册</h2>
 		<div class="content">
