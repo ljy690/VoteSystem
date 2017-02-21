@@ -18,4 +18,6 @@ public interface UserService {
 
 	//检测邮箱是否已经激活
 	boolean checkStatus(String username);
+
+	VoteUser checkUserId(String username);
 }

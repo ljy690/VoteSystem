@@ -37,6 +37,9 @@ values(seq_user.nextval,'admin','male',sysdate,'6f9b0a55df8ac28564cb9f63a10be8af
 --对用户表进行操作
 select * from VoteUser where vuUsername='12345678' and vuStatus=1;
 
+--获取当前的主题
+select * from VoteSubject vs where vs.vsId=4
+
 --投票主题
 create table VoteSubject
 (
@@ -89,16 +92,16 @@ from VOTEOPTION vo
 where vo.vsid = 1;
 
 --投票信息
-select vo.*,vs.*
+select vo.voId,voOption,vsType
 from VOTEOPTION vo, VoteSubject vs
-where vo.vsid = 1 and vo.vsId=vs.vsId;
+where vs.vsid = 4 and vo.vsId=vs.vsId order by voOrder
 
 --感觉身体被掏空
-select vo.*,vs.*,
+select vo.*,
 (select count(1) from VoteItem where voId=vo.voId ) voteUserCount,
 (select count(1) from VoteItem where vsId=vo.vsId) voteAllCount 
-from VOTEOPTION vo , VoteSubject vs
-where vo.vsid = 1 and vo.vsId=vs.vsId order by voOrder
+from VOTEOPTION vo 
+where vo.vsid = 1 order by voOrder
 
 --查询用户对应的主题信息
 select viId,voId,vsId from VoteItem vi,VoteUser vu where vu.vuId=vi.vuId and vuUsername='aaaaaa' and vsid=1;

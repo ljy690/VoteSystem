@@ -17,8 +17,8 @@
 	<h2>查看投票</h2>
 	<ul class="list">
 		<li>
-			<input type="hidden" name="vsId" id="vsId" value="${options[0].vsId }"/>
-			<h4>${options[0].vsTitle }</h4>
+			<input type="hidden" name="vsId" id="vsId" value="${currSubject.vsId }"/>
+			<h4>${currSubject.vsTitle }</h4>
 			<p class="info">共有${fs:length(options) }个选项，已有${options[0].voteAllCount }个网友参与了投票。 </p>
 				<ol>
 					<c:forEach items="${options}" var="voteOption">

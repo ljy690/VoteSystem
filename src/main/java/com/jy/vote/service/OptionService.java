@@ -7,4 +7,7 @@ import com.jy.vote.entity.VoteOption;
 public interface OptionService {
 	//查看投票
 	List<VoteOption> getSbOpsById(int vsId);
+
+	//提供投票所需的信息
+	List<VoteOption> checkSoInfo(int vsId);
 }

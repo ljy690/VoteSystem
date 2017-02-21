@@ -1,21 +1,19 @@
 package com.jy.vote.web.handler;
 
-import java.util.Arrays;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
-import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jy.vote.entity.VoteItem;
+import com.jy.vote.entity.VoteSubject;
 import com.jy.vote.service.ItemService;
+import com.jy.vote.util.SessionAttributeInfo;
 
 @Controller
 @RequestMapping("/voteitem")
@@ -24,22 +22,22 @@ public class ItemHandler {
 	private ItemService itemService;
 
 	@RequestMapping(value="/vote")
-	public String showOption(@Valid @ModelAttribute("voteItem")VoteItem item,BindingResult bindingResult,ModelMap map){
-		System.out.println("可以取到么？"+item);
-		
-		/*if(bindingResult.hasFieldErrors()){
-			map.put("saveMsg", " 失败!!!");
-			return "register";
+	public String showOption(@ModelAttribute VoteItem voteItem,@RequestParam("voId") int[] voId,
+			HttpSession session,BindingResult bindingResult,ModelMap map){
+		//System.out.println("可以取到么？"+voteItem);VoteItem [viId=0, voId=9, vsId=1, vuId=1000010]
+		if(bindingResult.hasFieldErrors()){
+			map.put("saveMsg", " 投票失败!!!");
+			return "view";
 		}
-		String[] voId=ServletActionContext.getRequest().getParameterValues("voId");
-		LogManager.getLogger().debug("save取到item"+item+"voId="+Arrays.toString(voId));
-		try {
-			itemService.saveVote(item,voId);
-				return "saveSuccess";
-		} catch (Exception e) {
-			
+		for(int i:voId){
+			//将投票数据插入数据库
+			VoteSubject sub=(VoteSubject)session.getAttribute(SessionAttributeInfo.CurrSubject);
+			if(!itemService.vote(sub.getVsId(),voteItem.getVuId(),i)){
+				map.put("saveMsg", " 没有选择，投票失败!!!");
+				return "view";
+			}
 		}
-		map.put("saveMsg", "投票失败");*/
-		return "view";
+		//跳到投票显示页面
+		return "vote_success";
 	}
 }

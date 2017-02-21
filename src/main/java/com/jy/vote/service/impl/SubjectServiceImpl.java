@@ -24,5 +24,10 @@ public class SubjectServiceImpl implements SubjectService {
 	public VoteSubject getSubjectAllById(int vsId) {
 		return subjectMapping.getSubjectAllById(vsId);
 	}
+
+	@Override
+	public VoteSubject getCurrSubject(int vsId) {
+		return subjectMapping.getCurrSubject(vsId);
+	}
 	
 }

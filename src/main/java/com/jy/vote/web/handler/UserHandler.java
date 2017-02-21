@@ -34,7 +34,9 @@ public class UserHandler {
 	@RequestMapping(value="/register_success", method=RequestMethod.GET)
 	public String registerSuccess(@RequestParam("username") String username,HttpSession session){
 		System.out.println("当前的激活成功用户是：===>"+username);
-		session.setAttribute( SessionAttributeInfo.CurrUser, username);
+		//通过用户名查询当前用户信息
+		 VoteUser currUser = userService.checkUserId(username);
+		session.setAttribute( SessionAttributeInfo.CurrUser, currUser);
 		//先判断当前用户是否已经激活,true没有激活
 		if(userService.checkStatus(username)){
 			//将用户状态设置为激活
@@ -44,8 +46,8 @@ public class UserHandler {
 				return "reg_success";
 			};
 		}
-		//否则跳到激活失败页面，重新注册？
-		return "reg_error";
+		//否则重新注册？
+		return "register";
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)
@@ -76,7 +78,8 @@ public class UserHandler {
 	@RequestMapping(value="/login")
 	public String login(VoteUser voteUser,ModelMap map,HttpSession session){
 		LogManager.getLogger().debug("user login..."+voteUser);
-		session.setAttribute( SessionAttributeInfo.CurrUser, voteUser.getVuUsername());
+		VoteUser currUser = userService.checkUserId(voteUser.getVuUsername());
+		session.setAttribute( SessionAttributeInfo.CurrUser, currUser);
 		//密码加密
 		voteUser = userService.login(voteUser);
 		//登陆结果页面跳转

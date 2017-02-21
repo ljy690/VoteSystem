@@ -20,4 +20,9 @@ public class OptionServiceImpl implements OptionService {
 		return optionMapping.getSbOpsById(vsId);
 	}
 
+	@Override
+	public List<VoteOption> checkSoInfo(int vsId) {
+		return optionMapping.checkSoInfo(vsId);
+	}
+
 }

@@ -15,4 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getSubjectAllById" parameterType="int" resultType="VoteSubject">
 		<include refid="selectSubject"/> where vsId=#{vsId}
 	</select>
+	
+	<select id="getCurrSubject" parameterType="int" resultType="VoteSubject"> 
+		select * from VoteSubject vs where vs.vsId=#{vsId}
+	</select>
 </mapper>

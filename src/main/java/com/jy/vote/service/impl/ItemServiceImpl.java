@@ -21,4 +21,12 @@ public class ItemServiceImpl implements ItemService {
 		return false;
 	}
 
+	@Override
+	public boolean vote(int vsId, int vuId, int i) {
+		if(itemMapping.vote( vsId, vuId, i)==1){
+			return true;
+		}
+		return false;
+	}
+
 }

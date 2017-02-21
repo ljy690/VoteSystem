@@ -9,4 +9,6 @@ public interface SubjectMapping {
 	List<VoteSubject> getSubjectAll();
 
 	VoteSubject getSubjectAllById(int vsId);
+
+	VoteSubject getCurrSubject(int vsId);
 }

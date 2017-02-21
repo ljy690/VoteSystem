@@ -22,7 +22,7 @@
 <div id="message" class="box">
 	<h2>提示信息</h2>
 	<div class="content">
-		<p>恭喜用户： ${currUser }，激活成功！<a href="user/jumpLogin">返回登陆界面&gt;&gt;</a></p>
+		<p>恭喜用户： ${currUser.vuUsername }，激活成功！<a href="user/jumpLogin">返回登陆界面&gt;&gt;</a></p>
 	</div>
 </div>
 <jsp:include page="footer.jsp" />

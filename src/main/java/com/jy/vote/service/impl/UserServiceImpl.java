@@ -62,4 +62,9 @@ public class UserServiceImpl implements UserService {
 		}
 		return true;
 	}
+
+	@Override
+	public VoteUser checkUserId(String username) {
+		return userMapping.checkName(username);
+	}
 }

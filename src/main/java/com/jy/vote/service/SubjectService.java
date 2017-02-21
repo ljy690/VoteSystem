@@ -8,4 +8,6 @@ public interface SubjectService {
 	List<VoteSubject> getSubjectAll();
 
 	VoteSubject getSubjectAllById(int vsId);
+
+	VoteSubject getCurrSubject(int vsId);
 }

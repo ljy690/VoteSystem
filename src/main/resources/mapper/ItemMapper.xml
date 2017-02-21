@@ -9,4 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from VoteItem vi,VoteUser vu 
 		where vu.vuId=vi.vuId and vsid=#{0} and vuUsername=#{1}
 	</select>
+	
+	<insert id="vote" parameterType="VoteItem">
+		insert into VoteItem (viId, voId, vsId,vuId)
+		values (seq_vitem.nextval, #{2}, #{0},#{1})
+	</insert>
 </mapper>
