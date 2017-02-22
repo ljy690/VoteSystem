@@ -27,7 +27,7 @@
 				   		<li><input type="${currSubject.vsType eq 1 ? 'radio':'checkbox'}" name="voId"  value="${option.voId}"/>${option.voOption}</li>
 				   </c:forEach>
 				</ol>
-				<p class="voteView"><input type="image" src="images/button_vote.gif" onclick="checkVote()"/></p>
+				<p class="voteView"><input type="image" src="images/button_vote.gif"/></p>
 <%-- 				<a href="vote_view.action?vsId=${options[0].vsId}"><img src="images/button_view.gif" /></a> --%>
 			</form>
 		</li>

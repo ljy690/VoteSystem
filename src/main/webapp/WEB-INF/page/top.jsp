@@ -7,8 +7,8 @@
 <div id="navbar" class="wrap">
 	<div class="profile">
 		您好， ${currUser.vuUsername }
-		<span class="return"><a href="Subject!list.action">返回列表</a></span>
-		<span class="addnew"><a href="Subject!read.action">添加新投票</a></span>
+		<span class="return"><a href="subject/jumpList">返回列表</a></span>
+		<span class="addnew"><a href="subject/addNewVote">添加新投票</a></span>
 		<span class="modify"><a href="Subject!modify.action">我发起の投票</a></span>
 		<span class="leavemsg"><a href="Subject!modify.action">我参与の投票</a></span>
 	</div>

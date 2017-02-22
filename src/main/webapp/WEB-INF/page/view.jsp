@@ -37,7 +37,7 @@
 						</li>
 					</c:forEach> 
 				</ol>
-				<div class="goback"><a href="Subject!list.action?entityId=<s:property value='subject.id'/>">返回投票列表</a></div>
+				<div class="goback"><a href="subject/jumpList">返回投票列表</a></div>
 		</li>
 	</ul>
 </div>

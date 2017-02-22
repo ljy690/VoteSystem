@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select vs.*,
 		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 		(select count(1) from VoteItem where vsId=vs.vsId) voteAllCount
-		from VoteSubject vs and vsStatus=1
+		from VoteSubject vs where vsStatus=1
 	</sql>
 	<select id="getSubjectAll" parameterType="VoteSubject" resultType="VoteSubject"> 
 		<include refid="selectSubject"/>

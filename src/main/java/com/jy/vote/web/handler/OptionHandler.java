@@ -56,10 +56,10 @@ public class OptionHandler {
 	
 	@RequestMapping(value="/jumpView")
 	public String jumpView(ModelMap map,HttpSession session){
-		//System.out.println("a标签进来会有一个get有一个post");
-		//将当前的vsId存到session，方便之后使用   
-		//判断当前是查看投票还是取出投票
-		VoteSubject vs=(VoteSubject) session.getAttribute(SessionAttributeInfo.CurrSubject);
+		//重新获取主题信息
+		VoteSubject vs = (VoteSubject) session.getAttribute(SessionAttributeInfo.CurrSubject);
+		VoteSubject subject = subjectService.getCurrSubject( vs.getVsId());
+		session.setAttribute(SessionAttributeInfo.CurrSubject, subject);
 		getSubOp(map, vs.getVsId());
 		return "view";
 	}

@@ -31,4 +31,13 @@ public class SubjectHandler {
 		out.close();
 	}
 	
+	@RequestMapping(value="/jumpList")
+	public String jumpList(){
+		return "list";
+	}
+	
+	@RequestMapping(value="/addNewVote")
+	public String addNewVote(){
+		return "add";
+	}
 }
