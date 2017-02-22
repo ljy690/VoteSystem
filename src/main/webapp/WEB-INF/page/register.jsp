@@ -69,6 +69,8 @@
 					<dt></dt>
 					<dd>
 						<input type="button" class="input-button" value=" " onclick="checkRegister()" onblur="cleanErrorInfo()"/>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="user/jumpLogin">&gt;&gt;点此返回登录</a>
 					</dd>
 					<dd  id="registerErroInfo"></dd>
 				</dl>

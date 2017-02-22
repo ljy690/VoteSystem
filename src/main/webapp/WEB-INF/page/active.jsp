@@ -12,8 +12,6 @@
 <div id="header" class="wrap">
 	<img src="images/logo.gif" />
 </div>
-<div id="navbar" class="wrap">
-</div>
 <div id="message" class="box">
 	<h2>提示信息</h2>
 	<div class="content">

@@ -20,7 +20,7 @@
 			<div class="corner"></div>
 			<div class="introduce">
 				<h2>登录页面</h2>
-				<p>网上调查系统...</p>
+				<p>网上投票系统...</p>
 			</div>
 			<div class="login">
 				<h2>用户登录</h2>
@@ -29,17 +29,17 @@
 						<dt>用户名：</dt>
 						<dd>
 							<input type="text" class="input-text" name="vuUsername"
-								placeholder="请输入您的用户名..."/>
+								placeholder="请输入您的用户名..." required="required"/>
 						</dd>
 						<dt>密 码：</dt>
 						<dd>
 							<input type="password" class="input-text" name="vuPassword"
-								placeholder="请输入您的密码..."/>
+								placeholder="请输入您的密码..." required="required"/>
 						</dd>
 						<dt></dt>
 						<!-- Register.action -->
 						<dd>
-							<button class="input-button">登陆</button>
+							<button class="input-button" >登陆</button>
 							<a href="user/register">新用户注册</a>
 						</dd>
 					</dl>

@@ -16,7 +16,7 @@
 	<ul class="list">
 		<li>
 		<h4>${currSubject.vsTitle }[${currSubject.vsType eq 1 ? '单选':'多选'}]</h4>
-			<p class="info">共有 ${fs:length(options) }个选项，已有${options[0].voteAllCount }个网友参与了投票。</p>
+			<p class="info">共有 ${currSubject.optionCount }个选项，已有${currSubject.voteAllCount }个网友参与了投票。</p>
 			<label style="color:red">${saveMsg}</label>
 			<c:remove var="saveMsg" scope="session"/>
 			<form method="post" action="voteitem/vote" id="ops">
@@ -24,7 +24,7 @@
 			    <input type="hidden" name="vuId" value=" ${currUser.vuId }"/> 
 				<ol>
 				   <c:forEach items="${options}" var="option" >
-				   		<li><input type="${option.vsType eq 1 ? 'radio':'checkbox'}" name="voId"  value="${option.voId}"/>${option.voOption}</li>
+				   		<li><input type="${currSubject.vsType eq 1 ? 'radio':'checkbox'}" name="voId"  value="${option.voId}"/>${option.voOption}</li>
 				   </c:forEach>
 				</ol>
 				<p class="voteView"><input type="image" src="images/button_vote.gif" onclick="checkVote()"/></p>

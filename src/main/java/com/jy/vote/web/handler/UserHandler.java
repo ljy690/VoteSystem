@@ -47,7 +47,7 @@ public class UserHandler {
 			};
 		}
 		//否则重新注册？
-		return "register";
+		return "reg_error";
 	}
 	
 	@RequestMapping(value="/register", method=RequestMethod.GET)

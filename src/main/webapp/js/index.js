@@ -11,7 +11,7 @@ $(function(){
 			listStr += '</h4>';
 			listStr += '<div class="join"><a href="option/view?vsId='+data[i].vsId+'">我要参与</a></div>';
 			listStr += '<p class="info">共有' + data[i].optionCount + '个选项，已有'
-						+data[i].voteCount + '个网友参与了投票。</p>';
+						+data[i].voteAllCount + '个网友参与了投票。</p>';
 			listStr += '</li>';
 			$("#subjectList").html(listStr);
 		}

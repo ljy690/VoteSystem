@@ -5,8 +5,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- 使用映射接口的方式， 命名空间的值必须与映射接口的全限定名一致 -->
 <mapper namespace="com.jy.vote.mapper.SubjectMapping">
 	<sql id="selectSubject">
-		select s.*,(select count(1) from VoteItem where vsId=s.vsId) voteCount,
-		(select count(1) from VoteOption where vsId=s.vsId) optionCount from VoteSubject s
+		select vs.*,
+		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
+		(select count(1) from VoteItem where vsId=vs.vsId) voteAllCount
+		from VoteSubject vs and vsStatus=1
 	</sql>
 	<select id="getSubjectAll" parameterType="VoteSubject" resultType="VoteSubject"> 
 		<include refid="selectSubject"/>
@@ -17,6 +19,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getCurrSubject" parameterType="int" resultType="VoteSubject"> 
-		select * from VoteSubject vs where vs.vsId=#{vsId}
+		select vs.*,
+		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
+		(select count(1) from VoteItem where vsId=vs.vsId) voteAllCount
+		from VoteSubject vs where vs.vsId=#{vsId}
 	</select>
 </mapper>

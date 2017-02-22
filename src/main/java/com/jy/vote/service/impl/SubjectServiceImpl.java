@@ -17,7 +17,7 @@ public class SubjectServiceImpl implements SubjectService {
 	
 	@Override
 	public List<VoteSubject> getSubjectAll() {
-		return subjectMapping.getSubjectAll();
+		 return subjectMapping.getSubjectAll();
 	}
 
 	@Override

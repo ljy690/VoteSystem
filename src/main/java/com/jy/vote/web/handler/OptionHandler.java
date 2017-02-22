@@ -32,11 +32,12 @@ public class OptionHandler {
 	private ItemService itemService;
 
 	@RequestMapping(value="/view")
-	public String showOption(int vsId,ModelMap map,HttpSession session,HttpServletRequest request){
+	public String showOption(int vsId,ModelMap map,HttpSession session){
 		LogManager.getLogger().debug("查看投票结果，vsId=>" + vsId);
 		//System.out.println("a标签进来会有一个get有一个post");
 		//将当前的vsId存到session，方便之后使用   
 		VoteSubject subject = subjectService.getCurrSubject(vsId);
+		
 		session.setAttribute(SessionAttributeInfo.CurrSubject, subject);
 		
 		VoteUser user= (VoteUser) session.getAttribute(SessionAttributeInfo.CurrUser);
@@ -47,10 +48,25 @@ public class OptionHandler {
 			map.put("options", optis);
 			return "vote";
 		}else{
-			//查看投票结果
-			List<VoteOption> options = optionService.getSbOpsById(vsId);
-			map.put("options", options);
+			getSubOp(map, vsId);
 			return "view";
 		}
+	}
+	
+	
+	@RequestMapping(value="/jumpView")
+	public String jumpView(ModelMap map,HttpSession session){
+		//System.out.println("a标签进来会有一个get有一个post");
+		//将当前的vsId存到session，方便之后使用   
+		//判断当前是查看投票还是取出投票
+		VoteSubject vs=(VoteSubject) session.getAttribute(SessionAttributeInfo.CurrSubject);
+		getSubOp(map, vs.getVsId());
+		return "view";
+	}
+	
+	private void getSubOp(ModelMap map,int vsId){
+		//查看投票结果
+		List<VoteOption> options = optionService.getSbOpsById(vsId);
+		map.put("options", options);
 	}
 }

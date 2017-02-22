@@ -18,8 +18,8 @@
 	<ul class="list">
 		<li>
 			<input type="hidden" name="vsId" id="vsId" value="${currSubject.vsId }"/>
-			<h4>${currSubject.vsTitle }</h4>
-			<p class="info">共有${fs:length(options) }个选项，已有${options[0].voteAllCount }个网友参与了投票。 </p>
+			<h4>${currSubject.vsTitle }[${currSubject.vsType eq 1 ? '单选':'多选'}]</h4>
+			<p class="info">共有${currSubject.optionCount }个选项，已有${currSubject.voteAllCount }个网友参与了投票。 </p>
 				<ol>
 					<c:forEach items="${options}" var="voteOption">
 						<li>
@@ -27,11 +27,11 @@
 							<div class="rate">
 								<div class="ratebg"><div class="percent" style='width:<c:choose>
 									<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
-									<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.voteAllCount}" type="percent" maxFractionDigits="2"/></c:otherwise>
+									<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/currSubject.voteAllCount}" type="percent" maxFractionDigits="2"/></c:otherwise>
 								</c:choose>'></div></div>
 								<p><span>(<c:choose>
 									<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
-									<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.voteAllCount}" type="percent" maxFractionDigits="2"/></c:otherwise>
+									<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/currSubject.voteAllCount}" type="percent" maxFractionDigits="2"/></c:otherwise>
 								</c:choose>)</span>${vocount}票</p>
 							</div>
 						</li>

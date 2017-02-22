@@ -36,9 +36,9 @@ values(seq_user.nextval,'admin','male',sysdate,'6f9b0a55df8ac28564cb9f63a10be8af
 
 --对用户表进行操作
 select * from VoteUser where vuUsername='12345678' and vuStatus=1;
+--删除某个用户数据 
+delete VoteUser where vuId=1000027
 
---获取当前的主题
-select * from VoteSubject vs where vs.vsId=4
 
 --投票主题
 create table VoteSubject
@@ -47,7 +47,9 @@ create table VoteSubject
   vsvuId  NUMBER(10) not null            --投票发起人
   	constraint FK_vsvuId references VoteUser(vuId),
   vsTitle VARCHAR2(200) not null,         --投票主题
-  vsType  NUMBER(6) not null              --投票类型:   单选  1    多选   2
+  vsType  NUMBER(6) not null,              --投票类型:   单选  1    多选   2
+  vsStatus NUMBER(1) NOT NULL,				--当前投票是否可见  可见 1   不可见  2    删除 3 即只有管理员可见
+  vsBeginTime date not null					--投票发布的时间
 );
 
 
@@ -80,10 +82,18 @@ select * from VoteOption;
 select * from VoteItem;
 
 -- 每个主题的有多少投票 ，每个主题有多少选项
-select s.*,
-(select count(1) from VoteItem where vsId=s.vsId) voteCount,
-(select count(1) from VoteOption where vsId=s.vsId) optionCount 
-from VoteSubject s;
+select vs.*,
+(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
+(select count(1) from VoteItem where vsId=vs.vsId) voteAllCount
+from VoteSubject vs and vsStatus=1;
+
+
+--获取当前的主题,多少投票 ，有多少选项
+select vs.*,
+(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
+(select count(1) from VoteItem where vsId=vs.vsId) voteAllCount
+from VoteSubject vs where vs.vsId=4
+
 
 --查询某个主题的信息，以及选项得票情况
 select vo.*,
@@ -103,28 +113,37 @@ select vo.*,
 from VOTEOPTION vo 
 where vo.vsid = 1 order by voOrder
 
+select vo.*,
+(select count(1) from VoteItem where voId=vo.voId ) voteUserCount
+from VOTEOPTION vo 
+where vo.vsid = 1 order by voOrder
+
 --查询用户对应的主题信息
 select viId,voId,vsId from VoteItem vi,VoteUser vu where vu.vuId=vi.vuId and vuUsername='aaaaaa' and vsid=1;
 
 
+
+
+
+
 --添加投票主题
-insert into VoteSubject (vsId, vsvuId,vsTitle, vsType)
-values (seq_vsubject.nextval,1000010, '选出你心目中最好的下载工具', 2);
+insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
+values (seq_vsubject.nextval,1000010, '选出你心目中最好的下载工具', 2,1,sysdate);
 
-insert into VoteSubject (vsId,vsvuId, vsTitle, vsType)
-values (seq_vsubject.nextval,1000010, '选出你心目中最好的输入法', 1);
+insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
+values (seq_vsubject.nextval,1000010, '选出你心目中最好的输入法', 1, 1,sysdate);
 
-insert into VoteSubject (vsId, vsvuId,vsTitle, vsType)
-values (seq_vsubject.nextval, 1000010,'选出你心目中最好的网络聊天工具', 1);
+insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
+values (seq_vsubject.nextval, 1000010,'选出你心目中最好的网络聊天工具', 1, 1,sysdate);
 
-insert into VoteSubject (vsId,vsvuId, vsTitle, vsType)
-values (seq_vsubject.nextval,1000010, '你最想去的地方', 1);
+insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
+values (seq_vsubject.nextval,1000010, '你最想去的地方', 1, 1,sysdate);
 
-insert into VoteSubject (vsId, vsvuId,vsTitle, vsType)
-values (seq_vsubject.nextval,1000010, '选出你心目中最好的浏览器', 1);
+insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
+values (seq_vsubject.nextval,1000010, '选出你心目中最好的浏览器', 1, 1,sysdate);
 
-insert into VoteSubject (vsId, vsvuId,vsTitle, vsType)
-values (seq_vsubject.nextval, 1000010,'选出你心目中最好的杀毒软件', 1);
+insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
+values (seq_vsubject.nextval, 1000010,'选出你心目中最好的杀毒软件', 1, 1,sysdate);
 
 --添加主题中的选项
 insert into VoteOption (voId, voOption, vsId, voOrder)
