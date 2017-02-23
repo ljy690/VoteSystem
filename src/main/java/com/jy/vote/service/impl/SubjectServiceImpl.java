@@ -29,5 +29,16 @@ public class SubjectServiceImpl implements SubjectService {
 	public VoteSubject getCurrSubject(int vsId) {
 		return subjectMapping.getCurrSubject(vsId);
 	}
+
+	@Override
+	public int addNewSubject(VoteSubject voteSubject) {
+		return subjectMapping.addNewSubject(voteSubject);
+	}
+
+	@Override
+	public int getCurrSequence() {
+		return subjectMapping.getCurrSequence();
+	}
+
 	
 }

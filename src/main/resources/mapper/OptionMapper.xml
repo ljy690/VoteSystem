@@ -14,6 +14,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="checkSoInfo" parameterType="int" resultType="VoteOption">
 		select vo.voId,voOption,vsType
 		from VOTEOPTION vo, VoteSubject vs
-		where vs.vsid = #{vsId} and vo.vsId=vs.vsId order by voOrder
+		where vs.vsid = #{vsId} and vo.vsId=vs.vsId order by voOrder 
 	</select>
+	
+	<insert id="addOptions">
+		insert into VoteOption (voId, voOption, vsId, voOrder)
+		values (seq_voption.nextval, #{1}, #{0}, #{2})
+	</insert>
 </mapper>

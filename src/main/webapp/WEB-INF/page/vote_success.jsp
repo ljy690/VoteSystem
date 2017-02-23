@@ -5,7 +5,7 @@
 <head>
 <base href="/VoteSystem/">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+<title>投票成功</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 </head>
 <body>

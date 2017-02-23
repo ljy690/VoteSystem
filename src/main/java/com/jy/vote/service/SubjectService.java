@@ -10,4 +10,9 @@ public interface SubjectService {
 	VoteSubject getSubjectAllById(int vsId);
 
 	VoteSubject getCurrSubject(int vsId);
+
+	int addNewSubject(VoteSubject voteSubject);
+
+	int getCurrSequence();
+
 }

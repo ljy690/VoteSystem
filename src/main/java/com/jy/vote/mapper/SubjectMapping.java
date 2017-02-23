@@ -11,4 +11,9 @@ public interface SubjectMapping {
 	VoteSubject getSubjectAllById(int vsId);
 
 	VoteSubject getCurrSubject(int vsId);
+
+	int addNewSubject(VoteSubject voteSubject);
+
+	int getCurrSequence();
+
 }

@@ -85,7 +85,7 @@ select * from VoteItem;
 select vs.*,
 (select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 (select count(1) from VoteItem where vsId=vs.vsId) voteAllCount
-from VoteSubject vs and vsStatus=1;
+from VoteSubject vs where vsStatus=1 order by vsBeginTime desc;
 
 
 --获取当前的主题,多少投票 ，有多少选项
@@ -121,7 +121,10 @@ where vo.vsid = 1 order by voOrder
 --查询用户对应的主题信息
 select viId,voId,vsId from VoteItem vi,VoteUser vu where vu.vuId=vi.vuId and vuUsername='aaaaaa' and vsid=1;
 
-
+--添加新主题
+insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
+values (seq_vsubject.nextval,1000010, '选出你心目中最好的下载工具', 2,1,sysdate);
+select seq_vsubject.nextval vsId from dual;
 
 
 

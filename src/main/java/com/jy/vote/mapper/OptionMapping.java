@@ -3,7 +3,6 @@ package com.jy.vote.mapper;
 import java.util.List;
 
 import com.jy.vote.entity.VoteOption;
-import com.jy.vote.entity.VoteSubject;
 
 
 public interface OptionMapping {
@@ -11,4 +10,6 @@ public interface OptionMapping {
 	List<VoteOption> getSbOpsById(int vsId);
 
 	List<VoteOption> checkSoInfo(int vsId);
+
+	void addOptions(int vsId,String ops, int i);
 }

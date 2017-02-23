@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select vs.*,
 		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 		(select count(1) from VoteItem where vsId=vs.vsId) voteAllCount
-		from VoteSubject vs where vsStatus=1
+		from VoteSubject vs where vsStatus=1 order by vsBeginTime desc
 	</sql>
 	<select id="getSubjectAll" parameterType="VoteSubject" resultType="VoteSubject"> 
 		<include refid="selectSubject"/>
@@ -23,5 +23,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 		(select count(1) from VoteItem where vsId=vs.vsId) voteAllCount
 		from VoteSubject vs where vs.vsId=#{vsId}
+	</select>
+	
+	<insert id="addNewSubject">
+		insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
+		values (#{vsId},#{vsvuId}, #{vsTitle}, #{vsType},1,sysdate)
+	</insert>
+	
+	<select id="getCurrSequence" resultType="int">
+		select seq_vsubject.nextval vsId from dual
 	</select>
 </mapper>

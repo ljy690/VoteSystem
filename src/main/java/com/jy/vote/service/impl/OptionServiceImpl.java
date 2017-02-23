@@ -25,4 +25,9 @@ public class OptionServiceImpl implements OptionService {
 		return optionMapping.checkSoInfo(vsId);
 	}
 
+	@Override
+	public void addOptions(int vsId, String ops, int i) {
+		optionMapping.addOptions(vsId,ops,i);
+	}
+
 }
