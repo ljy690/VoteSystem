@@ -18,7 +18,6 @@
 		<h4>${currSubject.vsTitle }[${currSubject.vsType eq 1 ? '单选':'多选'}]</h4>
 			<p class="info">共有 ${currSubject.optionCount }个选项，已有${currSubject.voteAllCount }个网友参与了投票。</p>
 			<label style="color:red">${saveMsg}</label>
-			<c:remove var="saveMsg" scope="session"/>
 			<form method="post" action="voteitem/vote" id="ops">
 			    <input type="hidden" name="vsId" value=" ${currSubject.vsId}"/> 
 			    <input type="hidden" name="vuId" value=" ${currUser.vuId }"/> 
@@ -34,12 +33,5 @@
 	</ul>
 </div>
 <jsp:include page="footer.jsp" />
-<script src="js/jquery-1.11.3.min.js"></script>
-<script type="text/javascript">
-	function checkVote(){
-		alert($("#ops").val()+"有么");
-		break;
-	}
-</script>
 </body>
 </html>

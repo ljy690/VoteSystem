@@ -2,7 +2,6 @@ package com.jy.vote.web.handler;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.logging.log4j.LogManager;
@@ -33,7 +32,7 @@ public class OptionHandler {
 
 	@RequestMapping(value="/view")
 	public String showOption(int vsId,ModelMap map,HttpSession session){
-		LogManager.getLogger().debug("查看投票结果，vsId=>" + vsId);
+		System.out.println("查看投票结果，vsId=>" + vsId);
 		//System.out.println("a标签进来会有一个get有一个post");
 		//将当前的vsId存到session，方便之后使用   
 		VoteSubject subject = subjectService.getCurrSubject(vsId);
@@ -45,7 +44,7 @@ public class OptionHandler {
 		if(itemService.checkVsVoteStatus(vsId,user.getVuUsername())){
 			//说明没有进行过投票     ${sessionScope.存属性名} 取option  以及类型
 			List<VoteOption> optis =optionService.checkSoInfo(vsId);
-			map.put("options", optis);
+			session.setAttribute(SessionAttributeInfo.Options, optis);
 			return "vote";
 		}else{
 			getSubOp(map, vsId);
