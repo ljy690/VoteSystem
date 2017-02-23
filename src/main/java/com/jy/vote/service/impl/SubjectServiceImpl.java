@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jy.vote.entity.VoteList;
 import com.jy.vote.entity.VoteSubject;
 import com.jy.vote.mapper.SubjectMapping;
 import com.jy.vote.service.SubjectService;
@@ -38,6 +39,13 @@ public class SubjectServiceImpl implements SubjectService {
 	@Override
 	public int getCurrSequence() {
 		return subjectMapping.getCurrSequence();
+	}
+
+	@Override
+	public VoteList getSubjectListByPage(int pageSize, int pageNum) {
+		VoteList sb = subjectMapping.getSubjectListByPage(pageSize,pageNum);
+		System.out.println("测试一下"+sb);
+		return sb;
 	}
 
 	

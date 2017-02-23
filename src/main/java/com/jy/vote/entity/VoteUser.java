@@ -1,8 +1,11 @@
 package com.jy.vote.entity;
 
+import java.io.Serializable;
+
 //import org.hibernate.validator.constraints.Length;
 
-public class VoteUser {
+public class VoteUser implements Serializable{
+	private static final long serialVersionUID = -5479621232059207835L;
 	private int vuId;
 	//@Length(max=8,message="长度最大为8...")
 	private String vuUsername;

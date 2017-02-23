@@ -7,7 +7,9 @@
 <meta charset="utf-8" />
 <title>投票列表</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/pageCode.css" />
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.page.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
@@ -26,6 +28,9 @@
 			</li>
 		</c:forEach> --%>
 	</ul>
+</div>
+<div class="pageDiv" style="width:880px;height:45px;margin:0px auto;">
+	<div class="tcdPageCode"></div>
 </div>
 <jsp:include page="footer.jsp" />
 </body>

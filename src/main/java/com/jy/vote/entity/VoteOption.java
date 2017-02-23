@@ -1,6 +1,9 @@
 package com.jy.vote.entity;
 
-public class VoteOption {
+import java.io.Serializable;
+
+public class VoteOption implements Serializable{
+	private static final long serialVersionUID = -783464658671957541L;
 	private int voId;
 	private String voOption;
 	private int vsId;

@@ -4,6 +4,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 使用映射接口的方式， 命名空间的值必须与映射接口的全限定名一致 -->
 <mapper namespace="com.jy.vote.mapper.SubjectMapping">
+	<!-- 分页查询 -->
+	<resultMap type="VoteList" id="VoteListMap">
+		<id column="total" property="total"/>
+		<collection property="voteSubjects" column="vsId" ofType="VoteSubject">
+			<id column="vsid" property="vsid"/>
+			<result column="vsvuId" property="vsvuId"/>
+			<result column="vsTitle" property="vsTitle"/>
+			<result column="vsType" property="vsType"/>
+			<result column="vsBeginTime" property="vsBeginTime"/>
+			<result column="optionCount" property="optionCount"/>
+			<result column="voteAllCount" property="voteAllCount"/>
+		</collection>
+	</resultMap>
+	<sql id="selectSubjectByPage">
+		select
+		(select count(1) from VoteSubject where vsStatus=1) total, 
+		nn.* from
+		(
+		select rownum rn,a.* from
+		(
+		select vs.*,
+		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
+		(select count(1) from VoteItem where vsId=vs.vsId) voteAllCount
+		from VoteSubject vs where vsStatus=1 order by vsBeginTime desc) a 
+		where #{0}*#{1}>=rownum ) nn
+		where rn>(#{1}-1)*#{0}
+	</sql>
+	<select id="getSubjectListByPage" parameterType="int" resultType="VoteListMap"> 
+		<include refid="selectSubjectByPage"/>
+	</select>
+	
 	<sql id="selectSubject">
 		select vs.*,
 		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,

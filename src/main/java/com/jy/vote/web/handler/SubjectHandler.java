@@ -10,8 +10,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.jy.vote.entity.VoteList;
 import com.jy.vote.entity.VoteSubject;
 import com.jy.vote.service.OptionService;
 import com.jy.vote.service.SubjectService;
@@ -26,14 +28,19 @@ public class SubjectHandler {
 	@Autowired
 	private OptionService optionService;
 
+	@ResponseBody
 	@RequestMapping(value="/listAll")
-	public void listAll(PrintWriter out){
-		List<VoteSubject> subjects = subjectService.getSubjectAll();
+	public VoteList listAll(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize,PrintWriter out){
+		VoteList voteList=subjectService.getSubjectListByPage(pageSize,pageNum);
 		LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
-		Gson gson = new Gson();
-		out.print(gson.toJson(subjects));
-		out.flush();
-		out.close();
+		if(voteList!=null){
+			if(voteList.getTotal()%pageSize==0){
+				voteList.setTotal(voteList.getTotal()/pageSize);
+			}else{
+				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
+			}
+		}
+		return voteList;
 	}
 
 	@RequestMapping(value="/jumpList")

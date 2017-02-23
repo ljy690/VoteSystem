@@ -2,6 +2,7 @@ package com.jy.vote.mapper;
 
 import java.util.List;
 
+import com.jy.vote.entity.VoteList;
 import com.jy.vote.entity.VoteSubject;
 
 
@@ -15,5 +16,7 @@ public interface SubjectMapping {
 	int addNewSubject(VoteSubject voteSubject);
 
 	int getCurrSequence();
+
+	VoteList getSubjectListByPage(int pageSize, int pageNum);
 
 }

@@ -126,6 +126,23 @@ insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
 values (seq_vsubject.nextval,1000010, '选出你心目中最好的下载工具', 2,1,sysdate);
 select seq_vsubject.nextval vsId from dual;
 
+--投票列表分页查询
+select
+(select count(1) from VoteSubject where vsStatus=1) total, 
+nn.* from
+(
+select rownum rn,a.* from
+(
+select vs.*,
+(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
+(select count(1) from VoteItem where vsId=vs.vsId) voteAllCount
+from VoteSubject vs where vsStatus=1 order by vsBeginTime desc) a 
+where 5>=rownum ) nn
+where rn>0
+
+
+
+
 
 
 
