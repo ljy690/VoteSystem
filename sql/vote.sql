@@ -119,7 +119,8 @@ from VOTEOPTION vo
 where vo.vsid = 1 order by voOrder
 
 --查询用户对应的主题信息
-select viId,voId,vsId from VoteItem vi,VoteUser vu where vu.vuId=vi.vuId and vuUsername='aaaaaa' and vsid=1;
+select viId,voId,vsId from VoteItem vi,VoteUser vu 
+where vu.vuId=vi.vuId and vuUsername='admin' and vsid=11;
 
 --添加新主题
 insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)

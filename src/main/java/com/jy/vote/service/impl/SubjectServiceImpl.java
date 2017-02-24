@@ -44,7 +44,6 @@ public class SubjectServiceImpl implements SubjectService {
 	@Override
 	public VoteList getSubjectListByPage(int pageSize, int pageNum) {
 		VoteList sb = subjectMapping.getSubjectListByPage(pageSize,pageNum);
-		System.out.println("测试一下"+sb);
 		return sb;
 	}
 

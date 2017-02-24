@@ -31,6 +31,7 @@ public final class RequestUserFilterImpl implements Filter{
 		HttpServletResponse response = (HttpServletResponse) arg1;
 		VoteUser user=(VoteUser)request.getSession().getAttribute(SessionAttributeInfo.CurrUser);
 		PrintWriter out = response.getWriter();
+		System.out.println("没有过滤用户"+user);
 		if(user==null||user.getVuUsername()== null){
 			out.print("<script>"
 					+ "$.messager.confirm('提示信息','登陆超时...',function(r){  "

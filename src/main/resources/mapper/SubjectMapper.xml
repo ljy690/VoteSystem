@@ -55,7 +55,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="addNewSubject">
 		insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
-		values (#{vsId},#{vsvuId}, #{vsTitle}, #{vsType},1,sysdate)
+		values (#{vsId},#{vsvuId}, #{vsTitle}, #{vsType},1, to_date ( sysdate , 'YYYY-MM-DD HH24:MI:SS' ) )
 	</insert>
 	
 	<select id="getCurrSequence" resultType="int">

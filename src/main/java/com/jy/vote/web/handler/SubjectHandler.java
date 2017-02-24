@@ -1,5 +1,7 @@
 package com.jy.vote.web.handler;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import com.jy.vote.entity.VoteList;
 import com.jy.vote.entity.VoteSubject;
 import com.jy.vote.service.OptionService;
 import com.jy.vote.service.SubjectService;
+import com.jy.vote.util.SessionAttributeInfo;
 
 @Controller
 @RequestMapping("/subject")
@@ -51,7 +54,7 @@ public class SubjectHandler {
 
 	@RequestMapping(value="/addNewSubject")
 	public String addNewSubject(ModelMap map,VoteSubject voteSubject,BindingResult bindingResult,
-			@RequestParam(value="voOption",required=false) String[] voOption){
+			@RequestParam(value="voOption",required=false) String[] voOption,HttpSession session){
 		System.out.println("新增的投票："+voteSubject);
 		if(bindingResult.hasFieldErrors()){
 			map.put("addSbErrorMsg", "添加投票失败");
@@ -59,8 +62,9 @@ public class SubjectHandler {
 		}
 		//获取到当前的序列
 		int vsId=subjectService.getCurrSequence();
-		System.out.println("当前的序列号"+vsId);
+		//将新增的序列号存到session方便之后跳转取值
 		voteSubject.setVsId(vsId);
+		session.setAttribute(SessionAttributeInfo.CurrSubject, voteSubject);
 		//添加主题
 		if(subjectService.addNewSubject(voteSubject)==1){
 			//添加选项

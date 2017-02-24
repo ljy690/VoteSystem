@@ -53,6 +53,10 @@ public class VoteSubject implements Serializable{
 		return vsBeginTime;
 	}
 	public void setVsBeginTime(String vsBeginTime) {
+		if(vsBeginTime!=null){
+			String[] str=vsBeginTime.split("\\.");
+			vsBeginTime=str[0];
+		}
 		this.vsBeginTime = vsBeginTime;
 	}
 	public int getOptionCount() {

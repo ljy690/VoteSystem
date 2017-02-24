@@ -4,7 +4,6 @@
  */
 $(function(){
 	$.get("subject/listAll",{pageSize:5,pageNum:1},function(data){
-		alert("总数呢"+data.total);
 		connList(data.subjects);
 		$(".tcdPageCode").createPage({
 			pageCount : data.total,
@@ -19,7 +18,6 @@ $(function(){
 });
 
 function connList(data){
-	alert(data+"为什么不阻止");
 	var listStr = "";
 	$.each(data,function(index,item){
 		listStr += '<li ' + (index%2==0 ? 'class="odd"' : '') + '>';

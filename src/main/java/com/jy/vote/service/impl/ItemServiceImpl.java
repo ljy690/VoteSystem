@@ -1,7 +1,10 @@
 package com.jy.vote.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.jy.vote.entity.VoteItem;
 import com.jy.vote.mapper.ItemMapping;
 import com.jy.vote.service.ItemService;
@@ -14,8 +17,9 @@ public class ItemServiceImpl implements ItemService {
 	
 	@Override
 	public boolean checkVsVoteStatus(int vsId, String usname) {
-		VoteItem vo=itemMapping.checkVsVoteStatus(vsId, usname);
-		if(null == vo){
+		List<VoteItem> vo=itemMapping.checkVsVoteStatus(vsId, usname);
+		System.out.println("查看选项"+vsId+"   "+usname+"结果a："+vo.size());
+		if(0 == vo.size()){
 			return true;
 		}
 		return false;
