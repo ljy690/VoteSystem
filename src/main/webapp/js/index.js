@@ -1,17 +1,17 @@
-/**
+ /**
  * 投票主页js
  * 首次进来要先拼接一次，然后再是按钮
  */
 $(function(){
 	$.get("subject/listAll",{pageSize:5,pageNum:1},function(data){
 		alert("总数呢"+data.total);
-		connList(data);
+		connList(data.subjects);
 		$(".tcdPageCode").createPage({
 			pageCount : data.total,
 			current : 1,
 			backFn : function(pageNum) {
 				$.post("subject/listAll",{pageSize:5,pageNum:pageNum},function(data1){
-					connList(data1);
+					connList(data1.subjects);
 				});
 			}
 		});

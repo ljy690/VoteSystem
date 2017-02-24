@@ -7,8 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 分页查询 -->
 	<resultMap type="VoteList" id="VoteListMap">
 		<id column="total" property="total"/>
-		<collection property="voteSubjects" column="vsId" ofType="VoteSubject">
-			<id column="vsid" property="vsid"/>
+		<collection property="subjects" column="vsId" ofType="VoteSubject">
+			<id column="vsId" property="vsId"/>
 			<result column="vsvuId" property="vsvuId"/>
 			<result column="vsTitle" property="vsTitle"/>
 			<result column="vsType" property="vsType"/>
@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result column="voteAllCount" property="voteAllCount"/>
 		</collection>
 	</resultMap>
-	<sql id="selectSubjectByPage">
+	<select id="getSubjectListByPage" parameterType="int" resultMap="VoteListMap"> 
 		select
 		(select count(1) from VoteSubject where vsStatus=1) total, 
 		nn.* from
@@ -30,9 +30,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from VoteSubject vs where vsStatus=1 order by vsBeginTime desc) a 
 		where #{0}*#{1}>=rownum ) nn
 		where rn>(#{1}-1)*#{0}
-	</sql>
-	<select id="getSubjectListByPage" parameterType="int" resultType="VoteListMap"> 
-		<include refid="selectSubjectByPage"/>
 	</select>
 	
 	<sql id="selectSubject">

@@ -28,7 +28,7 @@ public class SubjectHandler {
 
 	@ResponseBody
 	@RequestMapping(value="/listAll")
-	public VoteList listAll(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize,PrintWriter out){
+	public VoteList listAll(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
 		VoteList voteList=subjectService.getSubjectListByPage(pageSize,pageNum);
 		LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
 		if(voteList!=null){
