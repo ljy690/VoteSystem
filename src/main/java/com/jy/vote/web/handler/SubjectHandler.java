@@ -1,7 +1,6 @@
 package com.jy.vote.web.handler;
 
 import java.io.PrintWriter;
-import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
 import com.jy.vote.entity.VoteList;
 import com.jy.vote.entity.VoteSubject;
 import com.jy.vote.service.OptionService;
