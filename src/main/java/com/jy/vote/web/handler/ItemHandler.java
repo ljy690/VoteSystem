@@ -20,7 +20,7 @@ public class ItemHandler {
 	public String showOption(@RequestParam(value="voId",required=false) int[] voId,@RequestParam("vsId") int vsId,@RequestParam("vuId") int vuId,
 			HttpSession session,ModelMap map){
 		//System.out.println("可以取到么？"+voteItem);VoteItem [viId=0, voId=9, vsId=1, vuId=1000010]
-		System.out.println("看一下当前的选项"+voId+"主题"+vsId+"用户"+vuId);
+		//System.out.println("看一下当前的选项"+voId+"主题"+vsId+"用户"+vuId);
 		if(null==voId){
 			map.put("saveMsg", " 投票不能为空!!!");
 			return "vote";

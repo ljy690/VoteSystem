@@ -55,7 +55,7 @@ public class SubjectHandler {
 	@RequestMapping(value="/addNewSubject")
 	public String addNewSubject(ModelMap map,VoteSubject voteSubject,BindingResult bindingResult,
 			@RequestParam(value="voOption",required=false) String[] voOption,HttpSession session){
-		System.out.println("新增的投票："+voteSubject);
+		//System.out.println("新增的投票："+voteSubject);
 		if(bindingResult.hasFieldErrors()){
 			map.put("addSbErrorMsg", "添加投票失败");
 			return "add";

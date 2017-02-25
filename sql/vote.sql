@@ -111,7 +111,7 @@ select vo.*,
 (select count(1) from VoteItem where voId=vo.voId ) voteUserCount,
 (select count(1) from VoteItem where vsId=vo.vsId) voteAllCount 
 from VOTEOPTION vo 
-where vo.vsid = 1 order by voOrder
+where vo.vsid = 12 order by voOrder
 
 select vo.*,
 (select count(1) from VoteItem where voId=vo.voId ) voteUserCount
@@ -136,7 +136,7 @@ select rownum rn,a.* from
 (
 select vs.*,
 (select count(1) from VoteOption where vsId=vs.vsId) optionCount,
-(select count(1) from VoteItem where vsId=vs.vsId) voteAllCount
+(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
 from VoteSubject vs where vsStatus=1 order by vsBeginTime desc) a 
 where 5>=rownum ) nn
 where rn>0

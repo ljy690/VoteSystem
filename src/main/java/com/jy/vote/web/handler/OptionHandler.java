@@ -31,7 +31,7 @@ public class OptionHandler {
 
 	@RequestMapping(value="/view")
 	public String showOption(int vsId,ModelMap map,HttpSession session){
-		System.out.println("查看投票结果，vsId=>" + vsId);
+		//System.out.println("查看投票结果，vsId=>" + vsId);
 		//System.out.println("a标签进来会有一个get有一个post");
 		//将当前的vsId存到session，方便之后使用   
 		VoteSubject subject = subjectService.getCurrSubject(vsId);
