@@ -61,5 +61,10 @@ public class SubjectServiceImpl implements SubjectService {
 		return subjectMapping.deleteVote(vsId);
 	}
 
+	@Override
+	public VoteList getMyJoinByPage(int pageSize, int pageNum, int vuId) {
+		return subjectMapping.getMyJoinByPage(pageSize,pageNum,vuId);
+	}
+
 	
 }

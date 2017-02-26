@@ -122,4 +122,28 @@ public class SubjectHandler {
 		return "mySet";
 	}
 	
+	
+	@RequestMapping(value="/jumpMyJoinedVote")
+	public String jumpMyJoinedVote(){
+		return "myJoin";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/myJoinVote")
+	public VoteList myJoinVote(int pageSize,int pageNum,HttpSession session){
+		//从数据库查出我参与的投票
+		VoteUser user=(VoteUser) session.getAttribute(SessionAttributeInfo.CurrUser);
+		VoteList voteList=subjectService.getMyJoinByPage(pageSize,pageNum,user.getVuId());
+		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
+		if(voteList!=null){
+			if(voteList.getTotal()%pageSize==0){
+				voteList.setTotal(voteList.getTotal()/pageSize);
+			}else{
+				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
+			}
+			return voteList;
+		}else{
+			return voteList;
+		}
+	}
 }

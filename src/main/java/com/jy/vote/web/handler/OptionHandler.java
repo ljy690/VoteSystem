@@ -75,4 +75,13 @@ public class OptionHandler {
 		List<VoteOption> options = optionService.getSbOpsById(vsId);
 		map.put("options", options);
 	}
+	
+	@RequestMapping(value="/directView")
+	public String directView(int vsId,HttpSession session,ModelMap map){
+		//重新获取主题信息
+		VoteSubject subject = subjectService.getCurrSubject( vsId );
+		session.setAttribute(SessionAttributeInfo.CurrSubject, subject);
+		getSubOp(map, vsId);
+		return "view";
+	}
 }

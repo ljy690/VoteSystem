@@ -10,7 +10,7 @@
 		<span class="return"><a href="subject/jumpList">返回列表</a></span>
 		<span class="addnew"><a href="subject/addNewVote">添加新投票</a></span>
 		<span class="modify"><a href="subject/jumpMySetUpVote?vuId=${currUser.vuId }">我发起の投票</a></span>
-		<span class="leavemsg"><a href="subject/myJoinedVote?vuId=${currUser.vuId }">我参与の投票</a></span>
+		<span class="leavemsg"><a href="subject/jumpMyJoinedVote?vuId=${currUser.vuId }">我参与の投票</a></span>
 	</div>
 	<div class="search">
 		<form method="post" action="Subject!search.action">

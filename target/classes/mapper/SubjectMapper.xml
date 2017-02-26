@@ -56,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="addNewSubject">
 		insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
-		values (#{vsId},#{vsvuId}, #{vsTitle}, #{vsType},1, to_date ( sysdate , 'YYYY-MM-DD HH24:MI:SS' ) )
+		values (#{vsId},#{vsvuId}, #{vsTitle}, #{vsType},1, sysdate)
 	</insert>
 	
 	<select id="getCurrSequence" resultType="int">
@@ -65,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getMySetByPage" parameterType="int" resultMap="VoteListMap"> 
 		select
-		(select count(1) from VoteSubject where vsvuId=1000028 and vsStatus!=3) total, 
+		(select count(1) from VoteSubject where vsvuId=#{2} and vsStatus!=3) total, 
 		nn.* from
 		(
 		select rownum rn,a.* from
@@ -85,4 +85,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="deleteVote" parameterType="int">
 		update VoteSubject set vsStatus=3 where vsId=#{vsId}
 	</update>
+	
+	<select id="getMyJoinByPage" parameterType="int" resultMap="VoteListMap"> 
+		select
+		(select count(distinct(vi.vsId)) from VoteItem vi,Votesubject vs where vi.vsId=vs.vsId and vsvuId=#{2} and vsStatus!=3) total, 
+		nn.* from
+		(
+		select rownum rn,a.* from
+		(
+		select vs.* ,
+		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
+		(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
+		from VoteSubject vs where vsId in
+		(select vsb.vsId from votesubject vsb,voteitem vit where vsb.vsId=vit.vsId and vuId=#{2} and vsStatus!=3) 
+		and vsStatus!=3 order by vsBeginTime desc) a
+		where #{0}*#{1}>=rownum ) nn
+		where rn>(#{1}-1)*#{0}
+	</select>
 </mapper>

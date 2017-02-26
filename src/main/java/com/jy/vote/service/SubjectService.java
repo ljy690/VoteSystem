@@ -24,4 +24,6 @@ public interface SubjectService {
 
 	int deleteVote(int vsId);
 
+	VoteList getMyJoinByPage(int pageSize, int pageNum, int vuId);
+
 }
