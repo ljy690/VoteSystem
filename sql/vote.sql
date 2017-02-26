@@ -119,8 +119,8 @@ from VOTEOPTION vo
 where vo.vsid = 1 order by voOrder
 
 --查询用户对应的主题信息
-select viId,voId,vsId from VoteItem vi,VoteUser vu 
-where vu.vuId=vi.vuId and vuUsername='admin' and vsid=11;
+select viId,voId,vs.vsId from VoteItem vi,VoteUser vu ,VoteSubject vs
+where vu.vuId=vi.vuId and vs.vsId=vi.vsId and vuUsername='admin' and vs.vsid=11 and vsStatus=1;
 
 --添加新主题
 insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
@@ -137,13 +137,27 @@ select rownum rn,a.* from
 select vs.*,
 (select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 (select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
-from VoteSubject vs where vsStatus=1 order by vsBeginTime desc) a 
+from VoteSubject vs where vsStatus!=3 order by vsBeginTime desc) a 
 where 5>=rownum ) nn
 where rn>0
 
 
+--查看我发布的投票  分页
+select
+(select count(1) from VoteSubject where vsvuId=1000028 and vsStatus=1) total, 
+nn.* from
+(
+select rownum rn,a.* from
+(
+select vs.* ,
+(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
+(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
+from VoteSubject vs where vsvuId=1000028 and vsStatus=1 order by vsBeginTime desc) a
+where 5>=rownum ) nn
+where rn>0
 
-
+--关闭投票
+update VoteSubject set vsStatus=2 where vsId=1
 
 
 

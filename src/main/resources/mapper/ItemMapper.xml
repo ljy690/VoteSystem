@@ -7,7 +7,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="checkVsVoteStatus" resultType="VoteItem"> 
 		select viId,voId,vsId 
 		from VoteItem vi,VoteUser vu 
-		where vu.vuId=vi.vuId and vsid=#{0} and vuUsername=#{1}
+		where vu.vuId=vi.vuId
+		and vuUsername=#{1} and vsid=#{0}
 	</select>
 	
 	<insert id="vote" parameterType="VoteItem">

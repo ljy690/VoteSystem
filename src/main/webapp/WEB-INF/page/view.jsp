@@ -22,6 +22,9 @@
 			<span style="float:right;font-size:14px;">发布日期：${currSubject.vsBeginTime }</span>
 			</h4>
 			<p class="info">共有${currSubject.optionCount }个选项，已有${currSubject.voteAllCount }个网友参与了投票。 </p>
+			<c:if test="${currSubject.vsStatus == 2 }">
+			<p class="info" style="color:red;"> 该投票已关闭 </p>
+			</c:if>
 				<ol>
 					<c:forEach items="${options}" var="voteOption">
 						<li>

@@ -43,8 +43,22 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public VoteList getSubjectListByPage(int pageSize, int pageNum) {
-		VoteList sb = subjectMapping.getSubjectListByPage(pageSize,pageNum);
-		return sb;
+		return subjectMapping.getSubjectListByPage(pageSize,pageNum);
+	}
+
+	@Override
+	public VoteList getMySetByPage(int pageSize, int pageNum,int vsvuId) {
+		return subjectMapping.getMySetByPage(pageSize,pageNum,vsvuId);
+	}
+
+	@Override
+	public int closeVote(int vsId) {
+		return subjectMapping.closeVote(vsId);
+	}
+
+	@Override
+	public int deleteVote(int vsId) {
+		return subjectMapping.deleteVote(vsId);
 	}
 
 	

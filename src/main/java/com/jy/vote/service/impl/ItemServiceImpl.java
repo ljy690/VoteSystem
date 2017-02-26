@@ -18,7 +18,6 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public boolean checkVsVoteStatus(int vsId, String usname) {
 		List<VoteItem> vo=itemMapping.checkVsVoteStatus(vsId, usname);
-		System.out.println("查看选项"+vsId+"   "+usname+"结果a："+vo.size());
 		if(0 == vo.size()){
 			return true;
 		}

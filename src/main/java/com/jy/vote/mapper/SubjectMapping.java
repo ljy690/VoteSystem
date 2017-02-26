@@ -19,4 +19,10 @@ public interface SubjectMapping {
 
 	VoteList getSubjectListByPage(int pageSize, int pageNum);
 
+	VoteList getMySetByPage(int pageSize, int pageNum, int vsvuId);
+
+	int closeVote(int vsId);
+
+	int deleteVote(int vsId);
+
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jy.vote.entity.VoteList;
 import com.jy.vote.entity.VoteSubject;
+import com.jy.vote.entity.VoteUser;
 import com.jy.vote.service.OptionService;
 import com.jy.vote.service.SubjectService;
 import com.jy.vote.util.SessionAttributeInfo;
@@ -31,7 +32,7 @@ public class SubjectHandler {
 	@RequestMapping(value="/listAll")
 	public VoteList listAll(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
 		VoteList voteList=subjectService.getSubjectListByPage(pageSize,pageNum);
-		LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
+		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
 		if(voteList!=null){
 			if(voteList.getTotal()%pageSize==0){
 				voteList.setTotal(voteList.getTotal()/pageSize);
@@ -78,4 +79,47 @@ public class SubjectHandler {
 		}
 		return "add_success";
 	}
+	
+	@RequestMapping(value="/jumpMySetUpVote")
+	public String jumpMySetUpVote(){
+		return "mySet";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/mySetUpVote")
+	public VoteList mySetUpVote(int pageSize,int pageNum,HttpSession session){
+		//从数据库查出我发布的投票
+		VoteUser user=(VoteUser) session.getAttribute(SessionAttributeInfo.CurrUser);
+		VoteList voteList=subjectService.getMySetByPage(pageSize,pageNum,user.getVuId());
+		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
+		if(voteList!=null){
+			if(voteList.getTotal()%pageSize==0){
+				voteList.setTotal(voteList.getTotal()/pageSize);
+			}else{
+				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
+			}
+			return voteList;
+		}else{
+			return voteList;
+		}
+	}
+	
+	@RequestMapping(value="/closeVote")
+	public String closeVote(int vsId,HttpSession session){
+		//关闭我发布的投票(隐藏) 询问一下用户  将状态设为2  也只能查看了
+		if(subjectService.closeVote(vsId)!=1){
+			System.out.println("closeVote投票关闭失败。");
+		}
+		return "mySet";
+	}
+	
+	@RequestMapping(value="/userDelete")
+	public String userDelete(int vsId,HttpSession session){
+		//删除我发布的投票(隐藏) 询问一下用户  将状态设为3
+		if(subjectService.deleteVote(vsId)!=1){
+			System.out.println("closeVote投票删除失败。");
+		}
+		return "mySet";
+	}
+	
 }

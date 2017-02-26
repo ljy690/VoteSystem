@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.jy.vote.entity.VoteOption;
 import com.jy.vote.entity.VoteSubject;
@@ -29,26 +30,33 @@ public class OptionHandler {
 	@Autowired
 	private ItemService itemService;
 
-	@RequestMapping(value="/view")
+	@RequestMapping(value="/view",method=RequestMethod.GET)
 	public String showOption(int vsId,ModelMap map,HttpSession session){
 		//System.out.println("查看投票结果，vsId=>" + vsId);
 		//System.out.println("a标签进来会有一个get有一个post");
 		//将当前的vsId存到session，方便之后使用   
 		VoteSubject subject = subjectService.getCurrSubject(vsId);
-		
 		session.setAttribute(SessionAttributeInfo.CurrSubject, subject);
 		
 		VoteUser user= (VoteUser) session.getAttribute(SessionAttributeInfo.CurrUser);
-		//判断当前是查看投票还是取出投票
-		if(itemService.checkVsVoteStatus(vsId,user.getVuUsername())){
-			//说明没有进行过投票     ${sessionScope.存属性名} 取option  以及类型
-			List<VoteOption> optis =optionService.checkSoInfo(vsId);
-			session.setAttribute(SessionAttributeInfo.Options, optis);
-			return "vote";
+		
+		//判断当前投票是不是可投状态
+		if(subject.getVsStatus()==1){//可投
+			//判断当前是查看投票还是取出投票
+			if(itemService.checkVsVoteStatus(vsId,user.getVuUsername())){
+				//说明没有进行过投票     ${sessionScope.存属性名} 取option  以及类型
+				List<VoteOption> optis =optionService.checkSoInfo(vsId);
+				session.setAttribute(SessionAttributeInfo.Options, optis);
+				return "vote";
+			}else{
+				getSubOp(map, vsId);
+				return "view";
+			}
 		}else{
 			getSubOp(map, vsId);
 			return "view";
 		}
+		
 	}
 	
 	

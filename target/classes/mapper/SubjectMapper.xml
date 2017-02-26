@@ -12,6 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result column="vsvuId" property="vsvuId"/>
 			<result column="vsTitle" property="vsTitle"/>
 			<result column="vsType" property="vsType"/>
+			<result column="vsStatus" property="vsStatus"/>
 			<result column="vsBeginTime" property="vsBeginTime"/>
 			<result column="optionCount" property="optionCount"/>
 			<result column="voteAllCount" property="voteAllCount"/>
@@ -19,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	<select id="getSubjectListByPage" parameterType="int" resultMap="VoteListMap"> 
 		select
-		(select count(1) from VoteSubject where vsStatus=1) total, 
+		(select count(1) from VoteSubject where vsStatus!=3) total, 
 		nn.* from
 		(
 		select rownum rn,a.* from
@@ -27,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select vs.*,
 		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 		(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
-		from VoteSubject vs where vsStatus=1 order by vsBeginTime desc) a 
+		from VoteSubject vs where vsStatus!=3 order by vsBeginTime desc) a 
 		where #{0}*#{1}>=rownum ) nn
 		where rn>(#{1}-1)*#{0}
 	</select>
@@ -36,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select vs.*,
 		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 		(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
-		from VoteSubject vs where vsStatus=1 order by vsBeginTime desc
+		from VoteSubject vs where vsStatus!=3 order by vsBeginTime desc
 	</sql>
 	<select id="getSubjectAll" parameterType="VoteSubject" resultType="VoteSubject"> 
 		<include refid="selectSubject"/>
@@ -61,4 +62,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getCurrSequence" resultType="int">
 		select seq_vsubject.nextval vsId from dual
 	</select>
+	
+	<select id="getMySetByPage" parameterType="int" resultMap="VoteListMap"> 
+		select
+		(select count(1) from VoteSubject where vsvuId=1000028 and vsStatus!=3) total, 
+		nn.* from
+		(
+		select rownum rn,a.* from
+		(
+		select vs.* ,
+		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
+		(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
+		from VoteSubject vs where vsvuId=#{2} and vsStatus!=3 order by vsBeginTime desc) a
+		where #{0}*#{1}>=rownum ) nn
+		where rn>(#{1}-1)*#{0}
+	</select>
+	
+	<update id="closeVote" parameterType="int">
+		update VoteSubject set vsStatus=2 where vsId=#{vsId}
+	</update>
+	
+	<update id="deleteVote" parameterType="int">
+		update VoteSubject set vsStatus=3 where vsId=#{vsId}
+	</update>
 </mapper>

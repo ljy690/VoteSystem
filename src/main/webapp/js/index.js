@@ -4,16 +4,20 @@
  */
 $(function(){
 	$.get("subject/listAll",{pageSize:5,pageNum:1},function(data){
-		connList(data.subjects);
-		$(".tcdPageCode").createPage({
-			pageCount : data.total,
-			current : 1,
-			backFn : function(pageNum) {
-				$.post("subject/listAll",{pageSize:5,pageNum:pageNum},function(data1){
-					connList(data1.subjects);
-				});
-			}
-		});
+		if(null==data){
+			noSubjectInfo();
+		}else{
+			connList(data.subjects);
+			$(".tcdPageCode").createPage({
+				pageCount : data.total,
+				current : 1,
+				backFn : function(pageNum) {
+					$.post("subject/listAll",{pageSize:5,pageNum:pageNum},function(data1){
+						connList(data1.subjects);
+					});
+				}
+			});
+		}
 	},'json');
 });
 
@@ -21,8 +25,7 @@ function connList(data){
 	var listStr = "";
 	$.each(data,function(index,item){
 		listStr += '<li ' + (index%2==0 ? 'class="odd"' : '') + '>';
-		listStr += '<h4>';
-		listStr += '<a>' + item.vsTitle + '</a>';
+		listStr += '<h4>'+ item.vsTitle;
 		listStr += '</h4>';
 		listStr += '<div class="join"><a href="option/view?vsId='+item.vsId+'">我要参与</a></div>';
 		listStr += '<p class="info">共有' + item.optionCount + '个选项，已有'
@@ -30,4 +33,8 @@ function connList(data){
 		listStr += '</li>';
 	});
 	$("#subjectList").html(listStr);
+}
+
+function noSubjectInfo(){
+	$("#subjectList").html("<h4>系统里没有投票主题。</h4>");
 }
