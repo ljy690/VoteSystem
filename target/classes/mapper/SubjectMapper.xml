@@ -102,4 +102,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where #{0}*#{1}>=rownum ) nn
 		where rn>(#{1}-1)*#{0}
 	</select>
+	
+	<select id="getSearchListByPage" resultMap="VoteListMap">
+		select
+		(select count(1) from Votesubject,voteUser where vsvuId=vuId 
+		<if test="#{2}=='用户'.toString()">
+		and vuUsername like '%#{3}%'
+		</if>
+		<if test="#{2}=='主题'.toString()">
+		and vsTitle like '%#{3}%'
+		</if>
+		and vuStatus=2 and vsStatus!=3) total, 
+		nn.* from
+		(
+		select rownum rn,a.* from
+		(
+		select vs.* ,
+		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
+		(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
+		from VoteSubject vs where vsStatus!=3  
+		<if test="#{2}=='用户'.toString()">
+		and vsvuId in
+		(select vuId from voteUser where vuStatus=2 
+		and vuUsername like '%#{3}%' )
+		</if>
+		<if test="#{2}=='主题'.toString()">
+		and vsTitle like '%#{3}%'
+		</if>
+		order by vsBeginTime desc) a
+		where #{0}*#{1}>=rownum ) nn
+		where rn>(#{1}-1)*#{0}
+	</select>
 </mapper>

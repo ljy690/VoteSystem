@@ -66,5 +66,10 @@ public class SubjectServiceImpl implements SubjectService {
 		return subjectMapping.getMyJoinByPage(pageSize,pageNum,vuId);
 	}
 
+	@Override
+	public VoteList getSearchListByPage(int pageSize, int pageNum,String sRole, String kwords) {
+		return subjectMapping.getSearchListByPage(pageSize,pageNum,sRole,kwords);
+	}
+
 	
 }

@@ -27,4 +27,6 @@ public interface SubjectMapping {
 
 	VoteList getMyJoinByPage(int pageSize, int pageNum, int vuId);
 
+	VoteList getSearchListByPage(int pageSize, int pageNum, String sRole,String kwords);
+
 }

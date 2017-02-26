@@ -28,6 +28,9 @@ public class SubjectHandler {
 	@Autowired
 	private OptionService optionService;
 
+	String sRole=null;
+	String kwords=null;
+	
 	@ResponseBody
 	@RequestMapping(value="/listAll")
 	public VoteList listAll(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
@@ -145,5 +148,27 @@ public class SubjectHandler {
 		}else{
 			return voteList;
 		}
+	}
+	
+	@RequestMapping(value="/jumpSearch")
+	public String jumpSearch(String searchRole,String keywords){
+		sRole=searchRole;
+		kwords=keywords;
+		return "search";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/search")
+	public VoteList search(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
+		VoteList voteList=subjectService.getSearchListByPage(pageSize,pageNum,sRole,kwords);
+		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
+		if(voteList!=null){
+			if(voteList.getTotal()%pageSize==0){
+				voteList.setTotal(voteList.getTotal()/pageSize);
+			}else{
+				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
+			}
+		}
+		return voteList;
 	}
 }

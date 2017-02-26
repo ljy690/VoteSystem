@@ -20,6 +20,9 @@
 			
 		</ul>
 	</div>
+	<div class="pageDiv" style="width:880px;height:45px;margin:0px auto;">
+		<div class="tcdPageCode"></div>
+	</div>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>

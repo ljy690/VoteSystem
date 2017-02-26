@@ -96,10 +96,10 @@ public class UserHandler {
 	
 	//等待激活时，跳到登陆界面
 	@RequestMapping(value="/jumpLogin")
-	public String jumpLogin(){
+	public String jumpLogin(HttpSession session){
 		System.out.println("jump user login...");
+		session.setAttribute(SessionAttributeInfo.CurrUser, null);
 		return "login";
-		
 	}
 	
 	@ResponseBody

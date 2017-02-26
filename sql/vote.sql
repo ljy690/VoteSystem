@@ -175,6 +175,23 @@ and vsStatus!=3 order by vsBeginTime desc) a
 where 5>=rownum ) nn
 where rn>0
 
+--搜索功能
+select
+(select count(1) from Votesubject vs,voteUser vu where vsvuId=vuId and vuUsername like '%ad%' and vuStatus=2 and vsStatus!=3) total, 
+nn.* from
+(
+select rownum rn,a.* from
+(
+select vs.* ,
+(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
+(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
+from VoteSubject vs where vsvuId in
+(select vuId from voteUser where vuUsername like '%ad%' and vuStatus=2)
+and vsStatus!=3 order by vsBeginTime desc) a
+where 5>=rownum ) nn
+where rn>0
+
+
 
 --添加投票主题
 insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
