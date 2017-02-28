@@ -9,6 +9,7 @@ public class VoteOption implements Serializable{
 	private int vsId;
 	private int voOrder;
 	private int voteUserCount;//每个选项的投票数
+	private int totalVote;//总票数
 	
 	public int getVoId() {
 		return voId;
@@ -40,14 +41,21 @@ public class VoteOption implements Serializable{
 	public void setVoteUserCount(int voteUserCount) {
 		this.voteUserCount = voteUserCount;
 	}
+	public int getTotalVote() {
+		return totalVote;
+	}
+	public void setTotalVote(int totalVote) {
+		this.totalVote = totalVote;
+	}
 	public VoteOption(int voId, String voOption, int vsId, int voOrder,
-			int voteUserCount) {
+			int voteUserCount, int totalVote) {
 		super();
 		this.voId = voId;
 		this.voOption = voOption;
 		this.vsId = vsId;
 		this.voOrder = voOrder;
 		this.voteUserCount = voteUserCount;
+		this.totalVote = totalVote;
 	}
 	public VoteOption() {
 		super();
@@ -56,6 +64,7 @@ public class VoteOption implements Serializable{
 	public String toString() {
 		return "VoteOption [voId=" + voId + ", voOption=" + voOption
 				+ ", vsId=" + vsId + ", voOrder=" + voOrder
-				+ ", voteUserCount=" + voteUserCount + "]";
+				+ ", voteUserCount=" + voteUserCount + ", totalVote="
+				+ totalVote + "]";
 	}
 }

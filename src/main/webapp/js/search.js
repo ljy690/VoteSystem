@@ -25,7 +25,12 @@ function connList(data){
 	var listStr = "";
 	$.each(data,function(index,item){
 		listStr += '<li ' + (index%2==0 ? 'class="odd"' : '') + '>';
-		listStr += '<h4>'+ item.vsTitle;
+		listStr += '<h4>'+ item.vsTitle30;
+		if(item.vsType==1){
+			listStr += '[单选]';
+		}else{
+			listStr += '[多选]';
+		}
 		listStr += '</h4>';
 		listStr += '<div class="join"><a href="option/view?vsId='+item.vsId+'">我要参与</a></div>';
 		listStr += '<p class="info">共有' + item.optionCount + '个选项，已有'

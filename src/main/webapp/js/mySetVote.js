@@ -8,7 +8,6 @@ $(function(){
 			noInfo();
 		}else{
 			connSetList(data.subjects);
-			alert(data.total+"傻");
 			$(".tcdPageCode").createPage({
 				pageCount : data.total,
 				current : 1,
@@ -26,7 +25,12 @@ function connSetList(data){
 	var listStr = "";
 	$.each(data,function(index,item){
 		listStr += '<li ' + (index%2==0 ? 'class="odd"' : '') + '>';
-		listStr += '<h4>'+ item.vsTitle;
+		listStr += '<h4>'+ item.vsTitle30;
+		if(item.vsType==1){
+			listStr += '[单选]';
+		}else{
+			listStr += '[多选]';
+		}
 		listStr += '</h4>';
 		listStr += '<div style="float:right" id="aStyle"><a href="option/check?vsId='+item.vsId+'">查看结果</a>&nbsp;&nbsp;';
 		if(item.vsStatus==1){

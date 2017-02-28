@@ -32,12 +32,12 @@
 							<div class="rate">
 								<div class="ratebg"><div class="percent" style='width:<c:choose>
 									<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
-									<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/currSubject.voteAllCount}" type="percent" maxFractionDigits="2"/></c:otherwise>
+									<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.totalVote}" type="percent" maxFractionDigits="2"/></c:otherwise>
 								</c:choose>'></div></div>
 								<p><span>(<c:choose>
 									<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
-									<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/currSubject.voteAllCount}" type="percent" maxFractionDigits="2"/></c:otherwise>
-								</c:choose>)</span>${vocount}票</p>
+									<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.totalVote}" type="percent" maxFractionDigits="2"/></c:otherwise>
+								</c:choose>)</span>${voteOption.voteUserCount}票</p>
 							</div>
 						</li>
 					</c:forEach> 

@@ -35,6 +35,7 @@ public class SubjectHandler {
 	@RequestMapping(value="/listAll")
 	public VoteList listAll(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
 		VoteList voteList=subjectService.getSubjectListByPage(pageSize,pageNum);
+		System.out.println("没有取出"+voteList);
 		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
 		if(voteList!=null){
 			if(voteList.getTotal()%pageSize==0){
@@ -95,6 +96,7 @@ public class SubjectHandler {
 		VoteUser user=(VoteUser) session.getAttribute(SessionAttributeInfo.CurrUser);
 		VoteList voteList=subjectService.getMySetByPage(pageSize,pageNum,user.getVuId());
 		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
+		System.out.println("set没有取出"+voteList);
 		if(voteList!=null){
 			if(voteList.getTotal()%pageSize==0){
 				voteList.setTotal(voteList.getTotal()/pageSize);
@@ -138,8 +140,8 @@ public class SubjectHandler {
 		VoteUser user=(VoteUser) session.getAttribute(SessionAttributeInfo.CurrUser);
 		VoteList voteList=subjectService.getMyJoinByPage(pageSize,pageNum,user.getVuId());
 		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
+		System.out.println("join没有取出"+voteList);
 		if(voteList!=null){
-			System.out.println(voteList.getTotal()+"不对呀总数");
 			if(voteList.getTotal()%pageSize==0){
 				voteList.setTotal(voteList.getTotal()/pageSize);
 			}else{

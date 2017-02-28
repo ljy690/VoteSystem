@@ -88,18 +88,20 @@ select vs.*,
 from VoteSubject vs where vsStatus=1 order by vsBeginTime desc;
 
 
---获取当前的主题,多少投票 ，有多少选项
+--获取当前的主题,多少选项 ，有多少人投票
 select vs.*,
 (select count(1) from VoteOption where vsId=vs.vsId) optionCount,
-(select count(1) from VoteItem where vsId=vs.vsId) voteAllCount
-from VoteSubject vs where vs.vsId=4
+(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
+from VoteSubject vs where vs.vsId=13
 
 
---查询某个主题的信息，以及选项得票情况
+--查询某个主题的信息，以及选项得票情况，总票数
 select vo.*,
-(select count(1) from VoteItem where voId=vo.voId ) voteUserCount
+(select count(1) from VoteItem where voId=vo.voId ) voteUserCount,
+(select count(1) from VoteItem vi,VoteSubject vs where vi.vsId=vs.vsId and vi.vsId=13) totalVote
 from VOTEOPTION vo
-where vo.vsid = 1;
+where vo.vsid = 13
+order by voOrder
 
 --投票信息
 select vo.voId,voOption,vsType

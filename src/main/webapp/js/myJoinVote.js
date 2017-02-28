@@ -6,7 +6,6 @@ $(function(){
 	$.get("subject/myJoinVote",{pageSize:5,pageNum:1},function(data){
 		if(null!=data){
 			connJoinList(data.subjects);
-			alert(data.total+"为什么");
 			$(".tcdPageCode").createPage({
 				pageCount : data.total,
 				current : 1,
@@ -26,7 +25,12 @@ function connJoinList(data){
 	var listStr = "";
 	$.each(data,function(index,item){
 		listStr += '<li ' + (index%2==0 ? 'class="odd"' : '') + '>';
-		listStr += '<h4>'+ item.vsTitle;
+		listStr += '<h4>'+ item.vsTitle30;
+		if(item.vsType==1){
+			listStr += '[单选]';
+		}else{
+			listStr += '[多选]';
+		}
 		listStr += '</h4>';
 		listStr += '<div style="float:right" id="aStyle"><a href="option/directView?vsId='+item.vsId+'">查看结果</a></div>';
 		listStr += '<p class="info">共有' + item.optionCount + '个选项，已有'

@@ -6,9 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.jy.vote.mapper.OptionMapping">
 	<select id="getSbOpsById" parameterType="int" resultType="VoteOption"> 
 		select vo.*,
-		(select count(1) from VoteItem where voId=vo.voId ) voteUserCount
-		from VOTEOPTION vo 
-		where vo.vsid = #{vsId} order by voOrder
+		(select count(1) from VoteItem where voId=vo.voId ) voteUserCount,
+		(select count(1) from VoteItem vi,VoteSubject vs where vi.vsId=vs.vsId and vi.vsId=#{vsId}) totalVote
+		from VOTEOPTION vo
+		where vo.vsid = #{vsId}
+		order by voOrder
 	</select>
 	
 	<select id="checkSoInfo" parameterType="int" resultType="VoteOption">
