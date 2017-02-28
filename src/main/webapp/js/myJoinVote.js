@@ -22,22 +22,22 @@ $(function(){
 });
 
 function connJoinList(data){
-	var listStr = "";
+	var listStrss = "";
 	$.each(data,function(index,item){
-		listStr += '<li ' + (index%2==0 ? 'class="odd"' : '') + '>';
-		listStr += '<h4>'+ item.vsTitle30;
+		listStrss += '<li ' + (index%2==0 ? 'class="odd"' : '') + '>';
+		listStrss += '<h4>'+ item.vsTitle;
 		if(item.vsType==1){
-			listStr += '[单选]';
+			listStrss += '[单选]';
 		}else{
-			listStr += '[多选]';
+			listStrss += '[多选]';
 		}
-		listStr += '</h4>';
-		listStr += '<div style="float:right" id="aStyle"><a href="option/directView?vsId='+item.vsId+'">查看结果</a></div>';
-		listStr += '<p class="info">共有' + item.optionCount + '个选项，已有'
+		listStrss += '</h4>';
+		listStrss += '<div style="float:right" id="aStyle"><a href="option/directView?vsId='+item.vsId+'">查看结果</a></div>';
+		listStrss += '<p class="info">共有' + item.optionCount + '个选项，已有'
 		+item.voteAllCount + '个网友参与了投票。</p>';
-		listStr += '</li>';
+		listStrss += '</li>';
 	});
-	$("#myJoinSubjectList").html(listStr);
+	$("#myJoinSubjectList").html(listStrss);
 }
 
 function noJoinInfo(){

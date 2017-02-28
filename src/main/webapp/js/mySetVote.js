@@ -22,26 +22,26 @@ $(function(){
 });
 
 function connSetList(data){
-	var listStr = "";
+	var listStrs = "";
 	$.each(data,function(index,item){
-		listStr += '<li ' + (index%2==0 ? 'class="odd"' : '') + '>';
-		listStr += '<h4>'+ item.vsTitle30;
+		listStrs += '<li ' + (index%2==0 ? 'class="odd"' : '') + '>';
+		listStrs += '<h4>'+ item.vsTitle;
 		if(item.vsType==1){
-			listStr += '[单选]';
+			listStrs += '[单选]';
 		}else{
-			listStr += '[多选]';
+			listStrs += '[多选]';
 		}
-		listStr += '</h4>';
-		listStr += '<div style="float:right" id="aStyle"><a href="option/check?vsId='+item.vsId+'">查看结果</a>&nbsp;&nbsp;';
+		listStrs += '</h4>';
+		listStrs += '<div style="float:right" id="aStyle"><a href="option/check?vsId='+item.vsId+'">查看结果</a>&nbsp;&nbsp;';
 		if(item.vsStatus==1){
-			listStr += '<a href="subject/closeVote?vsId='+item.vsId+'" onclick="return confirmDel("关闭")">关闭投票</a>&nbsp;&nbsp;';
+			listStrs += '<a href="subject/closeVote?vsId='+item.vsId+'" onclick="return confirmDel("关闭")">关闭投票</a>&nbsp;&nbsp;';
 		}
-		listStr += '<a href="subject/userDelete?vsId='+item.vsId+'" onclick="return confirmDel("删除")">删除</a></div>';
-		listStr += '<p class="info">共有' + item.optionCount + '个选项，已有'
+		listStrs += '<a href="subject/userDelete?vsId='+item.vsId+'" onclick="return confirmDel("删除")">删除</a></div>';
+		listStrs += '<p class="info">共有' + item.optionCount + '个选项，已有'
 		+item.voteAllCount + '个网友参与了投票。</p>';
-		listStr += '</li>';
+		listStrs += '</li>';
 	});
-	$("#mySetSubjectList").html(listStr);
+	$("#mySetSubjectList").html(listStrs);
 }
 
 function noInfo(){

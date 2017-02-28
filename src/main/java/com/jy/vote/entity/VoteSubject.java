@@ -22,12 +22,6 @@ public class VoteSubject implements Serializable{
 	public String getVsTitle() {
 		return vsTitle;
 	}
-	public String getVsTitle30() {
-		if(vsTitle!=null&&vsTitle.length()>30){
-			return vsTitle.substring(0,31)+"...";
-		}
-		return vsTitle;
-	}
 	public void setVsTitle(String vsTitle) {
 		this.vsTitle = vsTitle;
 	}

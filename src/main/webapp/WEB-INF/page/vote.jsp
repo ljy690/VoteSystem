@@ -15,7 +15,7 @@
 	<h2>参与投票</h2>
 	<ul class="list">
 		<li>
-		<h4>${currSubject.vsTitle }[${currSubject.vsType eq 1 ? '单选':'多选'}]
+		<h4>${currSubject.vsTitle30 }[${currSubject.vsType eq 1 ? '单选':'多选'}]
 		<span style="float:right;font-size:14px;">发布日期：${currSubject.vsBeginTime }</span>
 		</h4>
 			<p class="info">共有 ${currSubject.optionCount }个选项，已有${currSubject.voteAllCount }个网友参与了投票。</p>

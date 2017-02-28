@@ -25,7 +25,7 @@ function connList(data){
 	var listStr = "";
 	$.each(data,function(index,item){
 		listStr += '<li ' + (index%2==0 ? 'class="odd"' : '') + '>';
-		listStr += '<h4>'+ item.vsTitle30;
+		listStr += '<h4>'+ item.vsTitle;
 		if(item.vsType==1){
 			listStr += '[单选]';
 		}else{
