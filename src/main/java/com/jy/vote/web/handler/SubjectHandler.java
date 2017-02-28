@@ -139,6 +139,7 @@ public class SubjectHandler {
 		VoteList voteList=subjectService.getMyJoinByPage(pageSize,pageNum,user.getVuId());
 		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
 		if(voteList!=null){
+			System.out.println(voteList.getTotal()+"不对呀总数");
 			if(voteList.getTotal()%pageSize==0){
 				voteList.setTotal(voteList.getTotal()/pageSize);
 			}else{
@@ -160,7 +161,13 @@ public class SubjectHandler {
 	@ResponseBody
 	@RequestMapping(value="/search")
 	public VoteList search(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
-		VoteList voteList=subjectService.getSearchListByPage(pageSize,pageNum,sRole,kwords);
+		VoteList voteList;
+		if(sRole.equals("用户")){
+			voteList=subjectService.getSearchListByPage(pageSize,pageNum,"user",kwords);
+		}else{
+			voteList=subjectService.getSearchListByPage(pageSize,pageNum,"sub",kwords);
+		}
+		
 		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
 		if(voteList!=null){
 			if(voteList.getTotal()%pageSize==0){

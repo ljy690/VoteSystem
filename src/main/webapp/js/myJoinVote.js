@@ -1,11 +1,12 @@
  /**
- * 我发布的投票的js
+ * 我参与的投票的js
  * 首次进来要先拼接一次，然后再是按钮
  */
 $(function(){
 	$.get("subject/myJoinVote",{pageSize:5,pageNum:1},function(data){
 		if(null!=data){
 			connJoinList(data.subjects);
+			alert(data.total+"为什么");
 			$(".tcdPageCode").createPage({
 				pageCount : data.total,
 				current : 1,

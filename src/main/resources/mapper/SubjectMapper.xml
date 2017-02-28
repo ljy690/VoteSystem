@@ -88,7 +88,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getMyJoinByPage" parameterType="int" resultMap="VoteListMap"> 
 		select
-		(select count(distinct(vi.vsId)) from VoteItem vi,Votesubject vs where vi.vsId=vs.vsId and vsvuId=#{2} and vsStatus!=3) total, 
+		(select count(distinct(vi.vsId)) from VoteItem vi,Votesubject vs where vi.vsId=vs.vsId and vuId=#{2} and vsStatus!=3) total, 
 		nn.* from
 		(
 		select rownum rn,a.* from
@@ -106,11 +106,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getSearchListByPage" resultMap="VoteListMap">
 		select
 		(select count(1) from Votesubject,voteUser where vsvuId=vuId 
-		<if test="#{2}=='用户'.toString()">
-		and vuUsername like '%#{3}%'
+		<if test="sRole=='user'">
+		and vuUsername like '%${kwords}%'
 		</if>
-		<if test="#{2}=='主题'.toString()">
-		and vsTitle like '%#{3}%'
+		<if test="sRole=='sub'">
+		and vsTitle like '%${kwords}%'
 		</if>
 		and vuStatus=2 and vsStatus!=3) total, 
 		nn.* from
@@ -121,16 +121,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 		(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
 		from VoteSubject vs where vsStatus!=3  
-		<if test="#{2}=='用户'.toString()">
+		<if test="sRole=='user'">
 		and vsvuId in
 		(select vuId from voteUser where vuStatus=2 
-		and vuUsername like '%#{3}%' )
+		and vuUsername like '%${kwords}%' )
 		</if>
-		<if test="#{2}=='主题'.toString()">
-		and vsTitle like '%#{3}%'
+		<if test="sRole=='sub'">
+		and vsTitle like '%${kwords}%'
 		</if>
 		order by vsBeginTime desc) a
-		where #{0}*#{1}>=rownum ) nn
-		where rn>(#{1}-1)*#{0}
+		where ${pageSize}*${pageNum}>=rownum ) nn
+		where rn>(${pageNum}-1)*${pageSize}
 	</select>
 </mapper>

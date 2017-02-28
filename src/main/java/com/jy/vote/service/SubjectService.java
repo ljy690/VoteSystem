@@ -2,6 +2,7 @@ package com.jy.vote.service;
 
 import java.util.List;
 
+import com.jy.vote.entity.Search;
 import com.jy.vote.entity.VoteList;
 import com.jy.vote.entity.VoteSubject;
 

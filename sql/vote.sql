@@ -161,7 +161,7 @@ update VoteSubject set vsStatus=2 where vsId=1
 
 --查看我参与的投票  分页
 select
-(select count(distinct(vi.vsId)) from VoteItem vi,Votesubject vs where vi.vsId=vs.vsId and vsvuId=1000028 and vsStatus!=3) total, 
+(select count(distinct(vi.vsId)) from VoteItem vi,Votesubject vs where vi.vsId=vs.vsId and vuId=1000026 and vsStatus!=3) total, 
 nn.* from
 (
 select rownum rn,a.* from
@@ -170,7 +170,7 @@ select vs.* ,
 (select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 (select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
 from VoteSubject vs where vsId in
-(select vsb.vsId from votesubject vsb,voteitem vit where vsb.vsId=vit.vsId and vuId=1000028 and vsStatus!=3) 
+(select vsb.vsId from votesubject vsb,voteitem vit where vsb.vsId=vit.vsId and vuId=1000026 and vsStatus!=3) 
 and vsStatus!=3 order by vsBeginTime desc) a
 where 5>=rownum ) nn
 where rn>0
@@ -190,6 +190,25 @@ from VoteSubject vs where vsvuId in
 and vsStatus!=3 order by vsBeginTime desc) a
 where 5>=rownum ) nn
 where rn>0
+
+
+--测试
+		select
+		(select count(1) from Votesubject,voteUser where vsvuId=vuId 
+		and vsTitle like '%选出%'
+		and vuStatus=2 and vsStatus!=3) total, 
+		nn.* from
+		(
+		select rownum rn,a.* from
+		(
+		select vs.* ,
+		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
+		(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
+		from VoteSubject vs where vsStatus!=3  
+		and vsTitle like '%选出%'
+		order by vsBeginTime desc) a
+		where 5*1>=rownum ) nn
+		where rn>(1-1)*5
 
 
 

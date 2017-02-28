@@ -8,6 +8,7 @@ $(function(){
 			noInfo();
 		}else{
 			connSetList(data.subjects);
+			alert(data.total+"傻");
 			$(".tcdPageCode").createPage({
 				pageCount : data.total,
 				current : 1,

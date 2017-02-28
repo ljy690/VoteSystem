@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jy.vote.entity.Search;
 import com.jy.vote.entity.VoteList;
 import com.jy.vote.entity.VoteSubject;
 import com.jy.vote.mapper.SubjectMapping;
@@ -67,8 +68,8 @@ public class SubjectServiceImpl implements SubjectService {
 	}
 
 	@Override
-	public VoteList getSearchListByPage(int pageSize, int pageNum,String sRole, String kwords) {
-		return subjectMapping.getSearchListByPage(pageSize,pageNum,sRole,kwords);
+	public VoteList getSearchListByPage(int pageSize, int pageNum, String sRole,String kwords) {
+		return subjectMapping.getSearchListByPage(pageSize, pageNum, sRole,kwords);
 	}
 
 	

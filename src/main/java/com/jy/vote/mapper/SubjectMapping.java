@@ -2,6 +2,8 @@ package com.jy.vote.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.jy.vote.entity.VoteList;
 import com.jy.vote.entity.VoteSubject;
 
@@ -27,6 +29,6 @@ public interface SubjectMapping {
 
 	VoteList getMyJoinByPage(int pageSize, int pageNum, int vuId);
 
-	VoteList getSearchListByPage(int pageSize, int pageNum, String sRole,String kwords);
+	VoteList getSearchListByPage(@Param("pageSize")int pageSize,@Param("pageNum") int pageNum, @Param("sRole")String sRole,@Param("kwords")String kwords);
 
 }
