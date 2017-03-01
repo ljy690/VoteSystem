@@ -48,10 +48,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getCurrSubject" parameterType="int" resultType="VoteSubject"> 
-		select vs.*,
+		select vs.*,vu.vuUsername,
 		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 		(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
-		from VoteSubject vs where vs.vsId=#{vsId}
+		from VoteSubject vs,VoteUser vu where vuId=vsvuId and vs.vsId=#{vsId}
 	</select>
 	
 	<insert id="addNewSubject">

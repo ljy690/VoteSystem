@@ -18,9 +18,9 @@ a:hover, a:active { text-decoration:underline; }
 #navbar .profile .leavemsg a { margin:0px 25px; background:url(../images/vote_icon.gif) left center no-repeat; padding-left:15px; }
 #navbar .profile .return a { margin:0px 25px; background:url(../images/new.gif) left center no-repeat; padding-left:15px; }
 
-#navbar .search { text-align:right; }
+/* #navbar .search { text-align:right; } */
 #navbar .search input { margin:3px auto; /* vertical-align:middle; */ }
-#navbar .search .input-button { background:url(../images/button_search.gif); width:40px; height:22px; margin:0px 4px; }
+#navbar .search .input-button { background:url(../images/button_search.gif); width:40px; height:22px;/*  margin:0px auto;  */float:right;}
 #login { margin:10px auto; }
 #login .main { background:#79a4cf url(../images/voteBanner.jpg) no-repeat; height:154px; padding-left:190px; position:relative; }
 #login .main .corner { float:right; background:url(../images/bannerCorner.jpg); width:20px; height:154px; }

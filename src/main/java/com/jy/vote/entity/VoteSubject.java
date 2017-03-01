@@ -6,6 +6,7 @@ public class VoteSubject implements Serializable{
 	private static final long serialVersionUID = 9222397426778619924L;
 	private int vsId;
 	private int vsvuId;
+	private String vuUsername;
 	private String vsTitle;
 	private int vsType;
 	private int vsStatus;
@@ -65,11 +66,19 @@ public class VoteSubject implements Serializable{
 	public void setOptionCount(int optionCount) {
 		this.optionCount = optionCount;
 	}
-	public VoteSubject(int vsId, int vsvuId, String vsTitle, int vsType,
-			int vsStatus, String vsBeginTime, int optionCount, int voteAllCount) {
+	public String getVuUsername() {
+		return vuUsername;
+	}
+	public void setVuUsername(String vuUsername) {
+		this.vuUsername = vuUsername;
+	}
+	public VoteSubject(int vsId, int vsvuId, String vuUsername, String vsTitle,
+			int vsType, int vsStatus, String vsBeginTime, int optionCount,
+			int voteAllCount) {
 		super();
 		this.vsId = vsId;
 		this.vsvuId = vsvuId;
+		this.vuUsername = vuUsername;
 		this.vsTitle = vsTitle;
 		this.vsType = vsType;
 		this.vsStatus = vsStatus;
@@ -83,8 +92,9 @@ public class VoteSubject implements Serializable{
 	@Override
 	public String toString() {
 		return "VoteSubject [vsId=" + vsId + ", vsvuId=" + vsvuId
-				+ ", vsTitle=" + vsTitle + ", vsType=" + vsType + ", vsStatus="
-				+ vsStatus + ", vsBeginTime=" + vsBeginTime + ", optionCount="
+				+ ", vuUsername=" + vuUsername + ", vsTitle=" + vsTitle
+				+ ", vsType=" + vsType + ", vsStatus=" + vsStatus
+				+ ", vsBeginTime=" + vsBeginTime + ", optionCount="
 				+ optionCount + ", voteAllCount=" + voteAllCount + "]";
 	}
 }

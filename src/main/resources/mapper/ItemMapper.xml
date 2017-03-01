@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="vote" parameterType="VoteItem">
-		insert into VoteItem (viId, voId, vsId,vuId)
-		values (seq_vitem.nextval, #{2}, #{0},#{1})
+		insert into VoteItem (viId, voId, vsId,vuId,voteTime)
+		values (seq_vitem.nextval, #{2}, #{0},#{1},sysdate)
 	</insert>
 </mapper>

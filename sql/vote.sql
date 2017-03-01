@@ -72,7 +72,8 @@ create table VoteItem
   vsId      NUMBER(10) not null --投票主题编号id
   	constraint FK_vivsId references VoteSubject(vsId),
   vuId	    NUMBER(10) not null --用户id
-  	constraint FK_vivuId references VoteUser(vuId)
+  	constraint FK_vivuId references VoteUser(vuId),
+  voteTime  date not null      --用户参与投票的时间
 );
 
 --查询
@@ -89,10 +90,10 @@ from VoteSubject vs where vsStatus=1 order by vsBeginTime desc;
 
 
 --获取当前的主题,多少选项 ，有多少人投票
-select vs.*,
+select vs.*,vu.vuUsername,
 (select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 (select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
-from VoteSubject vs where vs.vsId=13
+from VoteSubject vs,VoteUser vu where vuId=vsvuId and vs.vsId=13
 
 
 --查询某个主题的信息，以及选项得票情况，总票数
@@ -168,12 +169,12 @@ nn.* from
 (
 select rownum rn,a.* from
 (
-select vs.* ,
+select vs.* ,votetime
 (select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 (select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
-from VoteSubject vs where vsId in
+from VoteSubject vs,voteitem vi where vs.vsid=vi.vsid and vs.vsId in
 (select vsb.vsId from votesubject vsb,voteitem vit where vsb.vsId=vit.vsId and vuId=1000026 and vsStatus!=3) 
-and vsStatus!=3 order by vsBeginTime desc) a
+and vsStatus!=3 order by voteTime desc) a
 where 5>=rownum ) nn
 where rn>0
 

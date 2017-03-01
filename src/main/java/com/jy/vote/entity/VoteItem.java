@@ -8,6 +8,7 @@ public class VoteItem implements Serializable{
 	private int voId;
 	private int vsId;
 	private int vuId;
+	private String voteTime;
 	
 	public int getViId() {
 		return viId;
@@ -33,13 +34,19 @@ public class VoteItem implements Serializable{
 	public void setVuId(int vuId) {
 		this.vuId = vuId;
 	}
-
-	public VoteItem(int viId, int voId, int vsId, int vuId) {
+	public String getVoteTime() {
+		return voteTime;
+	}
+	public void setVoteTime(String voteTime) {
+		this.voteTime = voteTime;
+	}
+	public VoteItem(int viId, int voId, int vsId, int vuId, String voteTime) {
 		super();
 		this.viId = viId;
 		this.voId = voId;
 		this.vsId = vsId;
 		this.vuId = vuId;
+		this.voteTime = voteTime;
 	}
 	public VoteItem() {
 		super();
@@ -47,6 +54,6 @@ public class VoteItem implements Serializable{
 	@Override
 	public String toString() {
 		return "VoteItem [viId=" + viId + ", voId=" + voId + ", vsId=" + vsId
-				+ ", vuId=" + vuId  + "]";
+				+ ", vuId=" + vuId + ", voteTime=" + voteTime + "]";
 	}
 }

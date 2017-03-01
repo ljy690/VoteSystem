@@ -18,8 +18,9 @@
 	<ul class="list">
 		<li>
 			<input type="hidden" name="vsId" id="vsId" value="${currSubject.vsId }"/>
-			<h4>${currSubject.vsTitle30 }[${currSubject.vsType eq 1 ? '单选':'多选'}]
-			<span style="float:right;font-size:14px;">发布日期：${currSubject.vsBeginTime }</span>
+			<h4>${currSubject.vsTitle }[${currSubject.vsType eq 1 ? '单选':'多选'}]
+			<span style="float:right;font-size:14px;">发布者：${currSubject.vuUsername }&nbsp;&nbsp;
+					发布日期：${currSubject.vsBeginTime }</span>
 			</h4>
 			<p class="info">共有${currSubject.optionCount }个选项，已有${currSubject.voteAllCount }个网友参与了投票。 </p>
 			<c:if test="${currSubject.vsStatus == 2 }">
