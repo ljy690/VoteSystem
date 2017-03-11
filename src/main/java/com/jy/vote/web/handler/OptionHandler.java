@@ -84,4 +84,13 @@ public class OptionHandler {
 		getSubOp(map, vsId);
 		return "view";
 	}
+	
+	@RequestMapping(value="/analyzeResult")
+	public String analyzeResult(int vsId,HttpSession session,ModelMap map){
+		//根据主题获取分析的结果
+		VoteSubject subject = subjectService.getCurrSubject( vsId );
+		session.setAttribute(SessionAttributeInfo.CurrSubject, subject);
+		getSubOp(map, vsId);
+		return "view";
+	}
 }

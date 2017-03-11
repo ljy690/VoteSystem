@@ -4,7 +4,7 @@ img { border:0; }
 em { font-style:normal; }
 .wrap { width:950px; margin:0px auto; }
 .red, a.red { color:#f00; }
-.input-text { padding:2px 4px; border:1px solid #79a4cf; }
+.input-text { padding:2px 4px; border:1px solid #79a4cf;width:200px; }
 .input-button { border:none; }
 a:link, a:visited { color:#06C; text-decoration:none; }
 a:hover, a:active { text-decoration:underline; }
@@ -18,8 +18,8 @@ a:hover, a:active { text-decoration:underline; }
 #navbar .profile .leavemsg a { margin:0px 25px; background:url(../images/vote_icon.gif) left center no-repeat; padding-left:15px; }
 #navbar .profile .return a { margin:0px 25px; background:url(../images/new.gif) left center no-repeat; padding-left:15px; }
 
-/* #navbar .search { text-align:right; } */
-#navbar .search input { margin:3px auto; /* vertical-align:middle; */ }
+#navbar .search { text-align:right; }
+#navbar .search input { margin:3px auto;width:150px; /* vertical-align:middle; */ }
 #navbar .search .input-button { background:url(../images/button_search.gif); width:40px; height:22px;/*  margin:0px auto;  */float:right;}
 #login { margin:10px auto; }
 #login .main { background:#79a4cf url(../images/voteBanner.jpg) no-repeat; height:154px; padding-left:190px; position:relative; }
@@ -48,7 +48,8 @@ a:hover, a:active { text-decoration:underline; }
 #register { width:600px; margin:20px auto; }
 #register dl { line-height:40px; }
 #register dl dt { float:left; clear:left; width:80px; text-align:right; }
-#register dl dd { margin-left:80px; }
+#register dl dd { margin-left:80px; height:40px;}
+#register dl dd span{ line-height:40px; height:40px;}
 #register dl dd input { margin:8px 0; font-size:14px; }
 #register dl dd .input-button { background:url(../images/button_register.gif); width:120px; height:30px; }
 #message { width:400px; margin:50px auto; }

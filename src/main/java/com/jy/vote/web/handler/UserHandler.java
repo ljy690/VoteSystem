@@ -118,6 +118,13 @@ public class UserHandler {
 		return result;
 	}
 	
+	@RequestMapping(value="/userCenter")
+	public String userCenter(){
+		/*System.out.println("该用户"+vuId);
+		boolean result=userService.checkEmail(voteUser.getVuEmail().trim()); */
+		return "userCenter";
+	}
+	
 /*	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(){
 		System.out.println("点击返回的登陆界面...");
