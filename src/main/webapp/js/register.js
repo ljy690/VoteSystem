@@ -102,7 +102,7 @@ function checkPwd(pwd){
 
 function checkRpwd(Rpwd){
 	frpassword=Rpwd.value;
-	if(null!=frpassword && ""!=frpassword){
+	if(null!=frpassword && ""!=frpassword ){
 		checkTwoPass();
 	}else{
 		$("#repwinfo").html("密码仅支持字母和数字，限制6-18个字符");
@@ -112,7 +112,9 @@ function checkRpwd(Rpwd){
 }
 
 function checkTwoPass(){
-	if(null!=frpassword && null!=fpassword && ""!=frpassword && ""!=fpassword){
+	var res=/^[a-zA-Z0-9]{6,18}$/;
+	var rpasswd=res.test(frpassword);
+	if(null!=frpassword && null!=fpassword && ""!=frpassword && ""!=fpassword && rpasswd){
 		if(frpassword==fpassword){
 			//alert("通过啦"+frpassword+"  "+fpassword);
 			$("#repwinfo").html("密码一致通过。");
@@ -124,6 +126,10 @@ function checkTwoPass(){
 			$("#repwinfo").css("color","red");
 			rPassw=false;
 		}
+	}else{
+		$("#repwinfo").html("密码仅支持字母和数字，限制6-18个字符");
+		$("#repwinfo").css("color","red");
+		rPassw=false;
 	}
 }
 

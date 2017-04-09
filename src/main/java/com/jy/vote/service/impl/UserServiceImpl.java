@@ -67,4 +67,11 @@ public class UserServiceImpl implements UserService {
 	public VoteUser checkUserId(String username) {
 		return userMapping.checkName(username);
 	}
+
+	@Override
+	public int changeUserInfo(VoteUser user) {
+		user.setVuPassword(Encrypt.md5AndSha( user.getVuPassword() ));
+		int re = userMapping.changeUserInfo(user);
+		return re;
+	}
 }

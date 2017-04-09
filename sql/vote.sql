@@ -223,6 +223,9 @@ where rn>0
 		where rn>(1-1)*5
 
 
+--修改用户
+update VoteUser set vuPassword='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2' where vuId=1000028;
+		
 
 --添加投票主题
 insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)

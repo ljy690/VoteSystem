@@ -91,6 +91,9 @@ public class UserHandler {
 			map.put("errorMsg", "用户未激活，请去邮箱激活后再进行操作...");
 			return "login";
 		}
+		if(voteUser.getVuUsername().trim().equals("admin")){
+			return "manage";
+		}
 		return "list";
 	}
 	
@@ -120,8 +123,17 @@ public class UserHandler {
 	
 	@RequestMapping(value="/userCenter")
 	public String userCenter(){
-		/*System.out.println("该用户"+vuId);
-		boolean result=userService.checkEmail(voteUser.getVuEmail().trim()); */
+		return "userCenter";
+	}
+	
+	@RequestMapping(value="/changeUserInfo")
+	public String changeUserInfo(VoteUser user,ModelMap map,HttpSession session){
+		//将信息插入数据库
+		System.out.println(user+"修改信息");
+		if(userService.changeUserInfo(user)==1){
+			session.setAttribute( SessionAttributeInfo.CurrUser, user);
+			map.put("regErrorMsg", "信息修改成功!!!");
+		}
 		return "userCenter";
 	}
 	

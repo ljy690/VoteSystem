@@ -25,7 +25,12 @@ function connSetList(data){
 	var listStrs = "";
 	$.each(data,function(index,item){
 		listStrs += '<li ' + (index%2==0 ? 'class="odd"' : '') + '>';
-		listStrs += '<h4>'+ item.vsTitle;
+		var str=item.vsTitle;
+		if(str.length>35){
+			listStrs += '<h4>'+str.substring(0,35)+"...";
+		}else{
+			listStrs += '<h4>'+str;
+		}
 		if(item.vsType==1){
 			listStrs += '[单选]';
 		}else{

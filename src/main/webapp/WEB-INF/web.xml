@@ -40,7 +40,7 @@ http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	</filter>
 	<filter-mapping>
 		<filter-name>UserFilter</filter-name>
-		<url-pattern>/page/*</url-pattern>
+		<url-pattern>/WEB-INF/page/*</url-pattern>
 	</filter-mapping>
 	<filter>
 		<filter-name>HiddenHttpMethodFilter</filter-name>

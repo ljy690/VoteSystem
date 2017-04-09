@@ -24,13 +24,13 @@ public class SubjectHandler {
 
 	@Autowired
 	private SubjectService subjectService;
-	
+
 	@Autowired
 	private OptionService optionService;
 
 	String sRole=null;
 	String kwords=null;
-	
+
 	@ResponseBody
 	@RequestMapping(value="/listAll")
 	public VoteList listAll(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
@@ -59,7 +59,7 @@ public class SubjectHandler {
 	@RequestMapping(value="/addNewSubject")
 	public String addNewSubject(ModelMap map,VoteSubject voteSubject,BindingResult bindingResult,
 			@RequestParam(value="voOption",required=false) String[] voOption,HttpSession session){
-		//System.out.println("新增的投票："+voteSubject);
+		//LogManager.getLogger().error("新增的投票："+voteSubject);
 		if(bindingResult.hasFieldErrors()){
 			map.put("addSbErrorMsg", "添加投票失败");
 			return "add";
@@ -82,12 +82,12 @@ public class SubjectHandler {
 		}
 		return "add_success";
 	}
-	
+
 	@RequestMapping(value="/jumpMySetUpVote")
 	public String jumpMySetUpVote(){
 		return "mySet";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="/mySetUpVote")
 	public VoteList mySetUpVote(int pageSize,int pageNum,HttpSession session){
@@ -106,31 +106,35 @@ public class SubjectHandler {
 			return voteList;
 		}
 	}
-	
+
 	@RequestMapping(value="/closeVote")
 	public String closeVote(int vsId,HttpSession session){
 		//关闭我发布的投票(隐藏) 询问一下用户  将状态设为2  也只能查看了
 		if(subjectService.closeVote(vsId)!=1){
-			System.out.println("closeVote投票关闭失败。");
+			LogManager.getLogger().error("closeVote投票关闭失败。");
 		}
 		return "mySet";
 	}
-	
+
 	@RequestMapping(value="/userDelete")
-	public String userDelete(int vsId,HttpSession session){
+	public String userDelete(int vsId){
+		deleteVote(vsId);
+		return "mySet";
+	}
+
+	//删除投票
+	private void deleteVote(int vsId){
 		//删除我发布的投票(隐藏) 询问一下用户  将状态设为3
 		if(subjectService.deleteVote(vsId)!=1){
-			System.out.println("closeVote投票删除失败。");
+			LogManager.getLogger().error("closeVote投票删除失败。");
 		}
-		return "mySet";
 	}
-	
-	
+
 	@RequestMapping(value="/jumpMyJoinedVote")
 	public String jumpMyJoinedVote(){
 		return "myJoin";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="/myJoinVote")
 	public VoteList myJoinVote(int pageSize,int pageNum,HttpSession session){
@@ -149,14 +153,14 @@ public class SubjectHandler {
 			return voteList;
 		}
 	}
-	
+
 	@RequestMapping(value="/jumpSearch")
 	public String jumpSearch(String searchRole,String keywords){
 		sRole=searchRole;
 		kwords=keywords;
 		return "search";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value="/search")
 	public VoteList search(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
@@ -166,7 +170,7 @@ public class SubjectHandler {
 		}else{
 			voteList=subjectService.getSearchListByPage(pageSize,pageNum,"sub",kwords);
 		}
-		
+
 		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
 		if(voteList!=null){
 			if(voteList.getTotal()%pageSize==0){
@@ -176,5 +180,31 @@ public class SubjectHandler {
 			}
 		}
 		return voteList;
+	}
+
+	//管理员管理所有投票
+	@RequestMapping(value="/jumpManageVote")
+	public String jumpManageVote(){
+		return "manage";
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/manageAll")
+	public VoteList manageAll(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
+		VoteList voteList=subjectService.getSubjectManageListByPage(pageSize,pageNum);
+		if(voteList!=null){
+			if(voteList.getTotal()%pageSize==0){
+				voteList.setTotal(voteList.getTotal()/pageSize);
+			}else{
+				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
+			}
+		}
+		return voteList;
+	}
+	
+	@RequestMapping(value="/adminDelete")
+	public String adminDelete(int vsId){
+		deleteVote(vsId);
+		return "manage";
 	}
 }

@@ -20,4 +20,6 @@ public interface UserService {
 	boolean checkStatus(String username);
 
 	VoteUser checkUserId(String username);
+
+	int changeUserInfo(VoteUser user);
 }

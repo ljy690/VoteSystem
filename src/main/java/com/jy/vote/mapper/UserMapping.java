@@ -16,4 +16,6 @@ public interface UserMapping {
 	
 	//检测是否激活邮箱
 	VoteUser checkStatus(String username);
+
+	int changeUserInfo(VoteUser user);
 }

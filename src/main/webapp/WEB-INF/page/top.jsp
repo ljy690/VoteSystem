@@ -8,13 +8,14 @@
 	<div class="profile">
 		您好，<a href="user/userCenter?vuId=${currUser.vuId }">${currUser.vuUsername }</a> 
 		<label><a href="user/jumpLogin">[注销]</a></label>
-		<span class="return"><a href="subject/jumpList">返回列表</a></span>
-		<span class="addnew"><a href="subject/addNewVote">添加新投票</a></span>
 		<c:choose>  
 		   <c:when test="${currUser.vuVersion==1 }">
-		   		<span class="modify"><a href="subject/jumpManage">管理所有的投票</a></span>
+		   		<span class="modify"><a href="subject/jumpManageVote">管理所有的投票</a></span>
+		   		<span class="modify"><a href="subject/jumpManageUser">管理所有的用户</a></span>
 		   </c:when>  
 		   <c:otherwise>
+		   		<span class="return"><a href="subject/jumpList">返回列表</a></span>
+				<span class="addnew"><a href="subject/addNewVote">添加新投票</a></span>
 		   		<span class="modify"><a href="subject/jumpMySetUpVote?vuId=${currUser.vuId }">我发起の投票</a></span>
 				<span class="leavemsg"><a href="subject/jumpMyJoinedVote?vuId=${currUser.vuId }">我参与の投票</a></span>
 		   </c:otherwise>  

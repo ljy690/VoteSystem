@@ -28,8 +28,8 @@
 					</dd>
 					<dt>出生日期：</dt>
 					<dd>
-						<f:input type="text" id="demo-1" path="vuDate" class="input-text"
-							value="${currUser.vuDate} " required="required" onchange="checkBri(this)"/>
+						<f:input type="text" path="vuDate" class="input-text"
+							value="${currUser.vuDate0} " required="required" onblur="checkBri(this)"/>
 						<f:errors path="vuDate" class="cssErrors"></f:errors>
 					</dd>
   					<dt>性别：</dt>
@@ -47,19 +47,19 @@
 						
   						<f:errors path="vuSex" class="cssErrors"></f:errors>
   						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  						<span id="briInfo"></span>
+  						<span id="briInfo">日期请按YYYY-MM-DD格式输入</span>
 					</dd>
-					<dt>密码：</dt>
+					<dt>修改密码：</dt>
 					<dd>
 						<f:input path="vuPassword" id="voteUserPassID" type="password" class="input-text"
-							required="required" value="${currUser.vuPassword}" onblur="checkPwd(this)"/>
+							required="required" onblur="checkPwd(this)"/>
 						<f:errors path="vuPassword" class="cssErrors"></f:errors>
 					</dd>
 					<dd id="pwinfo">密码支持字母和数字，限制6-18个字符</dd>
 					<dt>确认密码：</dt>
 					<dd>
 						<f:input type="password" id="voteUserRpassID" class="input-text" path="confirmPassword"
-							required="required" value="${currUser.vuPassword}" onblur="checkRpwd(this)"/>
+							required="required" onblur="checkRpwd(this)"/>
 						<f:errors path="confirmPassword" class="cssErrors"></f:errors>
 					</dd>
 					<dd id="repwinfo">密码支持字母和数字，限制6-18个字符</dd>
@@ -81,11 +81,5 @@
 	
 	<script src="js/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript" src="js/changeInfo.js"></script>
-	<script src="js/foundation-datepicker.js"></script>
-	<script src="js/foundation-datepicker.zh-CN.js"></script>
-	<script type="text/javascript">
-		$('#demo-1').fdatepicker();
-	</script>
-	
 </body>
 </html>

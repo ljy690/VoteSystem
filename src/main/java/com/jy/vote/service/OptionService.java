@@ -12,4 +12,7 @@ public interface OptionService {
 	List<VoteOption> checkSoInfo(int vsId);
 
 	void addOptions(int vsId, String ops, int i);
+
+	//查看分析的结果
+	List<VoteOption> analyzeSubject(int vsId);
 }

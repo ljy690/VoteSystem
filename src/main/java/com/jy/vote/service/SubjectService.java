@@ -28,4 +28,7 @@ public interface SubjectService {
 
 	VoteList getSearchListByPage(int pageSize, int pageNum, String sRole,String kwords);
 
+	//获取管理投票的列表
+	VoteList getSubjectManageListByPage(int pageSize, int pageNum);
+
 }

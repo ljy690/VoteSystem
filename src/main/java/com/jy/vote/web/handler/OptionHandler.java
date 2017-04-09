@@ -90,7 +90,13 @@ public class OptionHandler {
 		//根据主题获取分析的结果
 		VoteSubject subject = subjectService.getCurrSubject( vsId );
 		session.setAttribute(SessionAttributeInfo.CurrSubject, subject);
-		getSubOp(map, vsId);
-		return "view";
+		getSubAnaly(map, vsId);
+		return "result";
+	}
+	
+	private void getSubAnaly(ModelMap map,int vsId){
+		//查看分析结果
+		List<VoteOption> options = optionService.analyzeSubject(vsId);
+		map.put("options", options);
 	}
 }

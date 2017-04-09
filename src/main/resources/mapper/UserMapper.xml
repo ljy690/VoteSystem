@@ -27,4 +27,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="checkStatus" parameterType="String" resultType="VoteUser">
 		select * from VoteUser where vuUsername = #{vuUsername} and vuStatus=1
 	</select>
+	
+	<update id="changeUserInfo">
+		update VoteUser set vuSex=#{vuSex},vuPassword=#{vuPassword},vuDate=to_date(#{vuDate},'yyyy-mm-dd') where vuId = #{vuId}
+	</update>
 </mapper>

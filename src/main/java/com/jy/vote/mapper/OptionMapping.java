@@ -12,4 +12,7 @@ public interface OptionMapping {
 	List<VoteOption> checkSoInfo(int vsId);
 
 	void addOptions(int vsId,String ops, int i);
+	
+	//获取投票分析结果
+	List<VoteOption> analyzeSubject(int vsId);
 }

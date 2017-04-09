@@ -78,6 +78,9 @@ public class VoteUser implements Serializable{
 	public String getVuDate() {
 		return vuDate;
 	}
+	public String getVuDate0() {
+		return vuDate.substring(0,10);
+	}
 	public void setVuDate(String vuDate) {
 		this.vuDate = vuDate;
 	}

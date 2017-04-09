@@ -30,4 +30,9 @@ public class OptionServiceImpl implements OptionService {
 		optionMapping.addOptions(vsId,ops,i);
 	}
 
+	@Override
+	public List<VoteOption> analyzeSubject(int vsId) {
+		return optionMapping.analyzeSubject(vsId);
+	}
+
 }
