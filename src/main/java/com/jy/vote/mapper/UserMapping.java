@@ -1,5 +1,6 @@
 package com.jy.vote.mapper;
 
+import com.jy.vote.entity.UsersList;
 import com.jy.vote.entity.VoteUser;
 
 public interface UserMapping {
@@ -18,4 +19,7 @@ public interface UserMapping {
 	VoteUser checkStatus(String username);
 
 	int changeUserInfo(VoteUser user);
+
+	//获取所有的用户
+	UsersList getAllUsers(int pageSize, int pageNum);
 }

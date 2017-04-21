@@ -4,8 +4,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 使用映射接口的方式， 命名空间的值必须与映射接口的全限定名一致 -->
 <mapper namespace="com.jy.vote.mapper.UserMapping">
+	<resultMap type="UsersList" id="UserListMap">
+		<id column="total" property="total"/>
+		<collection property="users" column="vuId" ofType="VoteUser">
+			<id column="vuId" property="vuId"/>
+			<result column="vuPassword" property="vuPassword"/>
+			<result column="vuSex" property="vuSex"/>
+			<result column="vuUsername" property="vuUsername"/>
+			<result column="vuEmail" property="vuEmail"/>
+			<result column="vuDate" property="vuDate"/>
+			<result column="vuStatus" property="vuStatus"/>
+			<result column="vuVersion" property="vuVersion"/>
+			<result column="vuUpTime" property="vuUpTime"/>
+		</collection>
+	</resultMap>
+
 	<insert id="insertUser" parameterType="VoteUser">
-		insert into VoteUser values(seq_user.nextval,#{vuUsername},#{vuSex},to_date(#{vuDate},'dd-mm-yyyy'),#{vuPassword},#{vuEmail},1,0)
+		insert into VoteUser values(seq_user.nextval,#{vuUsername},#{vuSex},to_date(#{vuDate},'dd-mm-yyyy'),#{vuPassword},#{vuEmail},1,0,sysdate)
 	</insert>
 	
 	<select id="findUserByNP" parameterType="VoteUser" resultType="VoteUser"> 
@@ -31,4 +46,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="changeUserInfo">
 		update VoteUser set vuSex=#{vuSex},vuPassword=#{vuPassword},vuDate=to_date(#{vuDate},'yyyy-mm-dd') where vuId = #{vuId}
 	</update>
+	
+	<select id="getAllUsers" parameterType="int" resultMap="UserListMap"> 
+		select nn.* from
+		(
+		select rownum rn,a.* from
+		(
+		select vu.*
+		from VoteUser vu where vuVersion=0 order by vuUpTime) a 
+		where #{0}*#{1}>=rownum ) nn
+		where rn>(#{1}-1)*#{0}
+		
+	</select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.jy.vote.service;
 
+import com.jy.vote.entity.UsersList;
 import com.jy.vote.entity.VoteUser;
 
 public interface UserService {
@@ -22,4 +23,7 @@ public interface UserService {
 	VoteUser checkUserId(String username);
 
 	int changeUserInfo(VoteUser user);
+	
+	//获取所有的用户
+	UsersList getAllUsers(int pageSize, int pageNum);
 }

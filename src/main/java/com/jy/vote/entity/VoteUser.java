@@ -18,6 +18,8 @@ public class VoteUser implements Serializable{
 	private String vuEmail;
 	private Integer voteCount;
 	private Integer optionCount;
+	private String vuUpTime;
+	private int totalVote;//该用户总共投了几个主题
 
 	public int getVuId() {
 		return vuId;
@@ -90,10 +92,25 @@ public class VoteUser implements Serializable{
 	public void setVuSex(String vuSex) {
 		this.vuSex = vuSex;
 	}
+	public String getVuUpTime() {
+		return vuUpTime;
+	}
+	public void setVuUpTime(String vuUpTime) {
+		this.vuUpTime = vuUpTime;
+	}
+	public int getTotalVote() {
+		return totalVote;
+	}
+	public void setTotalVote(int totalVote) {
+		this.totalVote = totalVote;
+	}
+	public VoteUser() {
+		super();
+	}
 	public VoteUser(int vuId, String vuUsername, String vuSex, String vuDate,
 			String vuPassword, int vuStatus, int vuVersion,
 			String confirmPassword, String vuEmail, Integer voteCount,
-			Integer optionCount) {
+			Integer optionCount, String vuUpTime, int totalVote) {
 		super();
 		this.vuId = vuId;
 		this.vuUsername = vuUsername;
@@ -106,17 +123,8 @@ public class VoteUser implements Serializable{
 		this.vuEmail = vuEmail;
 		this.voteCount = voteCount;
 		this.optionCount = optionCount;
+		this.vuUpTime = vuUpTime;
+		this.totalVote = totalVote;
 	}
-	public VoteUser() {
-		super();
-	}
-	@Override
-	public String toString() {
-		return "VoteUser [vuId=" + vuId + ", vuUsername=" + vuUsername
-				+ ", vuSex=" + vuSex + ", vuDate=" + vuDate + ", vuPassword="
-				+ vuPassword + ", vuStatus=" + vuStatus + ", vuVersion="
-				+ vuVersion + ", confirmPassword=" + confirmPassword
-				+ ", vuEmail=" + vuEmail + ", voteCount=" + voteCount
-				+ ", optionCount=" + optionCount + "]";
-	}
+	
 }

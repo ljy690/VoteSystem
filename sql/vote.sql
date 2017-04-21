@@ -27,12 +27,20 @@ create table VoteUser
   vuDate date not null,                       --出生日期
   vuPassword  VARCHAR2(40) not null,           --用户密码
   vuEmail     VARCHAR2(40) not null,		   --激活邮箱
-  vuStatus    NUMBER(6) not null,              --用户状态  1是未激活，2是已激活
-  vuVersion   NUMBER(10) not null              --角色  0是普通角色，1是超级管理员
+  vuStatus    NUMBER(6) not null,              --用户状态  1是未激活，2是已激活，3被删除
+  vuVersion   NUMBER(10) not null,              --角色  0是普通角色，1是超级管理员
+  vuUpTime	date                                --最后修改的时间
 );
 --添加管理员
 insert into VoteUser(vuId,vuUsername,vuSex,vuDate, vuPassword,vuEmail, vuStatus, vuVersion) 
 values(seq_user.nextval,'admin','male',sysdate,'6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','1234566@qwe.com',2,1);
+
+--添加一个最后修改的时间
+alter table VoteUser
+add (vuUpTime date);
+
+--激活操作
+update  VoteUser set vuStatus=2 where vuUsername='12121212'
 
 --对用户表进行操作
 select * from VoteUser where vuUsername='12345678' and vuStatus=1;
@@ -150,6 +158,18 @@ select vs.*,
 (select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 (select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
 from VoteSubject vs where vsStatus!=3 order by vsBeginTime desc) a 
+where 5>=rownum ) nn
+where rn>0
+
+--用户分页查询
+select nn.*
+from
+(
+select rownum rn,a.* from
+(
+select vu.*,
+(select count(1) from VoteItem vi where vi.vuId=vuId) totalVote
+from VoteUser vu where vuVersion=0 order by vuUpTime) a 
 where 5>=rownum ) nn
 where rn>0
 

@@ -182,7 +182,7 @@ function cleanErrorInfo(){
 	//清空信息
 	$("#registerErroInfo").html("");
 	
-/*	$("#voteUserID").val("");
+	$("#voteUserID").val("");
 	$("#voteUserPassID").val("");
 	$("#voteUserRpassID").val("");
 	$("#voteUserEmailID").val("");
@@ -199,5 +199,5 @@ function cleanErrorInfo(){
 	$("#nameinfo").css("color","black");
 	$("#pwinfo").css("color","black");
 	$("#repwinfo").css("color","black");
-	$("#emailInfo").css("color","black");*/
+	$("#emailInfo").css("color","black");
 }

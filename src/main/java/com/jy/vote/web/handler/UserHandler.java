@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jy.vote.entity.UsersList;
 import com.jy.vote.entity.VoteUser;
 import com.jy.vote.service.UserService;
 import com.jy.vote.util.SessionAttributeInfo;
@@ -135,6 +136,25 @@ public class UserHandler {
 			map.put("regErrorMsg", "信息修改成功!!!");
 		}
 		return "userCenter";
+	}
+	
+	@RequestMapping(value="/jumpManageUser")
+	public String jumpManageUser(){
+		return "manageUser";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/getAllUsers")
+	public UsersList getAllUsers(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
+		UsersList users = userService.getAllUsers(pageSize,pageNum);
+		if(users!=null){
+			if(users.getTotal()%pageSize==0){
+				users.setTotal(users.getTotal()/pageSize);
+			}else{
+				users.setTotal(((int)(users.getTotal()/pageSize))+1);
+			}
+		}
+		return users;
 	}
 	
 /*	@RequestMapping(value="/login", method=RequestMethod.GET)

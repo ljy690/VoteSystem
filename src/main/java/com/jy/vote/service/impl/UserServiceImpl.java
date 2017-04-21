@@ -3,6 +3,7 @@ package com.jy.vote.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jy.vote.entity.UsersList;
 import com.jy.vote.entity.VoteUser;
 import com.jy.vote.mapper.UserMapping;
 import com.jy.vote.service.UserService;
@@ -73,5 +74,10 @@ public class UserServiceImpl implements UserService {
 		user.setVuPassword(Encrypt.md5AndSha( user.getVuPassword() ));
 		int re = userMapping.changeUserInfo(user);
 		return re;
+	}
+
+	@Override
+	public UsersList getAllUsers(int pageSize, int pageNum) {
+		return userMapping.getAllUsers(pageSize,pageNum);
 	}
 }

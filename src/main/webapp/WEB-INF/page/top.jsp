@@ -11,7 +11,7 @@
 		<c:choose>  
 		   <c:when test="${currUser.vuVersion==1 }">
 		   		<span class="modify"><a href="subject/jumpManageVote">管理所有的投票</a></span>
-		   		<span class="modify"><a href="subject/jumpManageUser">管理所有的用户</a></span>
+		   		<span class="modify"><a href="user/jumpManageUser">管理所有的用户</a></span>
 		   </c:when>  
 		   <c:otherwise>
 		   		<span class="return"><a href="subject/jumpList">返回列表</a></span>
