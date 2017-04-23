@@ -5,7 +5,7 @@
 <head>
 <base href="/VoteSystem/">
 <meta charset="utf-8" />
-<title>管理投票</title>
+<title>管理用户</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/pageCode.css" />
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
@@ -16,7 +16,7 @@
 <jsp:include page="top.jsp" />
 
 <div id="vote" class="wrap">
-	<h2>管理投票</h2>
+	<h2>管理用户</h2>
 	<ul class="list" id="manageUserList">
 		
 	</ul>

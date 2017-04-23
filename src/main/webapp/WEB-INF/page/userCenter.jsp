@@ -21,6 +21,7 @@
 		<div class="content">
 			<f:form method="post" action="user/changeUserInfo" modelAttribute="voteUser" style="margin:0 auto;" id="changeInfo"> 
 				<input type="hidden" name="vuId" value="${currUser.vuId }"/>
+				<input type="hidden" name="vuUsername" value="${currUser.vuUsername }"/>
 				<dl>
 					<dt>用户名：</dt>
 					<dd>
@@ -36,12 +37,12 @@
 					<dd>
 						<c:choose>  
 						   <c:when test="${currUser.vuSex=='male' }">
-						   		<f:radiobutton  path="vuSex" name="sex" value="male" checked="true"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  								<f:radiobutton  path="vuSex" name="sex" value="female" /> 女
+						   		<f:radiobutton  path="vuSex" name="sex" class="radioItem" value="male" checked="true"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  								<f:radiobutton  path="vuSex" name="sex" class="radioItem" value="female" /> 女
 						   </c:when>  
 						   <c:otherwise>
-						   		<f:radiobutton  path="vuSex" name="sex" value="male"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  								<f:radiobutton  path="vuSex" name="sex" value="female" checked="true"/> 女
+						   		<f:radiobutton  path="vuSex" name="sex" class="radioItem" value="male"/>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  								<f:radiobutton  path="vuSex" name="sex" class="radioItem" value="female" checked="true"/> 女
 						   </c:otherwise>  
 						</c:choose>
 						

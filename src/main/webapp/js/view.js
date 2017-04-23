@@ -3,5 +3,5 @@
  */
 $.post("option/view?vsId=" + $("#vsId").val(),function(data){
 	var listStr = "";
-	alert(data);
+	//alert(data);
 },'json');

@@ -56,6 +56,7 @@ public class SubjectHandler {
 		return "add";
 	}
 
+	//添加新投票
 	@RequestMapping(value="/addNewSubject")
 	public String addNewSubject(ModelMap map,VoteSubject voteSubject,BindingResult bindingResult,
 			@RequestParam(value="voOption",required=false) String[] voOption,HttpSession session){
@@ -88,6 +89,7 @@ public class SubjectHandler {
 		return "mySet";
 	}
 
+	//查询我发布的所有投票
 	@ResponseBody
 	@RequestMapping(value="/mySetUpVote")
 	public VoteList mySetUpVote(int pageSize,int pageNum,HttpSession session){
@@ -107,15 +109,27 @@ public class SubjectHandler {
 		}
 	}
 
+	//关闭投票
 	@RequestMapping(value="/closeVote")
 	public String closeVote(int vsId,HttpSession session){
-		//关闭我发布的投票(隐藏) 询问一下用户  将状态设为2  也只能查看了
+		//关闭我发布的投票(隐藏)，将投票主题状态设为2  其他用户只能查看了
 		if(subjectService.closeVote(vsId)!=1){
 			LogManager.getLogger().error("closeVote投票关闭失败。");
 		}
 		return "mySet";
 	}
+	
+	//开启投票
+	@RequestMapping(value="/openVote")
+	public String openVote(int vsId,HttpSession session){
+		//开启我发布的投票，将投票主题状态设为1  
+		if(subjectService.openVote(vsId)!=1){
+			LogManager.getLogger().error("openVote投票开启失败。");
+		}
+		return "mySet";
+	}
 
+	//普通用户删除投票
 	@RequestMapping(value="/userDelete")
 	public String userDelete(int vsId){
 		deleteVote(vsId);
@@ -124,7 +138,7 @@ public class SubjectHandler {
 
 	//删除投票
 	private void deleteVote(int vsId){
-		//删除我发布的投票(隐藏) 询问一下用户  将状态设为3
+		//删除我发布的投票(隐藏)，  将状态设为3，普通用户删除的投票就只有管理员可见了
 		if(subjectService.deleteVote(vsId)!=1){
 			LogManager.getLogger().error("closeVote投票删除失败。");
 		}
@@ -135,6 +149,7 @@ public class SubjectHandler {
 		return "myJoin";
 	}
 
+	//我参与的投票
 	@ResponseBody
 	@RequestMapping(value="/myJoinVote")
 	public VoteList myJoinVote(int pageSize,int pageNum,HttpSession session){
@@ -161,9 +176,11 @@ public class SubjectHandler {
 		return "search";
 	}
 
+	//搜索投票
 	@ResponseBody
 	@RequestMapping(value="/search")
-	public VoteList search(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
+	public VoteList search(@RequestParam(value="pageNum") int pageNum,
+			@RequestParam(value="pageSize") int pageSize){
 		VoteList voteList;
 		if(sRole.equals("用户")){
 			voteList=subjectService.getSearchListByPage(pageSize,pageNum,"user",kwords);
@@ -187,10 +204,12 @@ public class SubjectHandler {
 	public String jumpManageVote(){
 		return "manage";
 	}
-
+	
+	//管理员管理所有投票
 	@ResponseBody
 	@RequestMapping(value="/manageAll")
-	public VoteList manageAll(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
+	public VoteList manageAll(@RequestParam(value="pageNum") int pageNum,
+			@RequestParam(value="pageSize") int pageSize){
 		VoteList voteList=subjectService.getSubjectManageListByPage(pageSize,pageNum);
 		if(voteList!=null){
 			if(voteList.getTotal()%pageSize==0){
@@ -202,6 +221,7 @@ public class SubjectHandler {
 		return voteList;
 	}
 	
+	//管理员删除投票
 	@RequestMapping(value="/adminDelete")
 	public String adminDelete(int vsId){
 		deleteVote(vsId);

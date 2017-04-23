@@ -5,7 +5,7 @@
 <head>
 <base href="/VoteSystem/">
 <meta charset="utf-8" />
-<title>投票列表</title>
+<title>搜索结果列表</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/pageCode.css" />
 <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>

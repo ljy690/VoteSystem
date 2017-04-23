@@ -46,7 +46,8 @@ update  VoteUser set vuStatus=2 where vuUsername='12121212'
 select * from VoteUser where vuUsername='12345678' and vuStatus=1;
 --删除某个用户数据 
 delete VoteUser where vuId=1000027
-
+--修改邮箱
+update  VoteUser set vuEmail='dfsdffsdfs@qq.com' where vuUsername='666666'
 
 --投票主题
 create table VoteSubject
@@ -56,7 +57,7 @@ create table VoteSubject
   	constraint FK_vsvuId references VoteUser(vuId),
   vsTitle VARCHAR2(200) not null,         --投票主题
   vsType  NUMBER(6) not null,              --投票类型:   单选  1    多选   2
-  vsStatus NUMBER(1) NOT NULL,				--当前投票是否可见  可见 1   不可见  2    删除 3 即只有管理员可见
+  vsStatus NUMBER(1) NOT NULL,				--当前投票是否可见  可见 1   关闭 2    删除 3 即只有管理员可见
   vsBeginTime date not null					--投票发布的时间
 );
 
@@ -162,14 +163,15 @@ where 5>=rownum ) nn
 where rn>0
 
 --用户分页查询
-select nn.*
+select nn.*,
+(select count(1) from VoteUser where vuVersion=0) total
 from
 (
 select rownum rn,a.* from
 (
 select vu.*,
-(select count(1) from VoteItem vi where vi.vuId=vuId) totalVote
-from VoteUser vu where vuVersion=0 order by vuUpTime) a 
+(select count(distinct(vs.vsId)) from VoteItem vi,VoteSubject vs where vsStatus!=3 and vi.vsId=vs.vsId and vi.vuId=vu.vuId) totalVote
+from VoteUser vu where vuVersion=0 order by vuUpTime desc) a 
 where 5>=rownum ) nn
 where rn>0
 

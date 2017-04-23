@@ -24,7 +24,7 @@
 			</h4>
 			<p class="info">共有${currSubject.optionCount }个选项，已有${currSubject.voteAllCount }个网友参与了投票。 </p>
 			<c:if test="${currSubject.vsStatus == 2 }">
-			<p class="info" style="color:red;"> 该投票已关闭 </p>
+			<p class="info" style="color:red;"> 该投票已结束 </p>
 			</c:if>
 				<ol>
 					<c:forEach items="${options}" var="voteOption">
@@ -43,6 +43,7 @@
 						</li>
 					</c:forEach> 
 				</ol>
+				
 				<div class="goback"><a href="subject/jumpList">返回投票列表</a></div>
 		</li>
 	</ul>

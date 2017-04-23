@@ -47,7 +47,7 @@ a:hover, a:active { text-decoration:underline; }
 #footer { border-top:1px solid #79a4cf; margin-top:30px; text-align:center; line-height:30px; color:#666; }
 #register { width:600px; margin:20px auto; }
 #register dl { line-height:40px; }
-#register dl dt { float:left; clear:left; width:80px; text-align:right; }
+#register dl dt { float:left; clear:left; text-align:right; }
 #register dl dd { margin-left:80px; height:40px;}
 #register dl dd span{ line-height:40px; height:40px;}
 #register dl dd input { margin:8px 0; font-size:14px; }

@@ -40,6 +40,8 @@ function connSetList(data){
 		listStrs += '<div style="float:right" id="aStyle"><a href="option/analyzeResult?vsId='+item.vsId+'">查看结果</a>&nbsp;&nbsp;';
 		if(item.vsStatus==1){
 			listStrs += '<a href="subject/closeVote?vsId='+item.vsId+'" onclick="return confirmDel("关闭")">关闭投票</a>&nbsp;&nbsp;';
+		}else if(item.vsStatus==2){
+			listStrs += '<a href="subject/openVote?vsId='+item.vsId+'" onclick="return confirmDel("开启")">开启投票</a>&nbsp;&nbsp;';
 		}
 		listStrs += '<a href="subject/userDelete?vsId='+item.vsId+'" onclick="return confirmDel("删除")">删除</a></div>';
 		listStrs += '<p class="info">共有' + item.optionCount + '个选项，已有'

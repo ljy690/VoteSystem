@@ -76,5 +76,10 @@ public class SubjectServiceImpl implements SubjectService {
 		return subjectMapping.getSubjectManageListByPage(pageSize,pageNum);
 	}
 
+	@Override
+	public int openVote(int vsId) {
+		return subjectMapping.openVote(vsId);
+	}
+
 	
 }

@@ -3,10 +3,22 @@
  */
 //全局标志
 var rBri=false;
+var sexFlag=false;
 var rPass=false;
 var rPassw=false;
 var fpassword=null;
 var frpassword=null;
+
+$(document).ready(function() {
+	$(".radioItem").change(
+			function() {
+				if(sexFlag){
+					sexFlag=false;
+				}else{
+					sexFlag=true;
+				}
+			});
+}); 
 
 function checkBri(bri){
 	if(null!=bri && ""!=bri){
@@ -21,7 +33,7 @@ function checkBri(bri){
 			var pyear=pdate.getFullYear()+0;
 			var pmon=pdate.getMonth()+1;
 			var pday=pdate.getDate()+0;
-			
+
 			if(cyear>pyear){
 				$("#briInfo").html("出生日期不能超过今天，请重新选择。");
 				$("#briInfo").css("color","red");
@@ -108,7 +120,7 @@ function checkTwoPass(){
 }
 
 function checkChangeInfo(){
-	if(rBri&&rPass&&rPassw){
+	if(rBri||rPassw||sexFlag){
 		rBri=false;
 		rPass=false;
 		rPassw=false;

@@ -36,5 +36,9 @@ public class UsersList implements Serializable{
 		this.users = users;
 		this.total = total;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "UsersList [users=" + users + ", total=" + total + "]";
+	}
 }

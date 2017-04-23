@@ -26,4 +26,7 @@ public interface UserService {
 	
 	//获取所有的用户
 	UsersList getAllUsers(int pageSize, int pageNum);
+
+	//删除用户
+	int deleteUser(int vuId);
 }

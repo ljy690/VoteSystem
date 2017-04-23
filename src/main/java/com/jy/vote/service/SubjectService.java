@@ -31,4 +31,7 @@ public interface SubjectService {
 	//获取管理投票的列表
 	VoteList getSubjectManageListByPage(int pageSize, int pageNum);
 
+	//开启投票
+	int openVote(int vsId);
+
 }

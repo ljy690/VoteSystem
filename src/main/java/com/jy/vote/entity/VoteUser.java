@@ -95,6 +95,12 @@ public class VoteUser implements Serializable{
 	public String getVuUpTime() {
 		return vuUpTime;
 	}
+	public String getVuUpTime0() {
+		if(vuUpTime!=null){
+			return vuUpTime.substring(0,10);
+		}
+		return null;
+	}
 	public void setVuUpTime(String vuUpTime) {
 		this.vuUpTime = vuUpTime;
 	}
@@ -126,5 +132,14 @@ public class VoteUser implements Serializable{
 		this.vuUpTime = vuUpTime;
 		this.totalVote = totalVote;
 	}
-	
+	@Override
+	public String toString() {
+		return "VoteUser [vuId=" + vuId + ", vuUsername=" + vuUsername
+				+ ", vuSex=" + vuSex + ", vuDate=" + vuDate + ", vuPassword="
+				+ vuPassword + ", vuStatus=" + vuStatus + ", vuVersion="
+				+ vuVersion + ", confirmPassword=" + confirmPassword
+				+ ", vuEmail=" + vuEmail + ", voteCount=" + voteCount
+				+ ", optionCount=" + optionCount + ", vuUpTime=" + vuUpTime
+				+ ", totalVote=" + totalVote + "]";
+	}
 }

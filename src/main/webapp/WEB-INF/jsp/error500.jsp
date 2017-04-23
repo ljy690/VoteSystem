@@ -8,6 +8,6 @@
 <title>error500</title>
 </head>
 <body>
-<img alt="错误提示" src="images/500.gif">
+<img style="display: block; margin: 20px auto; width: 650px; height: 500px;" alt="错误提示" src="images/500.gif">
 </body>
 </html>

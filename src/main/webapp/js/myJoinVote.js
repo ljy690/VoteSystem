@@ -36,8 +36,13 @@ function connJoinList(data){
 		}else{
 			listStrss += '[多选]';
 		}
-		listStrss += '</h4>';
-		listStrss += '<div style="float:right" id="aStyle"><a href="option/directView?vsId='+item.vsId+'">查看结果</a></div>';
+		listStrss += '</h4><div style="float:right" id="aStyle">';
+		if(item.vsStatus==1){
+			listStrss +='<a href="javascript:void(0)">投票进行中</a>';
+		}else{
+			listStrss +='<a href="javascript:void(0)">投票已结束</a>';
+		}
+		listStrss += '&nbsp;&nbsp;<a href="option/directView?vsId='+item.vsId+'">查看结果</a></div>';
 		listStrss += '<p class="info">共有' + item.optionCount + '个选项，已有'
 		+item.voteAllCount + '个网友参与了投票。</p>';
 		listStrss += '</li>';

@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="changeStatus">
-		update VoteUser set vuStatus=2 where vuUsername = #{vuUsername}
+		update VoteUser set vuStatus=2,vuUpTime=sysdate where vuUsername = #{vuUsername}
 	</update>
 	
 	<select id="checkEmail" parameterType="String" resultType="VoteUser">
@@ -44,18 +44,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="changeUserInfo">
-		update VoteUser set vuSex=#{vuSex},vuPassword=#{vuPassword},vuDate=to_date(#{vuDate},'yyyy-mm-dd') where vuId = #{vuId}
+		update VoteUser set vuSex=#{vuSex}
+		<if test='vuPassword!=null and vuPassword!="" '>
+		,vuPassword=#{vuPassword}
+		</if>
+		<if test='vuDate!=null and vuDate!="" '>
+		,vuDate=to_date(#{vuDate},'yyyy-mm-dd')
+		</if>
+		,vuUpTime=sysdate where vuId = #{vuId}
 	</update>
 	
 	<select id="getAllUsers" parameterType="int" resultMap="UserListMap"> 
-		select nn.* from
+		select (select count(1) from VoteUser where vuVersion=0) total,
+		nn.*
+		 from
 		(
 		select rownum rn,a.* from
 		(
-		select vu.*
-		from VoteUser vu where vuVersion=0 order by vuUpTime) a 
+		select vu.*,
+		(select count(distinct(vs.vsId)) from VoteItem vi,VoteSubject vs where vsStatus!=3 and vi.vsId=vs.vsId and vi.vuId=vu.vuId) totalVote
+		from VoteUser vu where vuVersion=0 order by vuUpTime desc) a 
 		where #{0}*#{1}>=rownum ) nn
 		where rn>(#{1}-1)*#{0}
 		
 	</select>
+	
+	<update id="deleteUser" parameterType="int">
+		update VoteUser set vuStatus=3,vuUpTime=sysdate where vuId = #{vuId}
+	</update>
 </mapper>

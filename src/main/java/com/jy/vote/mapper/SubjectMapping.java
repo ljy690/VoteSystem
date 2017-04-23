@@ -32,5 +32,7 @@ public interface SubjectMapping {
 	VoteList getSearchListByPage(@Param("pageSize")int pageSize,@Param("pageNum") int pageNum, @Param("sRole")String sRole,@Param("kwords")String kwords);
 
 	VoteList getSubjectManageListByPage(int pageSize, int pageNum);
+	
+	int openVote(int vsId);
 
 }

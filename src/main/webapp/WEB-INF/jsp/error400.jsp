@@ -8,6 +8,6 @@
 <title>error400</title>
 </head>
 <body>
-	<img alt="错误提示" src="images/400.jpg">
+	<img style="display: block; margin: 20px auto; width: 650px; height: 500px;" alt="错误提示" src="images/400.jpg">
 </body>
 </html>

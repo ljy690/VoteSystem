@@ -71,13 +71,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int changeUserInfo(VoteUser user) {
-		user.setVuPassword(Encrypt.md5AndSha( user.getVuPassword() ));
-		int re = userMapping.changeUserInfo(user);
-		return re;
+		if(user.getVuPassword()!=null && !user.getVuPassword().equals("")){
+			user.setVuPassword(Encrypt.md5AndSha( user.getVuPassword() ));
+		}
+		return userMapping.changeUserInfo(user);
 	}
 
 	@Override
 	public UsersList getAllUsers(int pageSize, int pageNum) {
 		return userMapping.getAllUsers(pageSize,pageNum);
+	}
+
+	@Override
+	public int deleteUser(int vuId) {
+		return userMapping.deleteUser(vuId);
 	}
 }

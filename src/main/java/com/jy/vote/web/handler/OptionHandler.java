@@ -30,6 +30,7 @@ public class OptionHandler {
 	@Autowired
 	private ItemService itemService;
 
+	//查看投票内容
 	@RequestMapping(value="/view",method=RequestMethod.GET)
 	public String showOption(int vsId,ModelMap map,HttpSession session){
 		//System.out.println("查看投票结果，vsId=>" + vsId);
