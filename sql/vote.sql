@@ -42,6 +42,9 @@ add (vuUpTime date);
 --激活操作
 update  VoteUser set vuStatus=2 where vuUsername='12121212'
 
+--修改密码
+update  VoteUser set vuPassword='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2' where vuUsername='admin'
+
 --对用户表进行操作
 select * from VoteUser where vuUsername='12345678' and vuStatus=1;
 --删除某个用户数据 

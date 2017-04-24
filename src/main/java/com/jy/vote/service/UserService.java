@@ -29,4 +29,7 @@ public interface UserService {
 
 	//删除用户
 	int deleteUser(int vuId);
+
+	//修改管理员密码
+	int changeAdminPass(VoteUser user);
 }

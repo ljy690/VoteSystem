@@ -86,4 +86,12 @@ public class UserServiceImpl implements UserService {
 	public int deleteUser(int vuId) {
 		return userMapping.deleteUser(vuId);
 	}
+
+	@Override
+	public int changeAdminPass(VoteUser user) {
+		if(user.getVuPassword()!=null && !user.getVuPassword().equals("")){
+			user.setVuPassword(Encrypt.md5AndSha( user.getVuPassword() ));
+		}
+		return userMapping.upAdminPwd(user);
+	}
 }

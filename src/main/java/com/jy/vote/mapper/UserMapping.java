@@ -25,4 +25,6 @@ public interface UserMapping {
 
 	//删除用户
 	int deleteUser(int vuId);
+
+	int upAdminPwd(VoteUser user);
 }

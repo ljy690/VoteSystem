@@ -1,64 +1,11 @@
 /**
- * 修改个人信息时格式的验证
+ * 修改管理员密码时格式的验证
  */
 //全局标志
-var rBri=false;
-var sexFlag=false;
 var rPass=false;
 var rPassw=false;
 var fpassword=null;
 var frpassword=null;
-
-$(document).ready(function() {
-	$(".radioItem").change(
-			function() {
-				if(sexFlag){
-					sexFlag=false;
-				}else{
-					sexFlag=true;
-				}
-			});
-}); 
-
-function checkBri(bri){
-	if(null!=bri && ""!=bri){
-		var r=/^\d{4}-(?:(?:0[13-9]|1[12])-(?:0[1-9]|[12]\d|30)|(?:0[13578]|1[02])-31|02-(?:0[1-9]|1\d|2[0-8]))|(?:(?:\d{2}(?:[13579][26]|[2468][048])|(?:[13579][26]|[2468][048])00)-02-29)$/;
-		var arr=bri.value;
-		var chBri=r.test(arr);
-		if(chBri){
-			var cmon=parseInt(arr.substring(5,7));
-			var cday=parseInt(arr.substring(8,10));
-			var cyear=parseInt(arr.substring(0,4));
-			var pdate=new Date();
-			var pyear=pdate.getFullYear()+0;
-			var pmon=pdate.getMonth()+1;
-			var pday=pdate.getDate()+0;
-
-			if(cyear>pyear){
-				$("#briInfo").html("出生日期不能超过今天，请重新选择。");
-				$("#briInfo").css("color","red");
-				rBri=false;
-			}else if(cyear==pyear&&cmon>pmon){
-				$("#briInfo").html("出生日期不能超过今天，请重新选择。");
-				$("#briInfo").css("color","red");
-				rBri=false;
-			}else if(cyear==pyear&&cmon==pmon&&cday>pday){
-				$("#briInfo").html("出生日期不能超过今天，请重新选择。");
-				$("#briInfo").css("color","red");
-				rBri=false;
-			}else{
-				$("#briInfo").html("日期格式正确");
-				$("#briInfo").css("color","green");
-				rBri=true;
-			}
-		}else{
-			$("#briInfo").html("日期不正确，请重新输入。");
-			$("#briInfo").css("color","red");
-			rBri=false;
-		}
-	}
-}
-
 
 function checkPwd(pwd){
 	fpassword=pwd.value;
@@ -120,8 +67,7 @@ function checkTwoPass(){
 }
 
 function checkChangeInfo(){
-	if(rBri||rPassw||sexFlag){
-		rBri=false;
+	if(rPass&&rPassw){
 		rPass=false;
 		rPassw=false;
 		fpassword=null;

@@ -129,11 +129,18 @@ public class UserHandler {
 		return result;
 	}
 
+	//用户中心
 	@RequestMapping(value="/userCenter")
 	public String userCenter(){
 		return "userCenter";
 	}
 
+	//管理员中心
+	@RequestMapping(value="/adminCenter")
+	public String adminCenter(){
+		return "adminCenter";
+	}
+	
 	//修改用户信息
 	@RequestMapping(value="/changeUserInfo")
 	public String changeUserInfo(VoteUser user,ModelMap map,HttpSession session){
@@ -147,6 +154,18 @@ public class UserHandler {
 		return "userCenter";
 	}
 
+	//修改管理员密码
+	@RequestMapping(value="/changeAdminInfo")
+	public String changeAdminInfo(VoteUser user,ModelMap map,HttpSession session){
+		//将信息插入数据库
+		LogManager.getLogger().debug(user+"修改密码");
+		if(userService.changeAdminPass(user)==1){
+			return "changeAdminInfo_success";
+		}
+		map.put("regErrorMsg", "密码修改失败!!!");
+		return "adminCenter";
+	}
+	
 	@RequestMapping(value="/jumpManageUser")
 	public String jumpManageUser(){
 		return "manageUsers";
