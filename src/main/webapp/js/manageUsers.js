@@ -35,16 +35,16 @@ function manageUserList(data){
 		if(item.vuStatus==1){
 			listStr += '<a href="user/upUser?vuId='+item.vuId+'">激活用户</a>&nbsp;&nbsp;';
 		}else if(item.vuStatus==2){
-			listStr += '<a href="javascript:void(0)">此用户已激活</a>&nbsp;&nbsp;';
+			listStr += '<a>此用户已激活</a>&nbsp;&nbsp;';
 		}
 		listStr += '<a href="user/seeUser?vuId='+item.vuId+'">查看用户信息</a>&nbsp;&nbsp;';
 		if(item.vuStatus==3){
-			listStr += '<a href="javascript:void(0)">该用户已经被删除</a></div>';
+			listStr += '<a">该用户已经被删除</a></div>';
 		}else{
 			listStr += '<a href="user/deleteUser?vuId='+item.vuId+'" onclick="return confirmDel("删除")">删除此用户</a></div>';
 		}
 		
-		listStr += '<p class="info">该用户共参与了'  + item.totalVote + '个主题</p>';
+		listStr += '<p class="info">该用户共发布了'+item.setVote+'个主题,参与了'  + item.joinVote + '个主题</p>';
 		listStr += '</li>';
 	});
 	$("#manageUserList").html(listStr);

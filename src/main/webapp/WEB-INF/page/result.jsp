@@ -43,7 +43,7 @@
 						</li>
 					</c:forEach> 
 				</ol>
-				<div class="goback"><a href="subject/jumpList">返回投票列表</a></div>
+				<div class="goback"><a href="javascript:history.go(-1)">返回上一级</a></div>
 		</li>
 	</ul>
 </div>

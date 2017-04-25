@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="analyzeSubject" parameterType="int" resultType="VoteOption"> 
 		select vo.*,
 		(select count(1) from VoteItem where voId=vo.voId ) voteUserCount,
-		(select count(1) from VoteItem vi,VoteSubject vs where vi.vsId=vs.vsId and vi.vsId=13) totalVote,
+		(select count(1) from VoteItem vi,VoteSubject vs where vi.vsId=#{vsId} and vi.vsId=vs.vsId ) totalVote,
 		(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='male') voteMaleSex,
 		(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='female') voteFemaleSex
 		from VOTEOPTION vo

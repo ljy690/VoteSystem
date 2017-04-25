@@ -36,9 +36,13 @@ function connList(data){
 		}else{
 			listStr += '[多选]';
 		}
-		listStr += '</h4>';
-		listStr += '<div class="join"><a href="option/view?vsId='+item.vsId+'">我要参与</a></div>';
-		listStr += '<p class="info">共有'  + item.optionCount + '个选项，已有'
+		listStr += '</h4><div style="float:right" id="aStyle">';
+		if(item.vsStatus==1){
+			listStr += '<div class="join"><a href="option/view?vsId='+item.vsId+'">我要参与</a></div>';
+		}else{
+			listStr += '<a">投票已结束</a>&nbsp;&nbsp;<a href="option/directView?vsId='+item.vsId+'">查看结果</a></div>';
+		}
+		listStr += '</div><p class="info">共有'  + item.optionCount + '个选项，已有'
 		+item.voteAllCount + '个网友参与了投票。</p>';
 		listStr += '</li>';
 	});

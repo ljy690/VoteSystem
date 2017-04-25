@@ -42,7 +42,7 @@ function manageList(data){
 		if(item.vsStatus!=3){
 			listStr += '<a href="subject/adminDelete?vsId='+item.vsId+'" onclick="return confirmDel("删除")">删除此投票</a></div>';
 		}else{
-			listStr += '<a href="javascript:void(0)">此投票已经被删除</a></div>';
+			listStr += '<a">此投票已经被删除</a></div>';
 		}
 		
 		listStr += '<p class="info">共有'  + item.optionCount + '个选项，已有'

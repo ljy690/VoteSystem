@@ -37,7 +37,7 @@ function connSetList(data){
 			listStrs += '[多选]';
 		}
 		listStrs += '</h4>';
-		listStrs += '<div style="float:right" id="aStyle"><a href="option/analyzeResult?vsId='+item.vsId+'">查看结果</a>&nbsp;&nbsp;';
+		listStrs += '<div style="float:right" id="aStyle"><a href="option/analyzeResult?vsId='+item.vsId+'">结果分析</a>&nbsp;&nbsp;';
 		if(item.vsStatus==1){
 			listStrs += '<a href="subject/closeVote?vsId='+item.vsId+'" onclick="return confirmDel("关闭")">关闭投票</a>&nbsp;&nbsp;';
 		}else if(item.vsStatus==2){
