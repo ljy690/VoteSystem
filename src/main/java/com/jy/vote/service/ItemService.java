@@ -7,4 +7,6 @@ public interface ItemService {
 
 	//投票
 	boolean vote(int vsId, int vuId, int i);
+
+	boolean checkReVote(int vsId, int vuId);
 }

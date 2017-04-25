@@ -32,4 +32,14 @@ public class ItemServiceImpl implements ItemService {
 		return false;
 	}
 
+	@Override
+	public boolean checkReVote(int vsId, int vuId) {
+		VoteItem vi=itemMapping.checkReVote( vsId, vuId);
+		if(vi==null){
+			//代表没有投票
+			return false;
+		}
+		return true;
+	}
+
 }

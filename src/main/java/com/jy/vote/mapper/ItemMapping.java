@@ -10,4 +10,6 @@ public interface ItemMapping {
 	List<VoteItem> checkVsVoteStatus(int vsId, String usname);
 
 	int vote(int vsId, int vuId, int i);
+
+	VoteItem checkReVote(int vsId, int vuId);
 }

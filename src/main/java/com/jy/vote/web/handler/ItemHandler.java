@@ -2,6 +2,7 @@ package com.jy.vote.web.handler;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,22 +16,29 @@ import com.jy.vote.service.ItemService;
 public class ItemHandler {
 	@Autowired
 	private ItemService itemService;
-
+	
+	//投票功能
 	@RequestMapping(value="/vote")
 	public String showOption(@RequestParam(value="voId",required=false) int[] voId,
 			@RequestParam("vsId") int vsId,@RequestParam("vuId") int vuId,
 			HttpSession session,ModelMap map){
-		//System.out.println("可以取到么？"+voteItem);VoteItem [viId=0, voId=9, vsId=1, vuId=1000010]
-		//System.out.println("看一下当前的选项"+voId+"主题"+vsId+"用户"+vuId);
 		if(null==voId){
 			map.put("saveMsg", " 投票不能为空!!!");
 			return "vote";
 		}else{
-			for(int i:voId){
-				//将投票数据插入数据库
-				if(!itemService.vote(vsId,vuId,i)){
-					return "view";
+			//判断是否是重复投票
+			if(!itemService.checkReVote(vsId,vuId)){
+				for(int i:voId){
+					//将投票数据插入数据库
+					if(!itemService.vote(vsId,vuId,i)){
+						LogManager.getLogger().error("插入数据出错。");
+						return "subject/addNewVote";
+					}
 				}
+			}else{
+				//不可重复投票
+				map.put("saveMsg", " 不能重复投票!!!");
+				return "vote";
 			}
 		}
 		//跳到投票显示页面

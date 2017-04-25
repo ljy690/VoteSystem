@@ -8,11 +8,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select viId,voId,vsId 
 		from VoteItem vi,VoteUser vu 
 		where vu.vuId=vi.vuId
-		and vuUsername=#{1} and vsid=#{0}
+		and vuUsername=#{1} and vsId=#{0}
 	</select>
 	
 	<insert id="vote" parameterType="VoteItem">
 		insert into VoteItem (viId, voId, vsId,vuId,voteTime)
 		values (seq_vitem.nextval, #{2}, #{0},#{1},sysdate)
 	</insert>
+	
+	<select id="checkReVote" parameterType="int" resultType="VoteItem"> 
+		select * 
+		from VoteItem
+		where vuId=#{1} and vsId=#{0}
+	</select>
 </mapper>
