@@ -24,19 +24,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="findUserByNP" parameterType="VoteUser" resultType="VoteUser"> 
-		select * from VoteUser where vuUsername = #{vuUsername} and vuPassword = #{vuPassword}
+		select * from VoteUser where vuUsername = #{vuUsername} and vuPassword = #{vuPassword} and vuStatus!=3
 	</select>
 	
 	<select id="checkName" parameterType="String" resultType="VoteUser">
-		select * from VoteUser where vuUsername = #{vuUsername}
+		select * from VoteUser where vuUsername = #{vuUsername} and vuStatus!=3
 	</select>
 	
 	<update id="changeStatus">
-		update VoteUser set vuStatus=2,vuUpTime=sysdate where vuUsername = #{vuUsername}
+		update VoteUser set vuStatus=2,vuUpTime=sysdate where vuUsername = #{vuUsername} and vuStatus!=3
 	</update>
 	
 	<select id="checkEmail" parameterType="String" resultType="VoteUser">
-		select * from VoteUser where vuEmail = #{vuEmail}
+		select * from VoteUser where vuEmail = #{vuEmail} and vuStatus!=3
 	</select>
 	
 	<select id="checkStatus" parameterType="String" resultType="VoteUser">
@@ -76,4 +76,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="upAdminPwd" parameterType="VoteUser">
 		update VoteUser set vuPassword = #{vuPassword},vuUpTime=sysdate where vuId = #{vuId}
 	</update>
+	
+	<update id="adminChangeStatus" parameterType="int">
+		update VoteUser set vuStatus=2,vuUpTime=sysdate where vuId = #{vuId}
+	</update>
+	
+	<select id="getOneUser" parameterType="int" resultType="VoteUser">
+		select * from VoteUser where vuId = #{vuId}
+	</select>
 </mapper>

@@ -32,4 +32,8 @@ public interface UserService {
 
 	//修改管理员密码
 	int changeAdminPass(VoteUser user);
+	//管理员激活账号
+	int adminChangeStatus(int vuId);
+	//管理员查看某人信息
+	VoteUser getOneUser(int vuId);
 }

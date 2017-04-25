@@ -31,13 +31,13 @@ function manageUserList(data){
 		}else{
 			listStr += '[女]';
 		}
-		listStr += '</h4>';
-		if(item.vuStatus!=2){
-			listStr += '<div style="float:right" id="aStyle"><a href="user/upUser?vuUsername='+item.vuUsername+'">激活用户</a>&nbsp;&nbsp;';
-		}else{
-			listStr += '<div style="float:right" id="aStyle"><a href="javascript:void(0)">此用户已激活</a>&nbsp;&nbsp;';
+		listStr += '</h4><div style="float:right" id="aStyle">';
+		if(item.vuStatus==1){
+			listStr += '<a href="user/upUser?vuId='+item.vuId+'">激活用户</a>&nbsp;&nbsp;';
+		}else if(item.vuStatus==2){
+			listStr += '<a href="javascript:void(0)">此用户已激活</a>&nbsp;&nbsp;';
 		}
-		listStr += '<a href="user/seeUser?vuUsername='+item.vuUsername+'">查看用户信息</a>&nbsp;&nbsp;';
+		listStr += '<a href="user/seeUser?vuId='+item.vuId+'">查看用户信息</a>&nbsp;&nbsp;';
 		if(item.vuStatus==3){
 			listStr += '<a href="javascript:void(0)">该用户已经被删除</a></div>';
 		}else{

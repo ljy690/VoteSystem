@@ -27,4 +27,8 @@ public interface UserMapping {
 	int deleteUser(int vuId);
 
 	int upAdminPwd(VoteUser user);
+
+	int adminChangeStatus(int vuId);
+
+	VoteUser getOneUser(int vuId);
 }

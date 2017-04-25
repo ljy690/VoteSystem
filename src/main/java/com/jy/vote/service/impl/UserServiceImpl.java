@@ -94,4 +94,14 @@ public class UserServiceImpl implements UserService {
 		}
 		return userMapping.upAdminPwd(user);
 	}
+
+	@Override
+	public int adminChangeStatus(int vuId) {
+		return userMapping.adminChangeStatus(vuId);
+	}
+
+	@Override
+	public VoteUser getOneUser(int vuId) {
+		return userMapping.getOneUser(vuId);
+	}
 }

@@ -10,7 +10,7 @@ a:link, a:visited { color:#06C; text-decoration:none; }
 a:hover, a:active { text-decoration:underline; }
 .box { border:2px solid #79a4cf; }
 .box h2 { background:#79a4cf; line-height:35px; font-size:14px; padding:0 10px; color:#fff; }
-.box .content { font-size:14px; padding:20px 40px; }
+.box .content { font-size:14px; padding:20px 30px; }
 #navbar { background:#dae8f5; border-top:4px solid #5184af; line-height:30px; height:30px; }
 #navbar .profile { float:left; padding:0px 10px; }
 #navbar .profile .addnew a { margin:0px 25px; background:url(../images/addnew.gif) left center no-repeat; padding-left:15px; }

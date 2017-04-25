@@ -50,7 +50,9 @@ select * from VoteUser where vuUsername='12345678' and vuStatus=1;
 --删除某个用户数据 
 delete VoteUser where vuId=1000027
 --修改邮箱
-update  VoteUser set vuEmail='dfsdffsdfs@qq.com' where vuUsername='666666'
+update  VoteUser set vuEmail='dfsdffsdfs@qq.com' where vuUsername='555555'
+--
+select * from VoteUser where vuUsername = '555555' and vuStatus!=3
 
 --投票主题
 create table VoteSubject

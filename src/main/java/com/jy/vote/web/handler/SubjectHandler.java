@@ -75,7 +75,9 @@ public class SubjectHandler {
 			//添加选项
 			int i=0;
 			for(String ops:voOption){
-				optionService.addOptions(vsId,ops,++i);
+				if(!ops.equals("") && ops != null){
+					optionService.addOptions(vsId,ops,++i);
+				}
 			}
 		}else{
 			map.put("addSbErrorMsg", "添加投票失败");

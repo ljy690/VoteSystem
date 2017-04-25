@@ -39,18 +39,23 @@ public class UserHandler {
 		LogManager.getLogger().debug("当前的激活成功用户是：===>"+username);
 		//通过用户名查询当前用户信息
 		VoteUser currUser = userService.checkUserId(username);
-		session.setAttribute( SessionAttributeInfo.CurrUser, currUser);
-		//先判断当前用户是否已经激活,true没有激活
-		if(userService.checkStatus(username)){
-			//将用户状态设置为激活
-			LogManager.getLogger().debug("账号没有激活。");
+		//判断用户状态
+		if(currUser==null || currUser.getVuStatus()==3){
+			//说明账号不存在或者已经被删除,重新注册
+			return "rereg";
+		}else if(currUser.getVuStatus()==1){
+			//说明用户未激活
 			if(userService.changeStatus(username)>0){
 				LogManager.getLogger().debug("激活账号。");
 				return "reg_success";
-			};
+			}else{
+				LogManager.getLogger().error("账号激活失败。");
+			}
+		}else if(currUser.getVuStatus()==2){
+			//说明账号已经激活
+			return "reg_error";
 		}
-		//否则重新注册？
-		return "reg_error";
+		return "rereg";
 	}
 
 	@RequestMapping(value="/register", method=RequestMethod.GET)
@@ -188,9 +193,9 @@ public class UserHandler {
 
 	//激活用户
 	@RequestMapping(value="/upUser")
-	public String upUser(String vuUsername){
-		LogManager.getLogger().debug("激活用户:"+vuUsername);
-		if(userService.changeStatus(vuUsername)!=1){
+	public String upUser(int vuId){
+		LogManager.getLogger().debug("激活用户:"+vuId);
+		if(userService.adminChangeStatus(vuId)!=1){
 			LogManager.getLogger().error("激活用户失败");
 		}
 		return "manageUsers";
@@ -209,8 +214,8 @@ public class UserHandler {
 	
 	//查看某个用户信息
 	@RequestMapping(value="/seeUser")
-	public String seeUser(String vuUsername,HttpSession session){
-		VoteUser seeUser = userService.checkUserId(vuUsername);
+	public String seeUser(int vuId,HttpSession session){
+		VoteUser seeUser = userService.getOneUser(vuId);
 		if(seeUser==null){
 			LogManager.getLogger().error("该用户不存在。");
 		}

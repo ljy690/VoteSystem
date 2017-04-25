@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select vs.*,
 		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 		(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
-		from VoteSubject vs where vsStatus!=3 order by vsBeginTime) a 
+		from VoteSubject vs where vsStatus!=3 order by vsBeginTime desc) a 
 		where #{0}*#{1}>=rownum ) nn
 		where rn>(#{1}-1)*#{0}
 	</select>

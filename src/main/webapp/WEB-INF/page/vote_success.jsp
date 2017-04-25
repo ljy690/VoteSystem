@@ -13,7 +13,7 @@
 <div id="message" class="box">
 	<h2>提示信息</h2>
 	<div class="content">
-		<p>恭喜：投票成功！<a href="option/jumpView">点此查看投票结果&gt;&gt;</a></p>
+		<p>恭喜您：投票成功！<a href="option/jumpView">点此查看投票结果&gt;&gt;</a></p>
 	</div>
 </div>
 <jsp:include page="footer.jsp" />

@@ -15,9 +15,9 @@
 <div id="message" class="box">
 	<h2>提示信息</h2>
 	<div class="content">
-		<p>当前激活账号： ${currUser.vuUsername }，该账号已经激活过，不需要重复激活！</p>
+		<p>您激活的账号不存在！请确认账号无误后再进行激活。</p>
 		<br/>
-		<p><a href="user/jumpLogin">点此返回登陆界面&gt;&gt;</a></p>
+		<p><a href="user/register">点此返回注册界面&gt;&gt;</a></p>
 	</div>
 </div>
 <jsp:include page="footer.jsp" />
