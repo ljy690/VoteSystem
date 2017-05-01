@@ -26,8 +26,8 @@ public class OptionServiceImpl implements OptionService {
 	}
 
 	@Override
-	public void addOptions(int vsId, String ops, int i) {
-		optionMapping.addOptions(vsId,ops,i);
+	public void addOptions(int vsId, String ops,String voIntro, int i) {
+		optionMapping.addOptions(vsId,ops,voIntro,i);
 	}
 
 	@Override

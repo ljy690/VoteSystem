@@ -62,16 +62,18 @@ public class SubjectHandler {
 			@RequestParam(value="voOption",required=false) String[] voOption,
 			@RequestParam(value="voIntro",required=false) String[] voIntro,
 			HttpSession session){
+		/*for(String s:voOption){
+			System.out.println("测试选项"+s);
+		}
 		for(String s:voIntro){
 			System.out.println("测试简介"+s);
 		}
-		
-		//LogManager.getLogger().error("新增的投票："+voteSubject);
+		System.out.println(voteSubject);*/
 		if(bindingResult.hasFieldErrors()){
 			map.put("addSbErrorMsg", "添加投票失败");
 			return "add";
 		}
-		/*//获取到当前的序列
+		//获取到当前的序列
 		int vsId=subjectService.getCurrSequence();
 		//将新增的序列号存到session方便之后跳转取值
 		voteSubject.setVsId(vsId);
@@ -82,13 +84,13 @@ public class SubjectHandler {
 			int i=0;
 			for(String ops:voOption){
 				if(!ops.equals("") && ops != null){
-					optionService.addOptions(vsId,ops,++i);
+					optionService.addOptions(vsId,ops,voIntro[i],++i);
 				}
 			}
 		}else{
 			map.put("addSbErrorMsg", "添加投票失败");
 			return "add";
-		}*/
+		}
 		return "add_success";
 	}
 

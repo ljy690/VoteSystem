@@ -8,6 +8,7 @@ public class VoteOption implements Serializable{
 	private String voOption;
 	private int vsId;
 	private int voOrder;
+	private String voIntro;
 	private int voteUserCount;//每个选项的投票数
 	private int totalVote;//总票数
 	private int voteMaleSex;//男生数
@@ -61,28 +62,27 @@ public class VoteOption implements Serializable{
 	public void setVoteFemaleSex(int voteFemaleSex) {
 		this.voteFemaleSex = voteFemaleSex;
 	}
-	
+	public String getVoIntro() {
+		return voIntro;
+	}
+	public void setVoIntro(String voIntro) {
+		this.voIntro = voIntro;
+	}
 	public VoteOption() {
 		super();
 	}
 	public VoteOption(int voId, String voOption, int vsId, int voOrder,
-			int voteUserCount, int totalVote, int voteMaleSex, int voteFemaleSex) {
+			String voIntro, int voteUserCount, int totalVote, int voteMaleSex,
+			int voteFemaleSex) {
 		super();
 		this.voId = voId;
 		this.voOption = voOption;
 		this.vsId = vsId;
 		this.voOrder = voOrder;
+		this.voIntro = voIntro;
 		this.voteUserCount = voteUserCount;
 		this.totalVote = totalVote;
 		this.voteMaleSex = voteMaleSex;
 		this.voteFemaleSex = voteFemaleSex;
-	}
-	@Override
-	public String toString() {
-		return "VoteOption [voId=" + voId + ", voOption=" + voOption
-				+ ", vsId=" + vsId + ", voOrder=" + voOrder
-				+ ", voteUserCount=" + voteUserCount + ", totalVote="
-				+ totalVote + ", voteMaleSex=" + voteMaleSex
-				+ ", voteFemaleSex=" + voteFemaleSex + "]";
 	}
 }

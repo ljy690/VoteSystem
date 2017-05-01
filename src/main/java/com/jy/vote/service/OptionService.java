@@ -11,7 +11,7 @@ public interface OptionService {
 	//提供投票所需的信息
 	List<VoteOption> checkSoInfo(int vsId);
 
-	void addOptions(int vsId, String ops, int i);
+	void addOptions(int vsId, String ops, String voIntro, int i);
 
 	//查看分析的结果
 	List<VoteOption> analyzeSubject(int vsId);

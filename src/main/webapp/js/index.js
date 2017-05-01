@@ -37,7 +37,11 @@ function connList(data){
 		}else{
 			listStr += '[多选]';
 		}
-		listStr += '</h4><div style="float:right" id="aStyle">';
+		listStr += '</h4>';
+		if(item.vsIntroduction!=null){
+			listStr += '<p>'+item.vsIntroduction+'</p>';
+		}
+		listStr += '<div style="float:right" id="aStyle">';
 		if(item.vsStatus==1){
 			listStr += '<div class="join"><a href="option/view?vsId='+item.vsId+'">我要参与</a></div>';
 		}else{

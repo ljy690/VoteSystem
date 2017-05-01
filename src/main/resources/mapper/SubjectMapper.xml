@@ -14,6 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result column="vsType" property="vsType"/>
 			<result column="vsStatus" property="vsStatus"/>
 			<result column="vsBeginTime" property="vsBeginTime"/>
+			<result column="vsIntroduction" property="vsIntroduction"/>
 			<result column="optionCount" property="optionCount"/>
 			<result column="voteAllCount" property="voteAllCount"/>
 		</collection>
@@ -55,8 +56,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="addNewSubject">
-		insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime)
-		values (#{vsId},#{vsvuId}, #{vsTitle}, #{vsType},1, sysdate)
+		insert into VoteSubject (vsId, vsvuId,vsTitle, vsType,vsStatus,vsBeginTime,vsIntroduction)
+		values (#{vsId},#{vsvuId}, #{vsTitle}, #{vsType},1, sysdate,#{vsIntroduction})
 	</insert>
 	
 	<select id="getCurrSequence" resultType="int">

@@ -26,23 +26,174 @@
 			<c:if test="${currSubject.vsStatus == 2 }">
 			<p class="info" style="color:red;"> 该投票已关闭 </p>
 			</c:if>
-				<ol>
-					<c:forEach items="${options}" var="voteOption">
+				<ul>
+					<c:forEach items="${options}" var="voteOption" varStatus="status">
 						<li>
-							<div>${voteOption.voOption}</div>
+							<c:choose>
+							<c:when test="${status.index == 0}">
+								<c:choose>
+									<c:when test="${ voteOption.voteUserCount==0}">
+									<div>${voteOption.voOrder}.${voteOption.voOption}</div>
+									</c:when>
+									<c:otherwise><div class="impword">${voteOption.voOrder}.${voteOption.voOption}&nbsp;&nbsp;NO.1</div></c:otherwise>
+								</c:choose>
+								<p>简介：${voteOption.voIntro}</p>
+								<div class="rate">
+									<div class="ratebg">
+										<div
+										<c:choose>
+											<c:when test="${ voteOption.voteUserCount==0}"> class="percent"</c:when>
+											<c:otherwise>class="percent3"</c:otherwise>
+										</c:choose> 
+										style='width:
+											<c:choose>
+												<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
+												<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.totalVote}" type="percent" maxFractionDigits="2"/></c:otherwise>
+											</c:choose>'>
+										</div>
+									</div>
+									<p>
+										<span>(
+											<c:choose>
+												<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
+												<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.totalVote}" type="percent" maxFractionDigits="2"/></c:otherwise>
+											</c:choose>)
+										</span>总：${voteOption.voteUserCount}票
+									</p>
+								</div>
+							</c:when>
+							
+							<c:when test="${status.index == 1}">
+								<c:choose>
+									<c:when test="${ voteOption.voteUserCount==0}">
+									<div>${voteOption.voOrder}.${voteOption.voOption}</div>
+									</c:when>
+									<c:otherwise><div class="impword">${voteOption.voOrder}.${voteOption.voOption}&nbsp;&nbsp;NO.2</div></c:otherwise>
+								</c:choose>
+								<p>简介：${voteOption.voIntro}</p>
+								<div class="rate">
+									<div class="ratebg">
+										<div
+										<c:choose>
+											<c:when test="${ voteOption.voteUserCount==0}"> class="percent"</c:when>
+											<c:otherwise>class="percent3"</c:otherwise>
+										</c:choose> 
+										style='width:
+											<c:choose>
+												<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
+												<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.totalVote}" type="percent" maxFractionDigits="2"/></c:otherwise>
+											</c:choose>'>
+										</div>
+									</div>
+									<p>
+										<span>(
+											<c:choose>
+												<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
+												<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.totalVote}" type="percent" maxFractionDigits="2"/></c:otherwise>
+											</c:choose>)
+										</span>总：${voteOption.voteUserCount}票
+									</p>
+								</div>
+							</c:when>
+							
+							<c:when test="${status.index == 2}">
+								<c:choose>
+									<c:when test="${ voteOption.voteUserCount==0}">
+									<div>${voteOption.voOrder}.${voteOption.voOption}</div>
+									</c:when>
+									<c:otherwise><div class="impword">${voteOption.voOrder}.${voteOption.voOption}&nbsp;&nbsp;NO.3</div></c:otherwise>
+								</c:choose>
+								<p>简介：${voteOption.voIntro}</p>
+								<div class="rate">
+									<div class="ratebg">
+										<div
+										<c:choose>
+											<c:when test="${ voteOption.voteUserCount==0}"> class="percent"</c:when>
+											<c:otherwise>class="percent3"</c:otherwise>
+										</c:choose> 
+										style='width:
+											<c:choose>
+												<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
+												<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.totalVote}" type="percent" maxFractionDigits="2"/></c:otherwise>
+											</c:choose>'>
+										</div>
+									</div>
+									<p>
+										<span>(
+											<c:choose>
+												<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
+												<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.totalVote}" type="percent" maxFractionDigits="2"/></c:otherwise>
+											</c:choose>)
+										</span>总：${voteOption.voteUserCount}票
+									</p>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div>${voteOption.voOrder}.${voteOption.voOption}</div>
+								<p>简介：${voteOption.voIntro}</p>
+								<div class="rate">
+									<div class="ratebg">
+										<div class="percent" style='width:
+											<c:choose>
+												<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
+												<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.totalVote}" type="percent" maxFractionDigits="2"/></c:otherwise>
+											</c:choose>'>
+										</div>
+									</div>
+									<p>
+										<span>(
+											<c:choose>
+												<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
+												<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.totalVote}" type="percent" maxFractionDigits="2"/></c:otherwise>
+											</c:choose>)
+										</span>总：${voteOption.voteUserCount}票
+									</p>
+								</div>
+							</c:otherwise>
+							</c:choose>
+							
+							<p>此选项中男性和女性分别占的比例如下所示：</p>
+							<!-- 男票分割线 -->
 							<div class="rate">
-								<div class="ratebg"><div class="percent" style='width:<c:choose>
-									<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
-									<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.totalVote}" type="percent" maxFractionDigits="2"/></c:otherwise>
-								</c:choose>'></div></div>
-								<p><span>(<c:choose>
-									<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
-									<c:otherwise><fmt:formatNumber value="${voteOption.voteUserCount/voteOption.totalVote}" type="percent" maxFractionDigits="2"/></c:otherwise>
-								</c:choose>)</span>${voteOption.voteUserCount}票&nbsp;&nbsp;男：${voteOption.voteMaleSex}票&nbsp;&nbsp;女：${voteOption.voteFemaleSex}票</p>
+								<div class="ratebg">
+									<div class="percent1" style='width:
+										<c:choose>
+											<c:when test="${voteOption.voteMaleSex == 0}">0</c:when>
+											<c:otherwise><fmt:formatNumber value="${voteOption.voteMaleSex/voteOption.voteUserCount}" type="percent" maxFractionDigits="2"/></c:otherwise>
+										</c:choose>'>
+									</div>
+								</div>
+								<p>
+									<span>(
+										<c:choose>
+											<c:when test="${voteOption.voteMaleSex == 0}">0</c:when>
+											<c:otherwise><fmt:formatNumber value="${voteOption.voteMaleSex/voteOption.voteUserCount}" type="percent" maxFractionDigits="2"/></c:otherwise>
+										</c:choose>)
+									</span>男：${voteOption.voteMaleSex}票
+								</p>
+							</div>
+							<!-- 女票分割线 -->
+							<div class="rate">
+								<div class="ratebg">
+									<div class="percent2" style='width:
+										<c:choose>
+											<c:when test="${voteOption.voteFemaleSex == 0}">0</c:when>
+											<c:otherwise><fmt:formatNumber value="${voteOption.voteFemaleSex/voteOption.voteUserCount}" type="percent" maxFractionDigits="2"/></c:otherwise>
+										</c:choose>'>
+									</div>
+								</div>
+								<p>
+									<span>(
+										<c:choose>
+											<c:when test="${voteOption.voteFemaleSex == 0}">0</c:when>
+											<c:otherwise><fmt:formatNumber value="${voteOption.voteFemaleSex/voteOption.voteUserCount}" type="percent" maxFractionDigits="2"/></c:otherwise>
+										</c:choose>)
+									</span>女：${voteOption.voteFemaleSex}票
+								</p>
 							</div>
 						</li>
 					</c:forEach> 
-				</ol>
+				</ul>
 				<div class="goback"><a href="javascript:history.go(-1)">返回上一级</a></div>
 		</li>
 	</ul>

@@ -26,10 +26,10 @@
 			<c:if test="${currSubject.vsStatus == 2 }">
 			<p class="info" style="color:red;"> 该投票已结束 </p>
 			</c:if>
-				<ol>
+				<ul>
 					<c:forEach items="${options}" var="voteOption">
 						<li>
-							<div>${voteOption.voOption}</div>
+							<div>${voteOption.voOrder}.${voteOption.voOption}</div>
 							<div class="rate">
 								<div class="ratebg"><div class="percent" style='width:<c:choose>
 									<c:when test="${voteOption.voteUserCount == 0}">0</c:when>
@@ -42,7 +42,7 @@
 							</div>
 						</li>
 					</c:forEach> 
-				</ol>
+				</ul>
 				
 				<div class="goback"><a href="javascript:history.go(-1)">返回上一级</a></div>
 		</li>

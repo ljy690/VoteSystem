@@ -70,13 +70,20 @@ a:hover, a:active { text-decoration:underline; }
 #vote .list li .info { color:#666; margin-left:20px; padding:5px 0; }
 #vote .list li .voteView { padding:5px 40px; }
 #vote .list li .voteView input { margin:0px 15px; }
-#vote .list li ol li { border:none; }
-#vote .list li ol li input { margin:0px 5px; vertical-align:middle; }
-#vote .list li ol li .rate { line-height:14px; }
-#vote .list li ol li .rate .ratebg { float:left; width:500px; background:#eee; }
-#vote .list li ol li .rate .percent { border:1px solid #d9c100; background:#feec04; height:12px; overflow:hidden; }
-#vote .list li ol li .rate p { margin-left:510px; }
-#vote .list li ol li .rate p span { margin-left:10px; color:#999; }
+#vote .list li ul li { border:none;list-style: none; }
+#vote .list li ul li input { margin:0px 5px; vertical-align:middle; }
+#vote .list li ul li .rate { line-height:14px; }
+#vote .list li ul li .rate .ratebg { float:left; width:500px; background:#eee; }
+#vote .list li ul li .rate .percent { border:1px solid #d9c100; background:#feec04; height:12px; overflow:hidden; }
+#vote .list li ul li .rate p { margin-left:510px; }
+#vote .list li ul li .rate p span { margin-left:10px; color:#999; }
+/* 男性用蓝色表示 */
+#vote .list li ul li .rate .percent1 { border:1px solid #3AB4D7; background:#54CDE5; height:12px; overflow:hidden; }
+/* 女性用粉色表示 */
+#vote .list li ul li .rate .percent2 { border:1px solid #FC6EC3; background:#FDB1DF; height:12px; overflow:hidden; }
+/* 重点突出 */
+.impword{font-size: 16px;color:#FD3106; }
+#vote .list li ul li .rate .percent3 { border:1px solid #CF2E0B; background:#FD3106; height:12px; overflow:hidden; }
 .goback { margin:20px auto; font-size:14px; line-height:30px; }
 .goback a { display:block; padding-left:50px; background:url(../images/goback.gif) left center no-repeat; float:left; clear:right; }
 #voteManage { width:600px; margin:20px auto; }

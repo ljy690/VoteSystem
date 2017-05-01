@@ -26,7 +26,11 @@
 			    <input type="hidden" name="vuId" value=" ${currUser.vuId }"/> 
 				<ol>
 				   <c:forEach items="${options}" var="option" >
-				   		<li><input type="${currSubject.vsType eq 1 ? 'radio':'checkbox'}" name="voId"  value="${option.voId}"/>${option.voOption}</li>
+				   		<li>
+				   			<input type="${currSubject.vsType eq 1 ? 'radio':'checkbox'}" name="voId"  value="${option.voId}"/>
+				   			${option.voOption}
+				   			<p>简介：${option.voIntro}</p>
+				   		</li>
 				   </c:forEach>
 				</ol>
 				<p class="voteView"><input type="image" src="images/button_vote.gif"/></p>

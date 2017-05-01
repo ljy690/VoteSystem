@@ -39,7 +39,11 @@ function connJoinList(data){
 		}else{
 			listStrss += '[多选]';
 		}
-		listStrss += '</h4><div style="float:right" id="aStyle">';
+		listStrss += '</h4>';
+		if(item.vsIntroduction!=null){
+			listStrss += '<p>'+item.vsIntroduction+'</p>';
+		}
+		listStrss += '<div style="float:right" id="aStyle">';
 		if(item.vsStatus==1){
 			listStrss +='<a">投票进行中</a>';
 		}else{

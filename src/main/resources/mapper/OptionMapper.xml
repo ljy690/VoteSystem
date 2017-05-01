@@ -10,18 +10,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select count(1) from VoteItem vi,VoteSubject vs where vi.vsId=vs.vsId and vi.vsId=#{vsId}) totalVote
 		from VOTEOPTION vo
 		where vo.vsid = #{vsId}
-		order by voOrder
+		order by voteUserCount desc,voOrder asc
 	</select>
 	
 	<select id="checkSoInfo" parameterType="int" resultType="VoteOption">
-		select vo.voId,voOption,vsType
+		select vo.voId,voOption,vsType,voIntro
 		from VOTEOPTION vo, VoteSubject vs
 		where vs.vsid = #{vsId} and vo.vsId=vs.vsId order by voOrder 
 	</select>
 	
 	<insert id="addOptions">
 		insert into VoteOption (voId, voOption, vsId, voOrder,voIntro)
-		values (seq_voption.nextval, #{1}, #{0}, #{2},)
+		values (seq_voption.nextval, #{1}, #{0}, #{3},#{2})
 	</insert>
 	
 	<select id="analyzeSubject" parameterType="int" resultType="VoteOption"> 
@@ -32,6 +32,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='female') voteFemaleSex
 		from VOTEOPTION vo
 		where vo.vsid = #{vsId}
-		order by voOrder
+		order by voteUserCount desc,voOrder asc
 	</select>
 </mapper>
