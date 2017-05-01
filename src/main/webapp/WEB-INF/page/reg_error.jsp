@@ -15,7 +15,7 @@
 <div id="message" class="box">
 	<h2>提示信息</h2>
 	<div class="content">
-		<p>当前激活账号： ${currUser.vuUsername }，该账号已经激活过，不需要重复激活！</p>
+		<p>该账号已经激活过，不需要重复激活！</p>
 		<br/>
 		<p><a href="user/jumpLogin">点此返回登陆界面&gt;&gt;</a></p>
 	</div>

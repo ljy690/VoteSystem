@@ -11,6 +11,7 @@ public class VoteSubject implements Serializable{
 	private int vsType;
 	private int vsStatus;
 	private String vsBeginTime;
+	private String vsIntroduction;//主题简介
 	private int optionCount;//当前主题有多少个选项
 	private int voteAllCount;//当前有多少人投票
 
@@ -72,9 +73,18 @@ public class VoteSubject implements Serializable{
 	public void setVuUsername(String vuUsername) {
 		this.vuUsername = vuUsername;
 	}
+	public String getVsIntroduction() {
+		return vsIntroduction;
+	}
+	public void setVsIntroduction(String vsIntroduction) {
+		this.vsIntroduction = vsIntroduction;
+	}
+	public VoteSubject() {
+		super();
+	}
 	public VoteSubject(int vsId, int vsvuId, String vuUsername, String vsTitle,
-			int vsType, int vsStatus, String vsBeginTime, int optionCount,
-			int voteAllCount) {
+			int vsType, int vsStatus, String vsBeginTime,
+			String vsIntroduction, int optionCount, int voteAllCount) {
 		super();
 		this.vsId = vsId;
 		this.vsvuId = vsvuId;
@@ -83,18 +93,8 @@ public class VoteSubject implements Serializable{
 		this.vsType = vsType;
 		this.vsStatus = vsStatus;
 		this.vsBeginTime = vsBeginTime;
+		this.vsIntroduction = vsIntroduction;
 		this.optionCount = optionCount;
 		this.voteAllCount = voteAllCount;
-	}
-	public VoteSubject() {
-		super();
-	}
-	@Override
-	public String toString() {
-		return "VoteSubject [vsId=" + vsId + ", vsvuId=" + vsvuId
-				+ ", vuUsername=" + vuUsername + ", vsTitle=" + vsTitle
-				+ ", vsType=" + vsType + ", vsStatus=" + vsStatus
-				+ ", vsBeginTime=" + vsBeginTime + ", optionCount="
-				+ optionCount + ", voteAllCount=" + voteAllCount + "]";
 	}
 }

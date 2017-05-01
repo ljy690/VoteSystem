@@ -5,10 +5,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -87,25 +84,29 @@ public class UserHandler {
 	@RequestMapping(value="/login")
 	public String login(VoteUser voteUser,ModelMap map,HttpSession session){
 		LogManager.getLogger().debug("user login..."+voteUser);
-		VoteUser currUser = userService.checkUserId(voteUser.getVuUsername());
-		session.setAttribute( SessionAttributeInfo.CurrUser, currUser);
-		//密码加密
-		voteUser = userService.login(voteUser);
-		//登陆结果页面跳转
-		if(voteUser == null){
-			map.put("errorMsg", "用户名或密码错误!!!");
+		if(voteUser==null || "".equals(voteUser)){
 			return "login";
-		}
-		if(voteUser.getVuStatus()==1){
-			map.put("errorMsg", "用户未激活，请去邮箱激活后再进行操作...");
-			return "login";
-		}
-		if(voteUser.getVuStatus()==3){
-			map.put("errorMsg", "该用户不存在。");
-			return "login";
-		}
-		if(voteUser.getVuUsername().trim().equals("admin")){
-			return "manage";
+		}else{
+			VoteUser currUser = userService.checkUserId(voteUser.getVuUsername());
+			session.setAttribute( SessionAttributeInfo.CurrUser, currUser);
+			//密码加密
+			voteUser = userService.login(voteUser);
+			//登陆结果页面跳转
+			if(voteUser == null){
+				map.put("errorMsg", "用户名或密码错误!!!");
+				return "login";
+			}
+			if(voteUser.getVuStatus()==1){
+				map.put("errorMsg", "用户未激活，请去邮箱激活后再进行操作...");
+				return "login";
+			}
+			if(voteUser.getVuStatus()==3){
+				map.put("errorMsg", "该用户不存在。");
+				return "login";
+			}
+			if(voteUser.getVuUsername().trim().equals("admin")){
+				return "manage";
+			}
 		}
 		return "list";
 	}
@@ -145,7 +146,7 @@ public class UserHandler {
 	public String adminCenter(){
 		return "adminCenter";
 	}
-	
+
 	//修改用户信息
 	@RequestMapping(value="/changeUserInfo")
 	public String changeUserInfo(VoteUser user,ModelMap map,HttpSession session){
@@ -170,7 +171,7 @@ public class UserHandler {
 		map.put("regErrorMsg", "密码修改失败!!!");
 		return "adminCenter";
 	}
-	
+
 	@RequestMapping(value="/jumpManageUser")
 	public String jumpManageUser(){
 		return "manageUsers";
@@ -179,7 +180,8 @@ public class UserHandler {
 	//管理所有的用户
 	@ResponseBody
 	@RequestMapping(value="/manageAllUsers")
-	public UsersList getAllUsers(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
+	public UsersList getAllUsers(@RequestParam(value="pageNum") int pageNum,
+			@RequestParam(value="pageSize") int pageSize){
 		UsersList users = userService.getAllUsers(pageSize,pageNum);
 		if(users!=null){
 			if(users.getTotal()%pageSize==0){
@@ -200,7 +202,7 @@ public class UserHandler {
 		}
 		return "manageUsers";
 	}
-	
+
 	//删除用户
 	@RequestMapping(value="/deleteUser")
 	public String deleteUser(int vuId){
@@ -211,7 +213,7 @@ public class UserHandler {
 		}
 		return "manageUsers";
 	}
-	
+
 	//查看某个用户信息
 	@RequestMapping(value="/seeUser")
 	public String seeUser(int vuId,HttpSession session){
@@ -222,7 +224,7 @@ public class UserHandler {
 		session.setAttribute( SessionAttributeInfo.SeeUser, seeUser);
 		return "seeUser";
 	}
-	
+
 	/*	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(){
 		System.out.println("点击返回的登陆界面...");

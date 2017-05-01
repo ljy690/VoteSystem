@@ -5,6 +5,11 @@ em { font-style:normal; }
 .wrap { width:950px; margin:0px auto; }
 .red, a.red { color:#f00; }
 .input-text { padding:2px 4px; border:1px solid #79a4cf;width:200px; }
+.textarea-text{ width:385px; height:50px; resize:none; }
+.p-border{width:390px;margin:0px 0 20px 0;border:0.5px dotted black;}
+.span-style{display:block;line-height:12px;height:12px;width:390px;font-size:12px;margin:0 0 5px 0;text-align: right;}
+.span1{display:block;line-height:12px;height:12px;width:390px;font-size:12px;margin:0 0 5px 0;text-align: right;}
+.span2{display:block;line-height:14px;height:14px;width:390px;font-size:14px;margin:0 0 5px 0;text-align: left;}
 .input-button { border:none; }
 a:link, a:visited { color:#06C; text-decoration:none; }
 a:hover, a:active { text-decoration:underline; }

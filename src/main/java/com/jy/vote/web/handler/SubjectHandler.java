@@ -59,13 +59,19 @@ public class SubjectHandler {
 	//添加新投票
 	@RequestMapping(value="/addNewSubject")
 	public String addNewSubject(ModelMap map,VoteSubject voteSubject,BindingResult bindingResult,
-			@RequestParam(value="voOption",required=false) String[] voOption,HttpSession session){
+			@RequestParam(value="voOption",required=false) String[] voOption,
+			@RequestParam(value="voIntro",required=false) String[] voIntro,
+			HttpSession session){
+		for(String s:voIntro){
+			System.out.println("测试简介"+s);
+		}
+		
 		//LogManager.getLogger().error("新增的投票："+voteSubject);
 		if(bindingResult.hasFieldErrors()){
 			map.put("addSbErrorMsg", "添加投票失败");
 			return "add";
 		}
-		//获取到当前的序列
+		/*//获取到当前的序列
 		int vsId=subjectService.getCurrSequence();
 		//将新增的序列号存到session方便之后跳转取值
 		voteSubject.setVsId(vsId);
@@ -82,7 +88,7 @@ public class SubjectHandler {
 		}else{
 			map.put("addSbErrorMsg", "添加投票失败");
 			return "add";
-		}
+		}*/
 		return "add_success";
 	}
 

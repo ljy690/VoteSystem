@@ -20,8 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="addOptions">
-		insert into VoteOption (voId, voOption, vsId, voOrder)
-		values (seq_voption.nextval, #{1}, #{0}, #{2})
+		insert into VoteOption (voId, voOption, vsId, voOrder,voIntro)
+		values (seq_voption.nextval, #{1}, #{0}, #{2},)
 	</insert>
 	
 	<select id="analyzeSubject" parameterType="int" resultType="VoteOption"> 

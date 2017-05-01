@@ -3,15 +3,15 @@ drop table VoteSubject;
 drop table VoteOption;
 drop table VoteItem;
 
-delete VoteUser;
-delete VoteSubject;
-delete VoteOption;
 delete VoteItem;
+delete VoteOption;
+delete VoteSubject;
+delete VoteUser;
 
 drop sequence seq_user;
-drop sequence seq_vsubject;
-drop sequence seq_voption;
 drop sequence seq_vitem;
+drop sequence seq_voption;
+drop sequence seq_vsubject;
 
 --主题id自增
 create sequence seq_user start with 1000010;
@@ -60,23 +60,38 @@ create table VoteSubject
   vsId    NUMBER(10) primary key,            --投票主题编号
   vsvuId  NUMBER(10) not null            --投票发起人
   	constraint FK_vsvuId references VoteUser(vuId),
-  vsTitle VARCHAR2(200) not null,         --投票主题
+  vsTitle VARCHAR2(100) not null,         --投票主题
   vsType  NUMBER(6) not null,              --投票类型:   单选  1    多选   2
   vsStatus NUMBER(1) NOT NULL,				--当前投票是否可见  可见 1   关闭 2    删除 3 即只有管理员可见
-  vsBeginTime date not null					--投票发布的时间
+  vsBeginTime date not null,					--投票发布的时间
+  vsIntroduction varchar2(300)                  --主题的简介
 );
 
+--添加主题简介
+alter table VoteSubject
+add (vsIntroduction varchar2(300));
+
+--修改主题长度
+alter table VoteSubject
+modify(vsTitle varchar2(100));
 
 --投票内容对应的选项表
 create table VoteOption
 (
   voId     NUMBER(10) primary key,  --编号
-  voOption VARCHAR2(100) not null,--投票选项
+  voOption VARCHAR2(50) not null,--投票选项
   vsId     NUMBER(10) not null    --投票主题编号
   	constraint FK_vovsId references VoteSubject(vsId),
-  voOrder  NUMBER(10) not null  --显示顺序
+  voOrder  NUMBER(10) not null,  --显示顺序
+  voIntro  varchar2(150)         --选项的简介
 );
 
+--添加选项简介
+alter table VoteOption
+add (voIntro varchar2(100));
+--修改选项长度
+alter table VoteOption
+modify(voOption varchar2(50));
 --用户投票取值表
 create table VoteItem
 (
