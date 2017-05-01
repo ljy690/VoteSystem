@@ -81,5 +81,4 @@ public class SubjectServiceImpl implements SubjectService {
 		return subjectMapping.openVote(vsId);
 	}
 
-	
 }

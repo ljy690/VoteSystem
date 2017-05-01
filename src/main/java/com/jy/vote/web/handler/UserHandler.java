@@ -5,6 +5,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -232,6 +233,12 @@ public class UserHandler {
 		return "seeUser";
 	}
 
+	@RequestMapping(value="/jumpOnes")
+	public String jumpOnes(String vuUsername,HttpSession session){
+		//查出当前用户信息存入数据字典
+		session.setAttribute(SessionAttributeInfo.SeeUser,userService.checkUserId(vuUsername) );
+		return "onesSet";
+	}
 	/*	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(){
 		System.out.println("点击返回的登陆界面...");

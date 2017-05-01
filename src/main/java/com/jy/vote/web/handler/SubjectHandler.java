@@ -128,7 +128,7 @@ public class SubjectHandler {
 		}
 		return "mySet";
 	}
-	
+
 	//开启投票
 	@RequestMapping(value="/openVote")
 	public String openVote(int vsId,HttpSession session){
@@ -214,7 +214,7 @@ public class SubjectHandler {
 	public String jumpManageVote(){
 		return "manage";
 	}
-	
+
 	//管理员管理所有投票
 	@ResponseBody
 	@RequestMapping(value="/manageAll")
@@ -230,11 +230,31 @@ public class SubjectHandler {
 		}
 		return voteList;
 	}
-	
+
 	//管理员删除投票
 	@RequestMapping(value="/adminDelete")
 	public String adminDelete(int vsId){
 		deleteVote(vsId);
 		return "manage";
+	}
+
+
+	//查询某个用户发布的所有投票
+	@ResponseBody
+	@RequestMapping(value="/onesvote")
+	public VoteList onesvote(int pageNum,int pageSize,HttpSession session){
+		//从数据库查出我发布的投票
+		VoteUser vu=(VoteUser) session.getAttribute(SessionAttributeInfo.SeeUser);
+		VoteList voteList=subjectService.getMySetByPage(pageSize,pageNum,vu.getVuId());
+		if(voteList!=null){
+			if(voteList.getTotal()%pageSize==0){
+				voteList.setTotal(voteList.getTotal()/pageSize);
+			}else{
+				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
+			}
+			return voteList;
+		}else{
+			return voteList;
+		}
 	}
 }

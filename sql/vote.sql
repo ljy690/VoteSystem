@@ -35,6 +35,8 @@ create table VoteUser
 insert into VoteUser(vuId,vuUsername,vuSex,vuDate, vuPassword,vuEmail, vuStatus, vuVersion) 
 values(seq_user.nextval,'admin','male',sysdate,'6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','1234566@qwe.com',2,1);
 
+insert into VoteUser(vuId,vuUsername,vuSex,vuDate, vuPassword,vuEmail, vuStatus, vuVersion) 
+values(seq_user.nextval,'xixi','male',sysdate,'6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','1234566@qwe.com',2,0,sysdate);
 --添加一个最后修改的时间
 alter table VoteUser
 add (vuUpTime date);
@@ -43,7 +45,7 @@ add (vuUpTime date);
 update  VoteUser set vuStatus=2 where vuUsername='12121212'
 
 --修改密码
-update  VoteUser set vuPassword='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2' where vuUsername='admin'
+update  VoteUser set vuVersion='0' where vuUsername='xixi'
 
 --对用户表进行操作
 select * from VoteUser where vuUsername='12345678' and vuStatus=1;

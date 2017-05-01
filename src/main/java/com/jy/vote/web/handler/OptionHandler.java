@@ -23,24 +23,22 @@ import com.jy.vote.util.SessionAttributeInfo;
 public class OptionHandler {
 	@Autowired
 	private OptionService optionService;
-	
+
 	@Autowired
 	private SubjectService subjectService;
-	
+
 	@Autowired
 	private ItemService itemService;
 
 	//查看投票内容
 	@RequestMapping(value="/view",method=RequestMethod.GET)
 	public String showOption(int vsId,ModelMap map,HttpSession session){
-		//System.out.println("查看投票结果，vsId=>" + vsId);
-		//System.out.println("a标签进来会有一个get有一个post");
 		//将当前的vsId存到session，方便之后使用   
 		VoteSubject subject = subjectService.getCurrSubject(vsId);
 		session.setAttribute(SessionAttributeInfo.CurrSubject, subject);
-		
+
 		VoteUser user= (VoteUser) session.getAttribute(SessionAttributeInfo.CurrUser);
-		
+
 		//判断当前投票是不是可投状态
 		if(subject.getVsStatus()==1){//可投
 			//判断当前是查看投票还是取出投票
@@ -57,10 +55,10 @@ public class OptionHandler {
 			getSubOp(map, vsId);
 			return "view";
 		}
-		
+
 	}
-	
-	
+
+
 	@RequestMapping(value="/jumpView")
 	public String jumpView(ModelMap map,HttpSession session){
 		//重新获取主题信息
@@ -70,13 +68,13 @@ public class OptionHandler {
 		getSubOp(map, vs.getVsId());
 		return "view";
 	}
-	
+
 	private void getSubOp(ModelMap map,int vsId){
 		//查看投票结果
 		List<VoteOption> options = optionService.getSbOpsById(vsId);
 		map.put("options", options);
 	}
-	
+
 	@RequestMapping(value="/directView")
 	public String directView(int vsId,HttpSession session,ModelMap map){
 		//重新获取主题信息
@@ -85,7 +83,7 @@ public class OptionHandler {
 		getSubOp(map, vsId);
 		return "view";
 	}
-	
+
 	@RequestMapping(value="/analyzeResult")
 	public String analyzeResult(int vsId,HttpSession session,ModelMap map){
 		//根据主题获取分析的结果
@@ -94,10 +92,11 @@ public class OptionHandler {
 		getSubAnaly(map, vsId);
 		return "result";
 	}
-	
+
 	private void getSubAnaly(ModelMap map,int vsId){
 		//查看分析结果
 		List<VoteOption> options = optionService.analyzeSubject(vsId);
 		map.put("options", options);
 	}
+
 }
