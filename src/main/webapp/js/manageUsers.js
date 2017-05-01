@@ -33,7 +33,7 @@ function manageUserList(data){
 			listStr += '[女]';
 		}
 		listStr += '</h4><div style="float:right" id="aStyle">';
-		if(item.vuStatus==1){
+		if(item.vuStatus!=2){
 			listStr += '<a href="user/upUser?vuId='+item.vuId+'" onclick="return confirmAct()">激活用户</a>&nbsp;&nbsp;';
 		}else if(item.vuStatus==2){
 			listStr += '<a>此用户已激活</a>&nbsp;&nbsp;';

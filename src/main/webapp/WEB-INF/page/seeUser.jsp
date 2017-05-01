@@ -66,6 +66,7 @@
 					</dd>
 				</dl>
 			</f:form>
+			<div class="goback"><a href="javascript:history.go(-1)">返回上一级</a></div>
 		</div>
 	</div>
 	<jsp:include page="footer.jsp" />

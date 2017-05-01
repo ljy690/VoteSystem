@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="checkName" parameterType="String" resultType="VoteUser">
-		select * from VoteUser where vuUsername = #{vuUsername} and vuStatus!=3
+		select * from VoteUser where vuUsername = #{vuUsername}
 	</select>
 	
 	<update id="changeStatus">

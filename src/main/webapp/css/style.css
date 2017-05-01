@@ -84,7 +84,7 @@ a:hover, a:active { text-decoration:underline; }
 /* 重点突出 */
 .impword{font-size: 16px;color:#FD3106; }
 #vote .list li ul li .rate .percent3 { border:1px solid #CF2E0B; background:#FD3106; height:12px; overflow:hidden; }
-.goback { margin:20px auto; font-size:14px; line-height:30px; }
+.goback { margin:10px auto; font-size:14px; line-height:30px; }
 .goback a { display:block; padding-left:50px; background:url(../images/goback.gif) left center no-repeat; float:left; clear:right; }
 #voteManage { width:600px; margin:20px auto; }
 #voteManage dl { line-height:40px; }
