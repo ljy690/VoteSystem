@@ -2,6 +2,7 @@
  * 我发布的投票的js
  * 首次进来要先拼接一次，然后再是按钮
  */
+
 $(function(){
 	flag5=true;
 	$.get("subject/mySetUpVote",{pageSize:5,pageNum:1},function(data){
@@ -44,11 +45,11 @@ function connSetList(data){
 		}
 		listStrs += '<div style="float:right" id="aStyle"><a href="option/analyzeResult?vsId='+item.vsId+'">结果分析</a>&nbsp;&nbsp;';
 		if(item.vsStatus==1){
-			listStrs += '<a href="subject/closeVote?vsId='+item.vsId+'" onclick="return confirmDel("关闭")">关闭投票</a>&nbsp;&nbsp;';
+			listStrs += '<a href="subject/closeVote?vsId='+item.vsId+'" onclick="return confirmClose();">关闭投票</a>&nbsp;&nbsp;';
 		}else if(item.vsStatus==2){
-			listStrs += '<a href="subject/openVote?vsId='+item.vsId+'" onclick="return confirmDel("开启")">开启投票</a>&nbsp;&nbsp;';
+			listStrs += '<a href="subject/openVote?vsId='+item.vsId+'" onclick="return confirmOpen();">开启投票</a>&nbsp;&nbsp;';
 		}
-		listStrs += '<a href="subject/userDelete?vsId='+item.vsId+'" onclick="return confirmDel("删除")">删除</a></div>';
+		listStrs += '<a href="subject/userDelete?vsId='+item.vsId+'" onclick="return confirmDel();">删除</a></div>';
 		listStrs += '<p class="info">共有' + item.optionCount + '个选项，已有'
 		+item.voteAllCount + '个网友参与了投票。</p>';
 		listStrs += '</li>';
@@ -60,11 +61,29 @@ function noInfo(){
 	$("#mySetSubjectList").html("<li><h4>该用户未发布过投票。</h4></li>");
 }
 
-function confirmDel(str) {  
-	var msg = "您真的确定要"+str+"该投票吗？请确认！";  
+function confirmDel() {  
+	var msg = "您真的确定要删除该投票吗？请确认！";  
 	if (confirm(msg)==true){  
 		return true;  
 	}else{  
 		return false;  
 	}  
 }  
+
+function confirmOpen() {  
+	var msg = "您真的确定要开启该投票吗？请确认！";  
+	if (confirm(msg)==true){  
+		return true;  
+	}else{  
+		return false;  
+	}  
+} 
+
+function confirmClose() {  
+	var msg = "您真的确定要开启该投票吗？请确认！";  
+	if (confirm(msg)==true){  
+		return true;  
+	}else{  
+		return false;  
+	}  
+}

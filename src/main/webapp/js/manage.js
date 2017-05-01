@@ -41,7 +41,7 @@ function manageList(data){
 
 		listStr += '<div style="float:right" id="aStyle"><a href="option/analyzeResult?vsId='+item.vsId+'">查看结果</a>&nbsp;&nbsp;';
 		if(item.vsStatus!=3){
-			listStr += '<a href="subject/adminDelete?vsId='+item.vsId+'" onclick="return confirmDel("删除")">删除此投票</a></div>';
+			listStr += '<a href="subject/adminDelete?vsId='+item.vsId+'" onclick="return confirmDel()">删除此投票</a></div>';
 		}else{
 			listStr += '<a">此投票已经被删除</a></div>';
 		}
@@ -58,7 +58,7 @@ function noSubjectInfo(){
 }
 
 function confirmDel(str) {  
-	var msg = "您真的确定要"+str+"该投票吗？请确认！";  
+	var msg = "您真的确定要删除该投票吗？请确认！";  
 	if (confirm(msg)==true){  
 		return true;  
 	}else{  
