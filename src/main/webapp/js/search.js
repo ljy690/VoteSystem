@@ -3,10 +3,9 @@
  * 首次进来要先拼接一次，然后再是按钮
  */
 $(function(){
+	flag6=true;
 	$.get("subject/search",{pageSize:5,pageNum:1},function(data){
-		if(null==data){
-			noSearchInfo();
-		}else{
+		flag6=false;
 			connList(data.subjects);
 			$(".tcdPageCode").createPage({
 				pageCount : data.total,
@@ -17,8 +16,10 @@ $(function(){
 					});
 				}
 			});
-		}
 	},'json');
+	if(flag6){
+		noSearchInfo();
+	}
 });
 
 function connList(data){
@@ -50,5 +51,5 @@ function connList(data){
 }
 
 function noSearchInfo(){
-	$("#searchResult").html("<h4>系统里没有投票主题。</h4>");
+	$("#searchResult").html("<h4>搜索不到相关的投票主题。</h4>");
 }

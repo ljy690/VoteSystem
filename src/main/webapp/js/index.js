@@ -1,24 +1,25 @@
- /**
+/**
  * 投票主页js
  * 首次进来要先拼接一次，然后再是按钮
  */
 $(function(){
+	flag1=true;
 	$.get("subject/listAll",{pageSize:5,pageNum:1},function(data){
-		if(null==data){
-			noSubjectInfo();
-		}else{
-			connList(data.subjects);
-			$(".tcdPageCode").createPage({
-				pageCount : data.total,
-				current : 1,
-				backFn : function(pageNum) {
-					$.post("subject/listAll",{pageSize:5,pageNum:pageNum},function(data1){
-						connList(data1.subjects);
-					});
-				}
-			});
-		}
+		flag1=false;
+		connList(data.subjects);
+		$(".tcdPageCode").createPage({
+			pageCount : data.total,
+			current : 1,
+			backFn : function(pageNum) {
+				$.post("subject/listAll",{pageSize:5,pageNum:pageNum},function(data1){
+					connList(data1.subjects);
+				});
+			}
+		});
 	},'json');
+	if(flag1){
+		noSubjectInfo();
+	}
 });
 
 function connList(data){

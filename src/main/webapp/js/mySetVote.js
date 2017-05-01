@@ -1,24 +1,25 @@
- /**
+/**
  * 我发布的投票的js
  * 首次进来要先拼接一次，然后再是按钮
  */
 $(function(){
+	flag5=true;
 	$.get("subject/mySetUpVote",{pageSize:5,pageNum:1},function(data){
-		if(null==data){
-			noInfo();
-		}else{
-			connSetList(data.subjects);
-			$(".tcdPageCode").createPage({
-				pageCount : data.total,
-				current : 1,
-				backFn : function(pageNum) {
-					$.post("subject/mySetUpVote",{pageSize:5,pageNum:pageNum},function(data1){
-						connSetList(data1.subjects);
-					});
-				}
-			});
-		}
+		flag5=false;
+		connSetList(data.subjects);
+		$(".tcdPageCode").createPage({
+			pageCount : data.total,
+			current : 1,
+			backFn : function(pageNum) {
+				$.post("subject/mySetUpVote",{pageSize:5,pageNum:pageNum},function(data1){
+					connSetList(data1.subjects);
+				});
+			}
+		});
 	},'json');
+	if(flag5){
+		noInfo();
+	}
 });
 
 function connSetList(data){
@@ -56,10 +57,10 @@ function noInfo(){
 }
 
 function confirmDel(str) {  
-    var msg = "您真的确定要"+str+"该投票吗？请确认！";  
-    if (confirm(msg)==true){  
-        return true;  
-    }else{  
-        return false;  
-    }  
+	var msg = "您真的确定要"+str+"该投票吗？请确认！";  
+	if (confirm(msg)==true){  
+		return true;  
+	}else{  
+		return false;  
+	}  
 }  

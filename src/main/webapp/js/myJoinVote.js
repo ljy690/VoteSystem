@@ -3,8 +3,10 @@
  * 首次进来要先拼接一次，然后再是按钮
  */
 $(function(){
+	flag4=true;
 	$.get("subject/myJoinVote",{pageSize:5,pageNum:1},function(data){
 		if(null!=data){
+			flag4=false;
 			connJoinList(data.subjects);
 			$(".tcdPageCode").createPage({
 				pageCount : data.total,
@@ -15,10 +17,11 @@ $(function(){
 					});
 				}
 			});
-		}else{
-			noJoinInfo();
 		}
 	},'json');
+	if(	flag4){
+		noJoinInfo();
+	}
 });
 
 function connJoinList(data){

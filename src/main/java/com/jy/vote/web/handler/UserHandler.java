@@ -84,9 +84,10 @@ public class UserHandler {
 	@RequestMapping(value="/login")
 	public String login(VoteUser voteUser,ModelMap map,HttpSession session){
 		LogManager.getLogger().debug("user login..."+voteUser);
-		if(voteUser==null || "".equals(voteUser)){
+		VoteUser vuer=(VoteUser) session.getAttribute(SessionAttributeInfo.CurrUser);
+		if(vuer == null && voteUser.getVuUsername()==null){
 			return "login";
-		}else{
+		}else if(vuer==null &&  voteUser.getVuUsername()!=null){
 			VoteUser currUser = userService.checkUserId(voteUser.getVuUsername());
 			session.setAttribute( SessionAttributeInfo.CurrUser, currUser);
 			//密码加密
@@ -106,6 +107,12 @@ public class UserHandler {
 			}
 			if(voteUser.getVuUsername().trim().equals("admin")){
 				return "manage";
+			}
+		}else{
+			if(vuer.getVuUsername().equals("admin")){
+				return "manage";
+			}else{
+				return "list";
 			}
 		}
 		return "list";
