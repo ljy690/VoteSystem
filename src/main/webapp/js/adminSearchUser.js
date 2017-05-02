@@ -1,24 +1,24 @@
 /**
- * 投票主页js
+ * 搜索用户页面js
  * 首次进来要先拼接一次，然后再是按钮
  */
 $(function(){
-	$.get("user/manageAllUsers",{pageSize:5,pageNum:1},function(data){
-		manageUserList(data.users);
+	$.get("user/adminSearchUser",{pageSize:5,pageNum:1},function(data){
+		connList(data.users);
 		$(".tcdPageCode").createPage({
 			pageCount : data.total,
 			current : 1,
 			backFn : function(pageNum) {
-				$.post("user/manageAllUsers",{pageSize:5,pageNum:pageNum},function(data1){
-					manageUserList(data1.users);
+				$.post("user/adminSearchUser",{pageSize:5,pageNum:pageNum},function(data1){
+					connList(data1.users);
 				});
 			}
 		});
 	},'json');
-	noUsersInfo();
+	noSearchInfo();
 });
 
-function manageUserList(data){
+function connList(data){
 	var listStr = "";
 	$.each(data,function(index,item){
 		listStr += '<li ' + (index%2==0 ? 'class="odd"' : '') + '>';
@@ -44,11 +44,11 @@ function manageUserList(data){
 		listStr += '<p class="info">该用户共发布了'+item.setVote+'个主题,参与了'  + item.joinVote + '个主题</p>';
 		listStr += '</li>';
 	});
-	$("#manageUserList").html(listStr);
+	$("#adminSearchUser").html(listStr);
 }
 
-function noUsersInfo(){
-	$("#manageUserList").html("<h4>系统里没有用户。</h4>");
+function noSearchInfo(){
+	$("#adminSearchUser").html("<h4>搜索不到相关的用户信息。</h4>");
 }
 
 function confirmDel() {  

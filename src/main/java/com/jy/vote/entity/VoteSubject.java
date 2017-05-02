@@ -97,4 +97,14 @@ public class VoteSubject implements Serializable{
 		this.optionCount = optionCount;
 		this.voteAllCount = voteAllCount;
 	}
+	@Override
+	public String toString() {
+		return "VoteSubject [vsId=" + vsId + ", vsvuId=" + vsvuId
+				+ ", vuUsername=" + vuUsername + ", vsTitle=" + vsTitle
+				+ ", vsType=" + vsType + ", vsStatus=" + vsStatus
+				+ ", vsBeginTime=" + vsBeginTime + ", vsIntroduction="
+				+ vsIntroduction + ", optionCount=" + optionCount
+				+ ", voteAllCount=" + voteAllCount + "]";
+	}
+	
 }

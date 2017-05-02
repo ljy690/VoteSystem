@@ -61,7 +61,7 @@ a:hover, a:active { text-decoration:underline; }
 #vote { margin:10px auto; }
 #vote h2 { color:#333; font-size:16px; background:url(../images/title_ico.gif) 5px center no-repeat; line-height:35px; padding-left:50px; }
 #vote .list { margin-top:10px; list-style:none; }
-#vote .list li { border-top:1px solid #e4e4e4; padding:10px; }
+#vote .list li { border-top:1px solid #e4e4e4; padding:20px; }
 #vote .list li.odd { background:#fffff0; }
 #vote .list li h4 { font-size:14px; background:url(../images/vote_icon.gif) left 4px no-repeat; padding-left:20px; }
 #vote .list li h4 em { float:right; font-weight:normal; font-size:12px; background:url(../images/edit.gif) left center no-repeat; padding-left:18px; }
@@ -72,18 +72,19 @@ a:hover, a:active { text-decoration:underline; }
 #vote .list li .voteView input { margin:0px 15px; }
 #vote .list li ul li { border:none;list-style: none; }
 #vote .list li ul li input { margin:0px 5px; vertical-align:middle; }
-#vote .list li ul li .rate { line-height:14px; }
-#vote .list li ul li .rate .ratebg { float:left; width:500px; background:#eee; }
-#vote .list li ul li .rate .percent { border:1px solid #d9c100; background:#feec04; height:12px; overflow:hidden; }
-#vote .list li ul li .rate p { margin-left:510px; }
+#vote .list li ul li .rate { line-height:20px; }
+#vote .list li ul li .rate .ratebg { float:left; width:600px; background:#eee;border:1px solid white; }
+#vote .list li ul li .rate .percent { border:1px solid #E59A37; background:#F3A43B; height:20px; overflow:hidden; }
+#vote .list li ul li .rate p { margin-left:600px; }
 #vote .list li ul li .rate p span { margin-left:10px; color:#999; }
 /* 男性用蓝色表示 */
-#vote .list li ul li .rate .percent1 { border:1px solid #3AB4D7; background:#54CDE5; height:12px; overflow:hidden; }
+#vote .list li ul li .rate .percent1 { border:1px solid #56AEC9; background:#60C0DD; height:12px; overflow:hidden; }
 /* 女性用粉色表示 */
-#vote .list li ul li .rate .percent2 { border:1px solid #FC6EC3; background:#FDB1DF; height:12px; overflow:hidden; }
+#vote .list li ul li .rate .percent2 { border:1px solid #F17E5E; background:#FE8463; height:12px; overflow:hidden; }
 /* 重点突出 */
-.impword{font-size: 16px;color:#FD3106; }
-#vote .list li ul li .rate .percent3 { border:1px solid #CF2E0B; background:#FD3106; height:12px; overflow:hidden; }
+.impword{font-size: 16px;color:#BA2229; }
+.analRes{width:700px;text-align:left;padding:20px;}
+#vote .list li ul li .rate .percent3 { border:1px solid #AA1F25; background:#BA2229; height:24px; overflow:hidden; }
 .goback { margin:10px auto; font-size:14px; line-height:30px; }
 .goback a { display:block; padding-left:50px; background:url(../images/goback.gif) left center no-repeat; float:left; clear:right; }
 #voteManage { width:600px; margin:20px auto; }

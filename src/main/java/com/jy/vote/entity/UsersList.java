@@ -11,6 +11,7 @@ public class UsersList implements Serializable{
 	private static final long serialVersionUID = 7407877822991246538L;
 	private List<VoteUser> users;
 	private int total;
+	private int status;//结果状态  0为空 1不为空
 	public List<VoteUser> getUsers() {
 		return users;
 	}
@@ -27,18 +28,21 @@ public class UsersList implements Serializable{
 		this.total = total;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public UsersList() {
 		super();
 	}
 
-	public UsersList(List<VoteUser> users, int total) {
+	public UsersList(List<VoteUser> users, int total, int status) {
 		super();
 		this.users = users;
 		this.total = total;
-	}
-
-	@Override
-	public String toString() {
-		return "UsersList [users=" + users + ", total=" + total + "]";
+		this.status = status;
 	}
 }

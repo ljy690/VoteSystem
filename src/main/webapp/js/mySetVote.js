@@ -4,9 +4,7 @@
  */
 
 $(function(){
-	flag5=true;
 	$.get("subject/mySetUpVote",{pageSize:5,pageNum:1},function(data){
-		flag5=false;
 		connSetList(data.subjects);
 		$(".tcdPageCode").createPage({
 			pageCount : data.total,
@@ -18,9 +16,7 @@ $(function(){
 			}
 		});
 	},'json');
-	if(flag5){
-		noInfo();
-	}
+	noInfo();
 });
 
 function connSetList(data){
@@ -41,7 +37,7 @@ function connSetList(data){
 		listStrs += '</h4>';
 		listStrs += '</h4>';
 		if(item.vsIntroduction!=null){
-			listStrs += '<p>'+item.vsIntroduction+'</p>';
+			listStrs += '<p style="margin-left:20px;">'+item.vsIntroduction+'</p>';
 		}
 		listStrs += '<div style="float:right" id="aStyle"><a href="option/analyzeResult?vsId='+item.vsId+'">结果分析</a>&nbsp;&nbsp;';
 		if(item.vsStatus==1){

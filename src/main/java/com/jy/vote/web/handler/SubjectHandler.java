@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.jy.vote.entity.VoteList;
 import com.jy.vote.entity.VoteSubject;
 import com.jy.vote.entity.VoteUser;
@@ -28,22 +27,20 @@ public class SubjectHandler {
 	@Autowired
 	private OptionService optionService;
 
-	String sRole=null;
-	String kwords=null;
-
 	@ResponseBody
 	@RequestMapping(value="/listAll")
 	public VoteList listAll(@RequestParam(value="pageNum") int pageNum,@RequestParam(value="pageSize") int pageSize){
 		VoteList voteList=subjectService.getSubjectListByPage(pageSize,pageNum);
 		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
-		if(voteList!=null){
+		if(voteList!=null && !"".equals(voteList)){
 			if(voteList.getTotal()%pageSize==0){
 				voteList.setTotal(voteList.getTotal()/pageSize);
 			}else{
 				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
 			}
+			return voteList;
 		}
-		return voteList;
+		return null;
 	}
 
 	@RequestMapping(value="/jumpList")
@@ -62,13 +59,6 @@ public class SubjectHandler {
 			@RequestParam(value="voOption",required=false) String[] voOption,
 			@RequestParam(value="voIntro",required=false) String[] voIntro,
 			HttpSession session){
-		/*for(String s:voOption){
-			System.out.println("测试选项"+s);
-		}
-		for(String s:voIntro){
-			System.out.println("测试简介"+s);
-		}
-		System.out.println(voteSubject);*/
 		if(bindingResult.hasFieldErrors()){
 			map.put("addSbErrorMsg", "添加投票失败");
 			return "add";
@@ -107,16 +97,15 @@ public class SubjectHandler {
 		VoteUser user=(VoteUser) session.getAttribute(SessionAttributeInfo.CurrUser);
 		VoteList voteList=subjectService.getMySetByPage(pageSize,pageNum,user.getVuId());
 		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
-		if(voteList!=null){
+		if(voteList!=null && !"".equals(voteList)){
 			if(voteList.getTotal()%pageSize==0){
 				voteList.setTotal(voteList.getTotal()/pageSize);
 			}else{
 				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
 			}
 			return voteList;
-		}else{
-			return voteList;
 		}
+		return null;
 	}
 
 	//关闭投票
@@ -167,46 +156,85 @@ public class SubjectHandler {
 		VoteUser user=(VoteUser) session.getAttribute(SessionAttributeInfo.CurrUser);
 		VoteList voteList=subjectService.getMyJoinByPage(pageSize,pageNum,user.getVuId());
 		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
-		if(voteList!=null){
+		if(voteList!=null && !"".equals(voteList)){
 			if(voteList.getTotal()%pageSize==0){
 				voteList.setTotal(voteList.getTotal()/pageSize);
 			}else{
 				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
 			}
 			return voteList;
-		}else{
-			return voteList;
 		}
+		return null;
 	}
 
 	@RequestMapping(value="/jumpSearch")
 	public String jumpSearch(String searchRole,String keywords){
-		sRole=searchRole;
-		kwords=keywords;
+		SessionAttributeInfo.searchObj=searchRole;
+		SessionAttributeInfo.searchWords=keywords;
 		return "search";
 	}
 
-	//搜索投票
+	//普通用户搜索投票
 	@ResponseBody
 	@RequestMapping(value="/search")
 	public VoteList search(@RequestParam(value="pageNum") int pageNum,
 			@RequestParam(value="pageSize") int pageSize){
 		VoteList voteList;
-		if(sRole.equals("用户")){
-			voteList=subjectService.getSearchListByPage(pageSize,pageNum,"user",kwords);
+		if(SessionAttributeInfo.searchObj.equals("用户")){
+			voteList=subjectService.getSearchListByPage(pageSize,pageNum,"user",SessionAttributeInfo.searchWords);
 		}else{
-			voteList=subjectService.getSearchListByPage(pageSize,pageNum,"sub",kwords);
+			voteList=subjectService.getSearchListByPage(pageSize,pageNum,"sub",SessionAttributeInfo.searchWords);
 		}
-
-		//LogManager.getLogger().debug("list请求成功。。。。。。。。。。。");
-		if(voteList!=null){
+		if(voteList!=null && !"".equals(voteList)){
 			if(voteList.getTotal()%pageSize==0){
 				voteList.setTotal(voteList.getTotal()/pageSize);
 			}else{
 				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
 			}
+			return voteList;
 		}
-		return voteList;
+		return null;
+	}
+
+	@RequestMapping(value="/jumpAdminSearch")
+	public String jumpAdminSearch(String searchRole,String keywords){
+		if(searchRole!=null && keywords !=null){
+			SessionAttributeInfo.searchObj=searchRole;
+			SessionAttributeInfo.searchWords=keywords;
+			if(searchRole.equals("用户")){
+				return "adminSearchUser";
+			}else{
+				return "adminSearchSubject";
+			}
+		}else{
+			String oneobj=SessionAttributeInfo.searchObj;
+			if(oneobj!=null && oneobj.equals("用户")){
+				return "adminSearchUser";
+			}else if(oneobj!=null && oneobj.equals("主题")){
+				return "adminSearchSubject";
+			}else{
+				LogManager.getLogger().error("没有获取到搜索信息。");
+			}
+			return null;
+		}
+
+	}
+
+	//管理员搜索
+	@ResponseBody
+	@RequestMapping(value="/adminSearchSubject")
+	public VoteList adminSearchSubject(@RequestParam(value="pageNum") int pageNum,
+			@RequestParam(value="pageSize") int pageSize){
+		VoteList voteList=subjectService.getSearchSubjectListByPage(pageSize,pageNum,SessionAttributeInfo.searchWords);
+		if(voteList!=null && !"".equals(voteList)){
+			if(voteList.getTotal()%pageSize==0){
+				voteList.setTotal(voteList.getTotal()/pageSize);
+			}else{
+				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
+			}
+			return voteList;
+		}
+		return null;
 	}
 
 	//管理员管理所有投票
@@ -221,14 +249,15 @@ public class SubjectHandler {
 	public VoteList manageAll(@RequestParam(value="pageNum") int pageNum,
 			@RequestParam(value="pageSize") int pageSize){
 		VoteList voteList=subjectService.getSubjectManageListByPage(pageSize,pageNum);
-		if(voteList!=null){
+		if(voteList!=null && !"".equals(voteList)){
 			if(voteList.getTotal()%pageSize==0){
 				voteList.setTotal(voteList.getTotal()/pageSize);
 			}else{
 				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
 			}
+			return voteList;
 		}
-		return voteList;
+		return null;
 	}
 
 	//管理员删除投票
@@ -246,15 +275,14 @@ public class SubjectHandler {
 		//从数据库查出我发布的投票
 		VoteUser vu=(VoteUser) session.getAttribute(SessionAttributeInfo.SeeUser);
 		VoteList voteList=subjectService.getMySetByPage(pageSize,pageNum,vu.getVuId());
-		if(voteList!=null){
+		if(voteList!=null && !"".equals(voteList)){
 			if(voteList.getTotal()%pageSize==0){
 				voteList.setTotal(voteList.getTotal()/pageSize);
 			}else{
 				voteList.setTotal(((int)(voteList.getTotal()/pageSize))+1);
 			}
 			return voteList;
-		}else{
-			return voteList;
 		}
+		return null;
 	}
 }

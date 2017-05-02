@@ -133,8 +133,38 @@ select vo.*,
 (select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='male') voteMaleSex,
 (select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='female') voteFemaleSex
 from VOTEOPTION vo
-where vo.vsid = 48
-order by voOrder
+where vo.vsid = 1
+order by voteUserCount desc,voorder asc
+
+--结果分析根据男性排序
+select nn.* from 
+(
+select rownum rn,a.* from
+(select vo.vooption,
+(select count(1) from VoteItem where voId=vo.voId ) voteUserCount,
+(select count(1) from VoteItem vi,VoteSubject vs where vi.vsId=1 and vi.vsId=vs.vsId) totalVote,
+(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='male') voteMaleSex,
+(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='female') voteFemaleSex
+from VOTEOPTION vo
+where vo.vsid = 1
+order by voteMaleSex desc,voteUserCount desc,voorder asc) a
+where 5>=rownum ) nn
+where rn>0
+
+--结果分析根据女性排序
+select nn.* from 
+(
+select rownum rn,a.* from
+(select vo.vooption,
+(select count(1) from VoteItem where voId=vo.voId ) voteUserCount,
+(select count(1) from VoteItem vi,VoteSubject vs where vi.vsId=1 and vi.vsId=vs.vsId) totalVote,
+(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='male') voteMaleSex,
+(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='female') voteFemaleSex
+from VOTEOPTION vo
+where vo.vsid = 1
+order by voteFemaleSex desc,voteUserCount desc,voorder asc) a
+where 5>=rownum ) nn
+where rn>0
 
 --查询某个主题的信息，以及选项得票情况，总票数
 select vo.*,
@@ -195,6 +225,20 @@ select vu.*,
 (select count(1) from VoteSubject vs where vsStatus!=3 and vu.vuId=vs.vsvuId) setVote,
 (select count(distinct(vs.vsId)) from VoteItem vi,VoteSubject vs where vsStatus!=3 and vi.vsId=vs.vsId and vi.vuId=vu.vuId) joinVote
 from VoteUser vu where vuVersion=0 order by vuUpTime desc) a 
+where 5>=rownum ) nn
+where rn>0
+
+--搜索用户
+select nn.*,
+(select count(1) from VoteUser where vuVersion=0 and vuUsername like '%xixi%') total
+from
+(
+select rownum rn,a.* from
+(
+select vu.*,
+(select count(1) from VoteSubject vs where vsStatus!=3 and vu.vuId=vs.vsvuId) setVote,
+(select count(distinct(vs.vsId)) from VoteItem vi,VoteSubject vs where vsStatus!=3 and vi.vsId=vs.vsId and vi.vuId=vu.vuId) joinVote
+from VoteUser vu where vuVersion=0 and vuUsername like '%xixi%' order by vuUpTime desc) a 
 where 5>=rownum ) nn
 where rn>0
 

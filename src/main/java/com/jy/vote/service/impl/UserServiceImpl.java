@@ -104,4 +104,10 @@ public class UserServiceImpl implements UserService {
 	public VoteUser getOneUser(int vuId) {
 		return userMapping.getOneUser(vuId);
 	}
+
+	@Override
+	public UsersList getAdminSearchUsersListByPage(int pageSize, int pageNum,
+			String searchWords) {
+		return userMapping.getAdminSearchUsersListByPage(pageSize,pageNum,searchWords);
+	}
 }

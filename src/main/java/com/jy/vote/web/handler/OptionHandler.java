@@ -1,6 +1,8 @@
 package com.jy.vote.web.handler;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.jy.vote.entity.AnalyzeData;
 import com.jy.vote.entity.VoteOption;
 import com.jy.vote.entity.VoteSubject;
 import com.jy.vote.entity.VoteUser;
@@ -99,4 +103,30 @@ public class OptionHandler {
 		map.put("options", options);
 	}
 
+	/**
+	 * 结果分析 ，获取最热门的数据
+	 * @param vsId
+	 * @param num  获取几条数据
+	 * @param session
+	 * @param map
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/analyzeData")
+	public Map<String,Object> analyzeData(int vsId,int num){
+		//根据主题获取热门数据
+		Map<String,Object> maps=new HashMap<String, Object>();
+		//前几名
+		List<AnalyzeData> adatas = optionService.getHotData( num,vsId );
+		//男性前几名
+		List<AnalyzeData> fdatas = optionService.getHotFdata( num,vsId );
+		//女性前几名
+		List<AnalyzeData> mdatas = optionService.getHotMdata( num,vsId );
+		//存数据
+		maps.put("sum", adatas);
+		maps.put("fe", fdatas);
+		maps.put("ma", mdatas);
+		maps.put("num", num);
+		return maps;
+	}
 }

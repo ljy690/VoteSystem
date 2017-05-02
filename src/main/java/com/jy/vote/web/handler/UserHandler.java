@@ -191,14 +191,15 @@ public class UserHandler {
 	public UsersList getAllUsers(@RequestParam(value="pageNum") int pageNum,
 			@RequestParam(value="pageSize") int pageSize){
 		UsersList users = userService.getAllUsers(pageSize,pageNum);
-		if(users!=null){
+		if(users!=null && !"".equals(users)){
 			if(users.getTotal()%pageSize==0){
 				users.setTotal(users.getTotal()/pageSize);
 			}else{
 				users.setTotal(((int)(users.getTotal()/pageSize))+1);
 			}
+			return users;
 		}
-		return users;
+		return null;
 	}
 
 	//激活用户
@@ -239,12 +240,24 @@ public class UserHandler {
 		session.setAttribute(SessionAttributeInfo.SeeUser,userService.checkUserId(vuUsername) );
 		return "onesSet";
 	}
-	/*	@RequestMapping(value="/login", method=RequestMethod.GET)
-	public String login(){
-		System.out.println("点击返回的登陆界面...");
-		return "login";
-	}*/
 
+	//管理员搜索用户
+	@ResponseBody
+	@RequestMapping(value="/adminSearchUser")
+	public UsersList adminSearchUser(@RequestParam(value="pageNum") int pageNum,
+			@RequestParam(value="pageSize") int pageSize){
+		//根据用户名模糊搜索
+		UsersList userList=userService.getAdminSearchUsersListByPage(pageSize,pageNum,SessionAttributeInfo.searchWords);
+		if(userList!=null && !"".equals(userList)){
+			if(userList.getTotal()%pageSize==0){
+				userList.setTotal(userList.getTotal()/pageSize);
+			}else{
+				userList.setTotal(((int)(userList.getTotal()/pageSize))+1);
+			}
+			return userList;
+		}
+		return null;
+	}
 	/**
 	 * 链接地址
 	 * @param request

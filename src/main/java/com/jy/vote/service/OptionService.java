@@ -2,6 +2,7 @@ package com.jy.vote.service;
 
 import java.util.List;
 
+import com.jy.vote.entity.AnalyzeData;
 import com.jy.vote.entity.VoteOption;
 
 public interface OptionService {
@@ -15,4 +16,10 @@ public interface OptionService {
 
 	//查看分析的结果
 	List<VoteOption> analyzeSubject(int vsId);
+	//总数据分析
+	List<AnalyzeData> getHotData(int num, int vsId);
+	//男性数据分析
+	List<AnalyzeData> getHotFdata(int num, int vsId);
+	//女性数据分析
+	List<AnalyzeData> getHotMdata(int num, int vsId);
 }

@@ -36,4 +36,7 @@ public interface UserService {
 	int adminChangeStatus(int vuId);
 	//管理员查看某人信息
 	VoteUser getOneUser(int vuId);
+	//管理员搜索用户信息
+	UsersList getAdminSearchUsersListByPage(int pageSize, int pageNum,
+			String searchWords);
 }

@@ -15,7 +15,7 @@
 <body>
 	<jsp:include page="top.jsp" />
 	<div id="vote" class="wrap">
-		<h2>我发起的投票</h2>
+		<h2>我参与的投票</h2>
 		<ul class="list" id="myJoinSubjectList">
 			
 		</ul>

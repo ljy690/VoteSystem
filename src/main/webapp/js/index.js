@@ -3,9 +3,9 @@
  * 首次进来要先拼接一次，然后再是按钮
  */
 $(function(){
-	flag1=true;
+/*	flag1=true;*/
 	$.get("subject/listAll",{pageSize:5,pageNum:1},function(data){
-		flag1=false;
+		/*flag1=false;*/
 		connList(data.subjects);
 		$(".tcdPageCode").createPage({
 			pageCount : data.total,
@@ -17,9 +17,10 @@ $(function(){
 			}
 		});
 	},'json');
-	if(flag1){
+/*	if(flag1){
 		noSubjectInfo();
-	}
+	}*/
+
 });
 
 function connList(data){
@@ -39,7 +40,7 @@ function connList(data){
 		}
 		listStr += '</h4>';
 		if(item.vsIntroduction!=null){
-			listStr += '<p>'+item.vsIntroduction+'</p>';
+			listStr += '<p style="margin-left: 20px;">'+item.vsIntroduction+'</p>';
 		}
 		listStr += '<div style="float:right" id="aStyle">';
 		if(item.vsStatus==1){

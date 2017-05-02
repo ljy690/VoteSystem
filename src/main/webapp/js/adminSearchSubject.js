@@ -1,24 +1,21 @@
- /**
- * 搜索页面js
+/**
+ * 搜索主题页面js
  * 首次进来要先拼接一次，然后再是按钮
  */
 $(function(){
-	$.get("subject/search",{pageSize:5,pageNum:1},function(data){
-		if(data==null){
-			noSearchInfo();
-		}else{
-			connList(data.subjects);
-			$(".tcdPageCode").createPage({
-				pageCount : data.total,
-				current : 1,
-				backFn : function(pageNum) {
-					$.post("subject/search",{pageSize:5,pageNum:pageNum},function(data1){
-						connList(data1.subjects);
-					});
-				}
-			});
-		}
+	$.get("subject/adminSearchSubject",{pageSize:5,pageNum:1},function(data){
+		connList(data.subjects);
+		$(".tcdPageCode").createPage({
+			pageCount : data.total,
+			current : 1,
+			backFn : function(pageNum) {
+				$.post("subject/adminSearchSubject",{pageSize:5,pageNum:pageNum},function(data1){
+					connList(data1.subjects);
+				});
+			}
+		});
 	},'json');
+	noSearchInfo();
 });
 
 function connList(data){
@@ -50,7 +47,7 @@ function connList(data){
 		+item.voteAllCount + '个网友参与了投票。</p>';
 		listStr += '</li>';
 	});
-	$("#searchResult").html(listStr);
+	$("#adminSearchUser").html(listStr);
 }
 
 function noSearchInfo(){

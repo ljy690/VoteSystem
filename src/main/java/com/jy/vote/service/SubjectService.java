@@ -2,6 +2,7 @@ package com.jy.vote.service;
 
 import java.util.List;
 
+import com.jy.vote.entity.UsersList;
 import com.jy.vote.entity.VoteList;
 import com.jy.vote.entity.VoteSubject;
 
@@ -33,5 +34,9 @@ public interface SubjectService {
 
 	//开启投票
 	int openVote(int vsId);
+	//管理员搜索投票
+	VoteList getSearchSubjectListByPage(int pageSize, int pageNum,
+			String searchWords);
+	
 
 }

@@ -34,4 +34,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where vo.vsid = #{vsId}
 		order by voteUserCount desc,voOrder asc
 	</select>
+	
+	<select id="getHotData" parameterType="int" resultType="AnalyzeData"> 
+		select nn.* from 
+		(
+		select rownum rn,a.* from
+		(select vo.vooption,
+		(select count(1) from VoteItem where voId=vo.voId ) voteUserCount,
+		(select count(1) from VoteItem vi,VoteSubject vs where vi.vsId=#{1} and vi.vsId=vs.vsId) totalVote,
+		(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='male') voteMaleSex,
+		(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='female') voteFemaleSex
+		from VOTEOPTION vo
+		where vo.vsid = #{1}
+		order by voorder ) a
+		where #{0}>=rownum ) nn
+		where rn>0
+	</select>
+	
+	<select id="getHotFdata" parameterType="int" resultType="AnalyzeData"> 
+		select nn.* from 
+		(
+		select rownum rn,a.* from
+		(select vo.vooption,
+		(select count(1) from VoteItem where voId=vo.voId ) voteUserCount,
+		(select count(1) from VoteItem vi,VoteSubject vs where vi.vsId=#{1} and vi.vsId=vs.vsId) totalVote,
+		(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='male') voteMaleSex,
+		(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='female') voteFemaleSex
+		from VOTEOPTION vo
+		where vo.vsid = #{1}
+		order by voteMaleSex desc,voteUserCount desc,voorder asc ) a
+		where #{0}>=rownum ) nn
+		where rn>0
+	</select>
+	
+	<select id="getHotMdata" parameterType="int" resultType="AnalyzeData"> 
+		select nn.* from 
+		(
+		select rownum rn,a.* from
+		(select vo.vooption,
+		(select count(1) from VoteItem where voId=vo.voId ) voteUserCount,
+		(select count(1) from VoteItem vi,VoteSubject vs where vi.vsId=#{1} and vi.vsId=vs.vsId) totalVote,
+		(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='male') voteMaleSex,
+		(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='female') voteFemaleSex
+		from VOTEOPTION vo
+		where vo.vsid = #{1}
+		order by voteFemaleSex desc,voteUserCount desc,voorder asc) a
+		where #{0}>=rownum ) nn
+		where rn>0
+	</select>
 </mapper>

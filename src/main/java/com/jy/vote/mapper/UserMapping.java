@@ -31,4 +31,7 @@ public interface UserMapping {
 	int adminChangeStatus(int vuId);
 
 	VoteUser getOneUser(int vuId);
+
+	UsersList getAdminSearchUsersListByPage(int pageSize, int pageNum,
+			String searchWords);
 }

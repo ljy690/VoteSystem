@@ -10,4 +10,8 @@ public class SessionAttributeInfo {
 	public static String Options="options";
 	//查看某个用户信息
 	public static String SeeUser="seeUser";
+	//搜索用户
+	public static String searchObj=null;
+	//搜索主题
+	public static String searchWords=null;
 }
