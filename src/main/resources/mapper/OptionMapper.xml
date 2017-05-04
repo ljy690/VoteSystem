@@ -21,7 +21,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="addOptions">
 		insert into VoteOption (voId, voOption, vsId, voOrder,voIntro,voUrl,voPic)
-		values (seq_voption.nextval, #{1}, #{0}, #{4},#{2},#{3},#{5})
+		values (seq_voption.nextval, #{ops},#{vsId},#{i}
+		<choose>
+			<when test="voIntro != null and voIntro !=''">
+				,#{voIntro}
+			</when>
+			<otherwise>
+				,null
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="voUrl != null and voUrl !=''">
+				,#{voUrl}
+			</when>
+			<otherwise>
+				,null
+			</otherwise>
+		</choose>
+		<choose>
+			<when test="picName != null and picName !=''">
+				,#{picName}
+			</when>
+			<otherwise>
+				,null
+			</otherwise>
+		</choose>
+		)
 	</insert>
 	
 	<select id="analyzeSubject" parameterType="int" resultType="VoteOption"> 

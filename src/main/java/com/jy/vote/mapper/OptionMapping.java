@@ -2,6 +2,8 @@ package com.jy.vote.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.jy.vote.entity.AnalyzeData;
 import com.jy.vote.entity.VoteOption;
 
@@ -12,8 +14,8 @@ public interface OptionMapping {
 
 	List<VoteOption> checkSoInfo(int vsId);
 
-	void addOptions(int vsId,String ops, String voIntro, String voUrl, int i, String picName);
-	
+	void addOptions(@Param("vsId")int vsId,@Param("ops")String ops,@Param("voIntro") String voIntro, @Param("voUrl")String voUrl, @Param("i")int i,@Param("picName") String picName);
+
 	//获取投票分析结果
 	List<VoteOption> analyzeSubject(int vsId);
 
