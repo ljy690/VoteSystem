@@ -2,6 +2,8 @@ package com.jy.vote.entity;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class VoteOption implements Serializable{
 	private static final long serialVersionUID = -783464658671957541L;
 	private int voId;
@@ -11,11 +13,19 @@ public class VoteOption implements Serializable{
 	private String voIntro;
 	private String voUrl;
 	private String voPic;
+	private MultipartFile voPics;
 	private int voteUserCount;//每个选项的投票数
 	private int totalVote;//总票数
 	private int voteMaleSex;//男生数
 	private int voteFemaleSex;//女生数
 	
+	
+	public MultipartFile getVoPics() {
+		return voPics;
+	}
+	public void setVoPics(MultipartFile voPics) {
+		this.voPics = voPics;
+	}
 	public int getVoId() {
 		return voId;
 	}

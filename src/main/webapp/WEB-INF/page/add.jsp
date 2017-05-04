@@ -15,7 +15,7 @@
 <div id="voteManage" class="box">
 	<h2>添加新投票</h2>
 	<div class="content">
-	<form method="post" action="subject/addNewSubject">
+	<form method="post" action="subject/addNewSubject" enctype="multipart/form-data">
 			<dl>
 				<dt>投票内容：</dt>
 				<dd>
@@ -23,8 +23,8 @@
 				   <input type="text" class="input-text" name="vsTitle" required="required" maxlength="100"/>
 				   <span class="span1" >最多可输入100字。</span>
 				   <span class="span2">主题简介:</span>
-				   <textarea style="width:385px; height:50px;resize:none;font-size:12px;" maxlength="300" title="请输入主题简介" name="vsIntroduction"></textarea>
-				   <span class="span-style" >最多可输入300字。</span>
+				   <textarea style="width:385px; height:50px;resize:none;font-size:12px;" maxlength="400" title="请输入主题简介" name="vsIntroduction"></textarea>
+				   <span class="span-style" >最多可输入400字。</span>
 				</dd>
 				<dt>投票类型：</dt>
 				<dd>
@@ -36,17 +36,25 @@
 					<p>
 						<input type="text" class="input-text" maxlength="50" name="voOption" required="required"/>
 						<span class="span1" >最多可输入50字。</span>
+						<span class="span2">选项链接地址：</span>
+						<input type="text" class="input-text" maxlength="300" name="voUrl"/>
 						<span class="span2">选项简介:</span>
-						<textarea class="textarea-text" maxlength="150" name="voIntro"></textarea>
-						<span class="span-style" >最多可输入150字。</span>
+						<textarea class="textarea-text" maxlength="300" name="voIntro"></textarea>
+						<span class="span-style" >最多可输入300字。</span>
+						<span>相关图片：</span>
+						<input type="file" accept="image/png,image/gif,image/jpeg" name="file"/>
 					</p>
 					<p>
 						<p class="p-border"></p>
-						<input type="text" maxlength="50" class="input-text" name="voOption" required="required"/>
+						<input type="text" class="input-text" maxlength="50" name="voOption" required="required"/>
 						<span class="span1" >最多可输入50字。</span>
+						<span class="span2">选项链接地址：</span>
+						<input type="text" class="input-text" maxlength="300" name="voUrl"/>
 						<span class="span2">选项简介:</span>
-						<textarea class="textarea-text" maxlength="150" name="voIntro"></textarea>
-						<span class="span-style" >最多可输入150字。</span>
+						<textarea class="textarea-text" maxlength="300" name="voIntro"></textarea>
+						<span class="span-style" >最多可输入300字。</span>
+						<span>相关图片：</span>
+						<input type="file" accept="image/png,image/gif,image/jpeg" name="file"/>
 					</p>
 				</dd>
 				<dt></dt>

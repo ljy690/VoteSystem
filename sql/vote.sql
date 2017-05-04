@@ -75,7 +75,7 @@ add (vsIntroduction varchar2(300));
 
 --修改主题长度
 alter table VoteSubject
-modify(vsIntroduction varchar2(600));
+modify(vsIntroduction varchar2(800));
 
 --投票内容对应的选项表
 create table VoteOption
@@ -85,7 +85,7 @@ create table VoteOption
   vsId     NUMBER(10) not null    --投票主题编号
   	constraint FK_vovsId references VoteSubject(vsId),
   voOrder  NUMBER(10) not null,  --显示顺序
-  voIntro  varchar2(300) ,       --选项的简介
+  voIntro  varchar2(600) ,       --选项的简介
   voUrl    varchar2(300),        --选项的连接
   voPic    varchar2(100)         --选项对应的图片
 );
@@ -95,7 +95,7 @@ alter table VoteOption
 add (voPic varchar2(100));
 --修改选项长度
 alter table VoteOption
-modify(voOption varchar2(100));
+modify(voIntro varchar2(600));
 --用户投票取值表
 create table VoteItem
 (

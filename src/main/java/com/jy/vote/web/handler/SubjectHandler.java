@@ -1,7 +1,10 @@
 package com.jy.vote.web.handler;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import javax.servlet.http.HttpSession;
-
+import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.jy.vote.entity.VoteList;
 import com.jy.vote.entity.VoteSubject;
 import com.jy.vote.entity.VoteUser;
@@ -58,11 +63,14 @@ public class SubjectHandler {
 	public String addNewSubject(ModelMap map,VoteSubject voteSubject,BindingResult bindingResult,
 			@RequestParam(value="voOption",required=false) String[] voOption,
 			@RequestParam(value="voIntro",required=false) String[] voIntro,
+			@RequestParam(value="voUrl",required=false) String[] voUrl,
+			@RequestParam(value="file",required=false) MultipartFile[] files,
 			HttpSession session){
 		if(bindingResult.hasFieldErrors()){
 			map.put("addSbErrorMsg", "添加投票失败");
 			return "add";
 		}
+		
 		//获取到当前的序列
 		int vsId=subjectService.getCurrSequence();
 		//将新增的序列号存到session方便之后跳转取值
@@ -72,16 +80,35 @@ public class SubjectHandler {
 		if(subjectService.addNewSubject(voteSubject)==1){
 			//添加选项
 			int i=0;
+			MultipartFile imageFile = null;
+			String paths=System.getProperty("evan.webapp");
+			paths=paths.substring(0,paths.lastIndexOf("\\"));
+			String realPath =paths.substring(0,paths.lastIndexOf("\\"))+ "\\pics";//获取到服务器存放文件的目录
 			for(String ops:voOption){
 				if(!ops.equals("") && ops != null){
-					optionService.addOptions(vsId,ops,voIntro[i],++i);
+					System.out.println(i+"第几个");
+					System.out.println(i+"第几个："+files[i]);
+					imageFile = files[i];
+					if (!imageFile.isEmpty()) {
+						String picName ="../pics/"+new Date().getTime()+imageFile.getOriginalFilename().substring(imageFile.getOriginalFilename().indexOf("."));
+						try {
+							FileUtils.copyInputStreamToFile(files[i].getInputStream(), new File(realPath, picName));
+							//将图片名字存放到上传对象picName
+							optionService.addOptions(vsId,ops,voIntro[i],voUrl[i],++i,picName);
+						} catch (IOException e) {
+							LogManager.getLogger().error("上传的文件不合法。");
+						}
+					}else{
+						//没有图片就不需要设置图片路径了
+						optionService.addOptions(vsId,ops,voIntro[i],voUrl[i],++i,null);
+					}
 				}
 			}
+			return "add_success";
 		}else{
 			map.put("addSbErrorMsg", "添加投票失败");
 			return "add";
 		}
-		return "add_success";
 	}
 
 	@RequestMapping(value="/jumpMySetUpVote")
