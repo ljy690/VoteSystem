@@ -37,13 +37,21 @@ function connJoinList(data){
 		}
 		listStrss += '</h4>';
 		if(item.vsIntroduction!=null){
-			listStrss += '<p style="margin-left:20px;">'+item.vsIntroduction+'</p>';
+			var instr=item.vsIntroduction;
+			listStrss += '<p style="margin-left: 20px;">';
+			if(instr.length>300){
+				instr = item.vsIntroduction.substring(0,200);
+				listStrss += instr+"..."; 
+			}else{
+				listStrss += instr;
+			}
+			listStrss += '</p>';
 		}
 		listStrss += '<div style="float:right" id="aStyle">';
 		if(item.vsStatus==1){
-			listStrss +='<a">投票进行中</a>';
+			listStrss +='<a>投票进行中</a>';
 		}else{
-			listStrss +='<a">投票已结束</a>';
+			listStrss +='<a>投票已结束</a>';
 		}
 		listStrss += '&nbsp;&nbsp;<a href="option/directView?vsId='+item.vsId+'">查看结果</a></div>';
 		listStrss += '<p class="info">共有' + item.optionCount + '个选项，已有'

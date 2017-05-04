@@ -54,7 +54,7 @@ function connList(data){
 		if(item.vsStatus==1){
 			listStr += '<div class="join"><a href="option/view?vsId='+item.vsId+'">我要参与</a></div>';
 		}else{
-			listStr += '<a">投票已结束</a>&nbsp;&nbsp;<a href="option/directView?vsId='+item.vsId+'">查看结果</a>';
+			listStr += '<a>投票已结束</a>&nbsp;&nbsp;<a href="option/directView?vsId='+item.vsId+'">查看结果</a>';
 		}
 		listStr += '</div><p class="info">共有'  + item.optionCount + '个选项，已有'
 		+item.voteAllCount + '个网友参与了投票。</p>';

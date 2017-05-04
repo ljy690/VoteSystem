@@ -35,7 +35,15 @@ function manageList(data){
 		}
 		listStr += '</h4>';
 		if(item.vsIntroduction!=null){
-			listStr += '<p style="margin-left: 20px;">'+item.vsIntroduction+'</p>';
+			var instr=item.vsIntroduction;
+			listStr += '<p style="margin-left: 20px;">';
+			if(instr.length>300){
+				instr = item.vsIntroduction.substring(0,200);
+				listStr += instr+"..."; 
+			}else{
+				listStr += instr;
+			}
+			listStr += '</p>';
 		}
 		listStr += '<div style="float:right" id="aStyle"><a href="option/analyzeResult?vsId='+item.vsId+'">查看结果</a>&nbsp;&nbsp;';
 		if(item.vsStatus!=3){

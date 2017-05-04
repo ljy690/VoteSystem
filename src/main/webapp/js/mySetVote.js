@@ -35,9 +35,16 @@ function connSetList(data){
 			listStrs += '[多选]';
 		}
 		listStrs += '</h4>';
-		listStrs += '</h4>';
 		if(item.vsIntroduction!=null){
-			listStrs += '<p style="margin-left:20px;">'+item.vsIntroduction+'</p>';
+			var instr=item.vsIntroduction;
+			listStrs += '<p style="margin-left: 20px;">';
+			if(instr.length>300){
+				instr = item.vsIntroduction.substring(0,200);
+				listStrs += instr+"..."; 
+			}else{
+				listStrs += instr;
+			}
+			listStrs += '</p>';
 		}
 		listStrs += '<div style="float:right" id="aStyle"><a href="option/analyzeResult?vsId='+item.vsId+'">结果分析</a>&nbsp;&nbsp;';
 		if(item.vsStatus==1){
