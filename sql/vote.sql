@@ -313,6 +313,10 @@ where rn>0
 		where 5*1>=rownum ) nn
 		where rn>(1-1)*5
 
+		
+		
+--查看细节
+select voOption,voOrder,voIntro,voUrl,voPic from VoteOption where vsId=25 order by voOrder
 
 --修改用户
 update VoteUser set vuPassword='6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2' where vuId=1000028;

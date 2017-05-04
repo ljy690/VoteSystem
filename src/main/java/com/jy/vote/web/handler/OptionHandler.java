@@ -129,4 +129,11 @@ public class OptionHandler {
 		maps.put("num", num);
 		return maps;
 	}
+	
+	@RequestMapping(value="/seeDetails")
+	public String seeDetails(int vsId,ModelMap map,HttpSession session){
+		List<VoteOption> op=optionService.seeDetails(vsId);
+		map.put("details", op);
+		return "detail";
+	}
 }

@@ -22,4 +22,6 @@ public interface OptionMapping {
 	List<AnalyzeData> getHotFdata(int num, int vsId);
 
 	List<AnalyzeData> getHotMdata(int num, int vsId);
+
+	List<VoteOption> seeDetails(int vsId);
 }

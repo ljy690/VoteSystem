@@ -82,4 +82,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where #{0}>=rownum ) nn
 		where rn>0
 	</select>
+	
+	<select id="seeDetails" parameterType="int" resultType="VoteOption"> 
+		select voOption,voOrder,voIntro,voUrl,voPic from VoteOption where vsId=#{0} order by voOrder
+	</select>
 </mapper>

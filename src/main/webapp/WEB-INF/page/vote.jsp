@@ -29,6 +29,7 @@
 				${currSubject.vsIntroduction }
 				</c:otherwise>
 			</c:choose>
+			<a href="option/seeDetails?vsId=${currSubject.vsId }">>>点击查看详情</a>
 			</p>
 			<p class="info">共有 ${currSubject.optionCount }个选项，已有${currSubject.voteAllCount }个网友参与了投票。</p>
 			<label style="color:red">${saveMsg}</label>

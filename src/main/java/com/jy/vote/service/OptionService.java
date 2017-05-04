@@ -22,4 +22,6 @@ public interface OptionService {
 	List<AnalyzeData> getHotFdata(int num, int vsId);
 	//女性数据分析
 	List<AnalyzeData> getHotMdata(int num, int vsId);
+	//查看选项详情
+	List<VoteOption> seeDetails(int vsId);
 }

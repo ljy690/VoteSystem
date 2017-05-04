@@ -51,4 +51,9 @@ public class OptionServiceImpl implements OptionService {
 		return optionMapping.getHotMdata(num,vsId);
 	}
 
+	@Override
+	public List<VoteOption> seeDetails(int vsId) {
+		return optionMapping.seeDetails(vsId);
+	}
+
 }
