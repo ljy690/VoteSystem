@@ -20,7 +20,7 @@
 			<p style="text-indent:20px;font-size:14px;">发布者：
 			<a href="user/jumpOnes?vuUsername=${currSubject.vuUsername }">${currSubject.vuUsername }</a>&nbsp;&nbsp;
 					发布日期：${currSubject.vsBeginTime }</p>
-			<p style="margin-left:20px;">主题介绍：
+			<p style="margin-left:20px;margin-top: 10px;">主题介绍：
 			<c:choose>
 				<c:when test="${currSubject.vsIntroduction==null }">
 				无
@@ -38,10 +38,24 @@
 					<c:forEach items="${details}" var="opDetail">
 						<li>
 							<div>${opDetail.voOrder}.
-							<a href="${opDetail.voUrl}" target="_blank">${opDetail.voOption}</a>
+							<c:choose>
+								<c:when test="${opDetail.voUrl==null}">
+									<a style="font-size: 16px;">${opDetail.voOption}</a>
+								</c:when>
+								<c:otherwise>
+									<a style="font-size: 16px;" href="${opDetail.voUrl}" target="_blank">${opDetail.voOption}</a>
+								</c:otherwise>
+							</c:choose>
 							</div>
 							<div>
-								<img alt="${opDetail.voOption}" src="../../${opDetail.voPic}" width='160px' height='60px'>
+								<c:choose>
+									<c:when test="${opDetail.voPic==null}">
+										<img alt="${opDetail.voOption}"  src="../../images/voteBanner.jpg" width="210px" height="154px"/>
+									</c:when>
+									<c:otherwise>
+										<img alt="${opDetail.voOption}"  src="../../${opDetail.voPic}" width="210px" height="154px"/> 
+									</c:otherwise>
+								</c:choose>
 								<p>${opDetail.voIntro}</p>
 							</div>
 						</li>

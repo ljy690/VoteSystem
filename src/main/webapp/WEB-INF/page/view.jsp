@@ -23,7 +23,7 @@
 			<a href="user/jumpOnes?vuUsername=${currSubject.vuUsername }">${currSubject.vuUsername }</a>&nbsp;&nbsp;
 					发布日期：${currSubject.vsBeginTime }</span>
 			</h4>
-			<p style="margin-left:20px;">主题介绍：
+			<p style="margin-left:20px;margin-top: 10px;">主题介绍：
 			<c:choose>
 				<c:when test="${currSubject.vsIntroduction==null }">
 				无
@@ -32,6 +32,7 @@
 				${currSubject.vsIntroduction }
 				</c:otherwise>
 			</c:choose>
+			<a href="option/seeDetails?vsId=${currSubject.vsId }">>>点此了解选项详情</a>
 			</p>
 			<p class="info">共有${currSubject.optionCount }个选项，已有${currSubject.voteAllCount }个网友参与了投票。 </p>
 			<c:if test="${currSubject.vsStatus == 2 }">
