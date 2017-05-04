@@ -46,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(select count(1) from VoteItem vi,voteuser vu where vi.vuId=vu.vuId and vi.vsId=vo.vsId and voId=vo.voId and vuSex='female') voteFemaleSex
 		from VOTEOPTION vo
 		where vo.vsid = #{1}
-		order by voorder ) a
+		order by voteUserCount desc,voorder asc) a
 		where #{0}>=rownum ) nn
 		where rn>0
 	</select>
