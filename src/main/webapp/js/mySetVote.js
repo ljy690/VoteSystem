@@ -83,7 +83,7 @@ function confirmOpen() {
 } 
 
 function confirmClose() {  
-	var msg = "您真的确定要开启该投票吗？请确认！";  
+	var msg = "您真的确定要关闭该投票吗？请确认！";  
 	if (confirm(msg)==true){  
 		return true;  
 	}else{  

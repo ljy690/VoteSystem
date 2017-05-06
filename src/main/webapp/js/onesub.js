@@ -36,7 +36,15 @@ function connJoinList(data){
 		}
 		listStrss += '</h4>';
 		if(item.vsIntroduction!=null){
-			listStrss += '<p>'+item.vsIntroduction+'</p>';
+			var instr=item.vsIntroduction;
+			listStrss += '<p style="text-indent:20px;">';
+			if(instr.length>300){
+				instr = item.vsIntroduction.substring(0,200);
+				listStrss += instr+"..."; 
+			}else{
+				listStrss += instr;
+			}
+			listStrss += '</p>';
 		}
 		listStrss += '<div style="float:right" id="aStyle">';
 		if(item.vsStatus==1){
