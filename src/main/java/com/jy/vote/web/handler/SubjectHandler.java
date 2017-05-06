@@ -86,8 +86,6 @@ public class SubjectHandler {
 			String realPath =paths.substring(0,paths.lastIndexOf("\\"))+ "\\pics";//获取到服务器存放文件的目录
 			for(String ops:voOption){
 				if(!ops.equals("") && ops != null){
-					System.out.println(i+"第几个");
-					System.out.println(i+"第几个："+files[i]);
 					imageFile = files[i];
 					if (!imageFile.isEmpty()) {
 						String picName ="../pics/"+new Date().getTime()+imageFile.getOriginalFilename().substring(imageFile.getOriginalFilename().indexOf("."));

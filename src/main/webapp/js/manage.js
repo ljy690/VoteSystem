@@ -36,7 +36,7 @@ function manageList(data){
 		listStr += '</h4>';
 		if(item.vsIntroduction!=null){
 			var instr=item.vsIntroduction;
-			listStr += '<p style="margin-left: 20px;">';
+			listStr += '<p style="text-indent:20px;">';
 			if(instr.length>300){
 				instr = item.vsIntroduction.substring(0,200);
 				listStr += instr+"..."; 

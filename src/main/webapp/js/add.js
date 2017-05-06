@@ -44,12 +44,12 @@ function AddOption()
 	var _textarea = document.createElement("textarea");
 	_textarea.className = "textarea-text";
 	_textarea.setAttribute("name", "voIntro");
-	_textarea.setAttribute("maxLength", "300");
+	_textarea.setAttribute("maxLength", "500");
 	_p.appendChild(_textarea);
 	//拼接字数提醒
 	var _span = document.createElement("span");
 	_span.className = "span-style";
-	_span.appendChild(document.createTextNode("最多可输入300字。"));
+	_span.appendChild(document.createTextNode("最多可输入500字。"));
 	_p.appendChild(_span);
 	//相关图片
 	var _vopic = document.createElement("span");

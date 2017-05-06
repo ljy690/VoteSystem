@@ -20,7 +20,7 @@
 		<a href="user/jumpOnes?vuUsername=${currSubject.vuUsername }">${currSubject.vuUsername }</a>&nbsp;&nbsp;
 			发布日期：${currSubject.vsBeginTime }</span>
 		</h4>
-		<p style="margin-left:20px;margin-top: 10px;">主题介绍：
+		<p style="text-indent:20px;margin-top: 10px;">主题介绍：
 			<c:choose>
 				<c:when test="${currSubject.vsIntroduction==null }">
 				无

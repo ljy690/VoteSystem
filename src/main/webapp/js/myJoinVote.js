@@ -38,7 +38,7 @@ function connJoinList(data){
 		listStrss += '</h4>';
 		if(item.vsIntroduction!=null){
 			var instr=item.vsIntroduction;
-			listStrss += '<p style="margin-left: 20px;">';
+			listStrss += '<p style="text-indent:20px;">';
 			if(instr.length>300){
 				instr = item.vsIntroduction.substring(0,200);
 				listStrss += instr+"..."; 

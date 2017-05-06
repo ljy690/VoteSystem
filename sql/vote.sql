@@ -66,16 +66,16 @@ create table VoteSubject
   vsType  NUMBER(6) not null,              --投票类型:   单选  1    多选   2
   vsStatus NUMBER(1) NOT NULL,				--当前投票是否可见  可见 1   关闭 2    删除 3 即只有管理员可见
   vsBeginTime date not null,					--投票发布的时间
-  vsIntroduction varchar2(600)                  --主题的简介
+  vsIntroduction varchar2(1000)                  --主题的简介
 );
 
 --添加主题简介
 alter table VoteSubject
-add (vsIntroduction varchar2(300));
+add (vsIntroduction varchar2(1000));
 
 --修改主题长度
 alter table VoteSubject
-modify(vsIntroduction varchar2(800));
+modify(vsIntroduction varchar2(1000));
 
 --投票内容对应的选项表
 create table VoteOption
@@ -85,7 +85,7 @@ create table VoteOption
   vsId     NUMBER(10) not null    --投票主题编号
   	constraint FK_vovsId references VoteSubject(vsId),
   voOrder  NUMBER(10) not null,  --显示顺序
-  voIntro  varchar2(600) ,       --选项的简介
+  voIntro  varchar2(1000) ,       --选项的简介
   voUrl    varchar2(300),        --选项的连接
   voPic    varchar2(100)         --选项对应的图片
 );
@@ -95,7 +95,7 @@ alter table VoteOption
 add (voPic varchar2(100));
 --修改选项长度
 alter table VoteOption
-modify(voIntro varchar2(600));
+modify(voIntro varchar2(1000));
 --用户投票取值表
 create table VoteItem
 (

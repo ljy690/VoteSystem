@@ -23,8 +23,8 @@
 				   <input type="text" class="input-text" name="vsTitle" required="required" maxlength="100"/>
 				   <span class="span1" >最多可输入100字。</span>
 				   <span class="span2">主题简介:</span>
-				   <textarea style="width:385px; height:50px;resize:none;font-size:12px;" maxlength="400" title="请输入主题简介" name="vsIntroduction"></textarea>
-				   <span class="span-style" >最多可输入400字。</span>
+				   <textarea style="width:385px; height:50px;resize:none;font-size:12px;" maxlength="500" title="请输入主题简介" name="vsIntroduction"></textarea>
+				   <span class="span-style" >最多可输入500字。</span>
 				</dd>
 				<dt>投票类型：</dt>
 				<dd>
@@ -39,8 +39,8 @@
 						<span class="span2">选项链接地址：</span>
 						<input type="text" class="input-text" maxlength="300" name="voUrl"/>
 						<span class="span2">选项简介:</span>
-						<textarea class="textarea-text" maxlength="300" name="voIntro"></textarea>
-						<span class="span-style" >最多可输入300字。</span>
+						<textarea class="textarea-text" maxlength="500" name="voIntro"></textarea>
+						<span class="span-style" >最多可输入500字。</span>
 						<span>相关图片：</span>
 						<input type="file" accept="image/png,image/gif,image/jpeg" name="file"/>
 					</p>
@@ -51,8 +51,8 @@
 						<span class="span2">选项链接地址：</span>
 						<input type="text" class="input-text" maxlength="300" name="voUrl"/>
 						<span class="span2">选项简介:</span>
-						<textarea class="textarea-text" maxlength="300" name="voIntro"></textarea>
-						<span class="span-style" >最多可输入300字。</span>
+						<textarea class="textarea-text" maxlength="500" name="voIntro"></textarea>
+						<span class="span-style" >最多可输入500字。</span>
 						<span>相关图片：</span>
 						<input type="file" accept="image/png,image/gif,image/jpeg" name="file"/>
 					</p>

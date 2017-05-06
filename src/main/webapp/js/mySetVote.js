@@ -37,7 +37,7 @@ function connSetList(data){
 		listStrs += '</h4>';
 		if(item.vsIntroduction!=null){
 			var instr=item.vsIntroduction;
-			listStrs += '<p style="margin-left: 20px;">';
+			listStrs += '<p style="text-indent:20px;">';
 			if(instr.length>300){
 				instr = item.vsIntroduction.substring(0,200);
 				listStrs += instr+"..."; 

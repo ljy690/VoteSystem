@@ -24,7 +24,7 @@
 			<span style="float:right;font-size:14px;">发布者：${currSubject.vuUsername }&nbsp;&nbsp;
 					发布日期：${currSubject.vsBeginTime }</span>
 			</h4>
-			<p style="margin-left:20px;">主题介绍：
+			<p style="text-indent:20px;">主题介绍：
 			<c:choose>
 				<c:when test="${currSubject.vsIntroduction==null }">
 				无
