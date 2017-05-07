@@ -61,7 +61,7 @@
 				<dd class="button">
 					<input type="image" src="images/button_submit.gif" />
 					<a href="javascript:;" onclick="AddOption()">增加选项</a>
-					<a href="subject/jumpList">退出</a>
+					<a href="subject/jumpList">>>返回列表</a>
 					<label style="color:red">${addSbErrorMsg}</label>
 				</dd>
 			</dl>

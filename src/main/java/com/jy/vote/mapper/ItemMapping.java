@@ -11,5 +11,5 @@ public interface ItemMapping {
 
 	int vote(int vsId, int vuId, int i);
 
-	VoteItem checkReVote(int vsId, int vuId);
+	List<VoteItem> checkReVote(int vsId, int vuId);
 }
