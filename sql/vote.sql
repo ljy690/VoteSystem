@@ -32,8 +32,8 @@ create table VoteUser
   vuUpTime	date                                --最后修改的时间
 );
 --添加管理员
-insert into VoteUser(vuId,vuUsername,vuSex,vuDate, vuPassword,vuEmail, vuStatus, vuVersion) 
-values(seq_user.nextval,'admin','male',sysdate,'6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','1234566@qwe.com',2,1);
+insert into VoteUser(vuId,vuUsername,vuSex,vuDate, vuPassword,vuEmail, vuStatus, vuVersion,vuUpTime) 
+values(seq_user.nextval,'admin','male',sysdate,'6f9b0a55df8ac28564cb9f63a10be8af6ab3f7c2','1234566@qwe.com',2,1,sysdate);
 
 
 --投票主题
@@ -80,5 +80,4 @@ select * from VoteUser;
 select * from VoteSubject;
 select * from VoteOption;
 select * from VoteItem;
-
 

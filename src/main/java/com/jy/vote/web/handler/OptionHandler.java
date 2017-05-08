@@ -42,7 +42,13 @@ public class OptionHandler {
 		session.setAttribute(SessionAttributeInfo.CurrSubject, subject);
 
 		VoteUser user= (VoteUser) session.getAttribute(SessionAttributeInfo.CurrUser);
-
+		
+		if(user.getVuUsername().equals("admin")){
+			//根据主题获取分析的结果
+			getSubAnaly(map, vsId);
+			return "result";
+		}
+		
 		//判断当前投票是不是可投状态
 		if(subject.getVsStatus()==1){//可投
 			//判断当前是查看投票还是取出投票

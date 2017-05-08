@@ -50,10 +50,10 @@
 							<div>
 								<c:choose>
 									<c:when test="${opDetail.voPic==null}">
-										<img alt="${opDetail.voOption}"  src="../../images/voteBanner.jpg" width="210px" height="154px"/>
+										<img alt="${opDetail.voOption}"  src="../../images/voteBanner.jpg" width="450px" height="200px" style="margin-left:20px;"/>
 									</c:when>
 									<c:otherwise>
-										<img alt="${opDetail.voOption}"  src="../../${opDetail.voPic}" width="210px" height="154px"/> 
+										<img alt="${opDetail.voOption}"  src="../../${opDetail.voPic}" width="450px" height="200px" style="margin-left:20px;"/> 
 									</c:otherwise>
 								</c:choose>
 								<p style="text-indent:20px;">${opDetail.voIntro}</p>

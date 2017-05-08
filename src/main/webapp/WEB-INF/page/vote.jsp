@@ -50,6 +50,7 @@
 			</form>
 		</li>
 	</ul>
+	<div class="goback" style="margin-bottom:50px;"><a href="javascript:history.go(-1)">返回上一级</a></div>
 </div>
 <jsp:include page="footer.jsp" />
 </body>
