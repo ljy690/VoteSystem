@@ -43,7 +43,7 @@ function connList(data){
 			var instr=item.vsIntroduction;
 			listStr += '<p style="text-indent:20px;">';
 			if(instr.length>300){
-				instr = item.vsIntroduction.substring(0,200);
+				instr = item.vsIntroduction.substring(0,300);
 				listStr += instr+"..."; 
 			}else{
 				listStr += instr;

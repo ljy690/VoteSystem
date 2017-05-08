@@ -27,7 +27,7 @@ function connList(data){
 			listStr += '<h4>'+str.substring(0,35)+"...";
 		}else{
 			listStr += '<h4>'+str;
-		};
+		}
 		if(item.vsType==1){
 			listStr += '[单选]';
 		}else{
@@ -35,21 +35,30 @@ function connList(data){
 		}
 		listStr += '</h4>';
 		if(item.vsIntroduction!=null){
-			listStr += '<p style="margin-left: 20px;">'+item.vsIntroduction+'</p>';
+			var instr=item.vsIntroduction;
+			listStr += '<p style="text-indent:20px;">';
+			if(instr.length>300){
+				instr = item.vsIntroduction.substring(0,300);
+				listStr += instr+"..."; 
+			}else{
+				listStr += instr;
+			}
+			listStr += '</p>';
 		}
-		listStr += '<div style="float:right" id="aStyle">';
-		if(item.vsStatus==1){
-			listStr += '<div class="join"><a href="option/view?vsId='+item.vsId+'">我要参与</a></div>';
+		listStr += '<div style="float:right" id="aStyle"><a href="option/analyzeResult?vsId='+item.vsId+'">查看结果</a>&nbsp;&nbsp;';
+		if(item.vsStatus!=3){
+			listStr += '<a href="subject/adminDelete?vsId='+item.vsId+'" onclick="return confirmDel()">删除此投票</a></div>';
 		}else{
-			listStr += '<a">投票已结束</a>&nbsp;&nbsp;<a href="option/directView?vsId='+item.vsId+'">查看结果</a>';
+			listStr += '<a">此投票已经被删除</a></div>';
 		}
-		listStr += '</div><p class="info">共有' + item.optionCount + '个选项，已有'
+
+		listStr += '<p class="info">共有'  + item.optionCount + '个选项，已有'
 		+item.voteAllCount + '个网友参与了投票。</p>';
 		listStr += '</li>';
 	});
-	$("#adminSearchUser").html(listStr);
+	$("#adminSearchSubject").html(listStr);
 }
 
 function noSearchInfo(){
-	$("#searchResult").html("<h4>搜索不到相关的投票主题。</h4>");
+	$("#adminSearchSubject").html("<h4>搜索不到相关的投票主题。</h4>");
 }

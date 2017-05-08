@@ -1,5 +1,7 @@
 package com.jy.vote.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.jy.vote.entity.UsersList;
 import com.jy.vote.entity.VoteUser;
 
@@ -33,5 +35,5 @@ public interface UserMapping {
 	VoteUser getOneUser(int vuId);
 
 	UsersList getAdminSearchUsersListByPage(int pageSize, int pageNum,
-			String searchWords);
+			@Param("searchWords")String searchWords);
 }

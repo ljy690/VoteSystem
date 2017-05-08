@@ -39,7 +39,7 @@ function connSetList(data){
 			var instr=item.vsIntroduction;
 			listStrs += '<p style="text-indent:20px;">';
 			if(instr.length>300){
-				instr = item.vsIntroduction.substring(0,200);
+				instr = item.vsIntroduction.substring(0,300);
 				listStrs += instr+"..."; 
 			}else{
 				listStrs += instr;

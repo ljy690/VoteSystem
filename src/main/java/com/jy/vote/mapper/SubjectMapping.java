@@ -36,6 +36,6 @@ public interface SubjectMapping {
 	int openVote(int vsId);
 
 	VoteList getSearchSubjectListByPage(int pageSize, int pageNum,
-			String searchWords);
+			@Param("searchWords")String searchWords);
 
 }

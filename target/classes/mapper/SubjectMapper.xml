@@ -156,7 +156,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getSearchSubjectListByPage" resultMap="VoteListMap">
 		select
-		(select count(1) from VoteSubject where vsTitle like '%#{2}%') total, 
+		(select count(1) from VoteSubject where vsTitle like '%${searchWords}%') total, 
 		nn.* from
 		(
 		select rownum rn,a.* from
@@ -164,7 +164,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select vs.*,
 		(select count(1) from VoteOption where vsId=vs.vsId) optionCount,
 		(select count(distinct(vuId)) from VoteItem where vsId=vs.vsId) voteAllCount
-		from VoteSubject vs where vsTitle like '%#{2}%' order by vsBeginTime desc) a 
+		from VoteSubject vs where vsTitle like '%${searchWords}%' order by vsBeginTime desc) a 
 		where #{0}*#{1}>=rownum ) nn
 		where rn>(#{1}-1)*#{0}
 	</select>

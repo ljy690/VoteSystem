@@ -259,7 +259,7 @@ public class SubjectHandler {
 			}
 			return voteList;
 		}
-		return null;
+		return voteList;
 	}
 
 	//管理员管理所有投票

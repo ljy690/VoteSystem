@@ -89,7 +89,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getAdminSearchUsersListByPage" resultMap="UserListMap"> 
-		select (select count(1) from VoteUser where vuVersion=0 and vuUsername like '%#{2}%') total,
+		select (select count(1) from VoteUser where vuVersion=0 and vuUsername like '%${searchWords}%') total,
 		nn.*
 		 from
 		(
@@ -98,7 +98,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select vu.*,
 		(select count(1) from VoteSubject vs where vsStatus!=3 and vu.vuId=vs.vsvuId) setVote,
 		(select count(distinct(vs.vsId)) from VoteItem vi,VoteSubject vs where vsStatus!=3 and vi.vsId=vs.vsId and vi.vuId=vu.vuId) joinVote
-		from VoteUser vu where vuVersion=0 and vuUsername like '%#{2}%' order by vuUpTime desc) a 
+		from VoteUser vu where vuVersion=0 and vuUsername like '%${searchWords}%' order by vuUpTime desc) a 
 		where #{0}*#{1}>=rownum ) nn
 		where rn>(#{1}-1)*#{0}
 		
